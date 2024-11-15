@@ -14,7 +14,23 @@
   ![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)
 
 ### 更新日志
+### `0.1.0`
 
+- #### 新增 `v-model:space` 中字段
+  ```javascript
+  {
+    // --- 新增 ---
+    // 总行数
+    showrow, 
+    // 总列数
+    showcolumn,
+
+    // --- 原有 ---
+    row, // 数据填充行数
+    column, // 数据填前列数
+  }
+  ```
+- #### 修复了 多列数据时 `@onend` 回调函数问题
 ### `0.0.9`
 
 - #### 问题修复 `v-model:space` 和 onend 冲突问题处理

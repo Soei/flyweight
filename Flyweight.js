@@ -1,24 +1,24 @@
-import { isArray as F, each as m, runer as d, picker as z } from "@soei/util";
-import { openBlock as x, createElementBlock as _, normalizeClass as O, normalizeStyle as b, createElementVNode as L, Fragment as W, renderList as E, renderSlot as T, createCommentVNode as S } from "vue";
+import { isArray as F, each as x, runer as y, picker as z } from "@soei/util";
+import { openBlock as _, createElementBlock as b, normalizeClass as O, normalizeStyle as k, createElementVNode as L, Fragment as E, renderList as S, renderSlot as T, createCommentVNode as W } from "vue";
 const A = (t, e) => {
-  const s = t.__vccOpts || t;
-  for (const [h, i] of e)
-    s[h] = i;
-  return s;
+  const i = t.__vccOpts || t;
+  for (const [l, s] of e)
+    i[l] = s;
+  return i;
 };
 let H = (t) => t == null || t == null, B = /(\d+|[+\-\*/]|%)/g, N = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
   "*": (t, e) => t * e,
   "/": (t, e) => t / e,
-  "%": (t, e, s) => parseFloat(t) / 100 * s
+  "%": (t, e, i) => parseFloat(t) / 100 * i
 }, $ = (t, e) => {
-  let s;
-  if (s = d("match", t, B)) {
-    let h = s.length, i, l = 0, r, n = [];
-    for (; h--; )
-      l = s.shift(), l in N ? (i && n.push(i), l === "%" && (n.length = 2), r = l) : +l && n.push(+l), n.length == 2 && (n.push(e), i = N[r].apply(null, n), n.length = 0);
-    +i || (i = +n.pop()), t = i >> 0;
+  let i;
+  if (i = y("match", t, B)) {
+    let l = i.length, s, h = 0, n, r = [];
+    for (; l--; )
+      h = i.shift(), h in N ? (s && r.push(s), h === "%" && (r.length = 2), n = h) : +h && r.push(+h), r.length == 2 && (r.push(e), s = N[n].apply(null, r), r.length = 0);
+    +s || (s = +r.pop()), t = s >> 0;
   }
   return t;
 }, C = (...t) => {
@@ -116,8 +116,8 @@ const I = {
     }
   },
   mounted() {
-    this.flyweights = [], this.$set || (this.$set = (t, e, s) => {
-      t[e] = s;
+    this.flyweights = [], this.$set || (this.$set = (t, e, i) => {
+      t[e] = i;
     }), this.setindex(this.index);
     try {
       new ResizeObserver(() => {
@@ -130,8 +130,8 @@ const I = {
   methods: {
     trigger(t, e) {
       this.lazyrun(() => {
-        F(t) || (t = [[t, e]]), m(t, (s, h) => {
-          this.$emit(h[0], H(h[1]) ? !0 : h[1]);
+        F(t) || (t = [[t, e]]), x(t, (i, l) => {
+          this.$emit(l[0], H(l[1]) ? !0 : l[1]);
         });
       });
     },
@@ -140,39 +140,39 @@ const I = {
         return t && this.task.push(t), !0;
     },
     setview(t) {
-      d([this.cheackflys, (e) => {
+      y([this.cheackflys, (e) => {
         e = e || {};
-        let s = e.index || m(this.flys, (h, i, l, r) => {
-          if (i[l] == r)
-            return h;
+        let i = e.index || x(this.flys, (l, s, h, n) => {
+          if (s[h] == n)
+            return l;
         }, e.picker, e.id);
-        H(s) || this.setindex(s);
+        H(i) || this.setindex(i);
       }], this, t);
     },
     setindex(t) {
-      d([this.cheackflys, ({ index: e }) => {
+      y([this.cheackflys, ({ index: e }) => {
         this.$nextTick(() => {
-          let s = e / this.column >> 0, h = this.fwheight;
-          (this.flyweight.scrollTop / h >> 0) + this.row - s - 1 > 0 || (this.flyweight.scrollTop = s * h, this.scroll());
+          let i = e / this.column >> 0, l = this.fwheight;
+          (this.flyweight.scrollTop / l >> 0) + this.row - i - 1 > 0 || (this.flyweight.scrollTop = i * l, this.scroll());
         });
       }], this, { index: t });
     },
     lazyrun(t, e) {
       clearTimeout(this.time), this.time = setTimeout(() => {
-        d(t);
+        y(t);
       }, e || this.lazy);
     },
     run(t) {
       let e = z(t.target, "scrollTop=>top");
-      m(
+      x(
         this.flyweights,
-        (s, h, i, l, r, n, u, o) => {
-          if (i = s / r >> 0, u = i + l * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(i < n % l) + (n / l >> 0)), o = u * r + s % r, o >= this.count) {
+        (i, l, s, h, n, r, u, f) => {
+          if (s = i / n >> 0, u = s + h * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
+          (+(s < r % h) + (r / h >> 0)), f = u * n + i % n, f >= this.count) {
             this.trigger("onend");
             return;
           }
-          h.index = u, h.top = u * this.fwheight, h.data = this.flys[o];
+          l.index = u, l.top = u * this.fwheight, l.data = this.flys[f];
         },
         null,
         this.row,
@@ -189,72 +189,76 @@ const I = {
       if (!t)
         return e.length = t;
       this.count = t;
-      let s = this.flyweight, h = z(s, "clientHeight=>height,clientWidth=>width");
+      let i = this.flyweight, l = z(i, "clientHeight=>height,clientWidth=>width");
       this.$nextTick(() => {
-        let i = this.auto === !0, [l, r] = this.offset, n = h.width, u = h.height, o = ($(this.width, n) || n) + l, a = $(this.height, u) + r;
-        this.realW = o - l, this.realH = a - r;
-        let f = n / o >> 0 || 1, g = u / a >> 0;
-        this.row = g + 2, this.column = f, this.fwheight = a;
-        let k = n % o / (f - 1 * +!i) >> 0;
-        i && (o = this.realW = (n / f >> 0) - l, k = l), this.Height = Math.ceil(t / f) * a;
-        let y = Math.min(t, f * this.row), p = y - 1, c, v;
-        for (; y-- > 0; )
-          c = p - y, v = this.flys[c], s = e[c], g = c / f >> 0, this.$set(e, c, {
+        let s = this.auto === !0, [h, n] = this.offset, r = l.width, u = l.height, f = ($(this.width, r) || r) + h, c = $(this.height, u) + n;
+        this.realH = c - n;
+        let o = r / f >> 0 || 1, g = u / c >> 0;
+        this.row = g + 2, this.column = o, this.fwheight = c;
+        let d;
+        s ? (f = (r / o >> 0) - h / o * (o - 1), d = h) : d = r % f / (o - 1) >> 0, this.realW = f, this.Height = Math.ceil(t / o) * c;
+        let w = Math.min(t, o * this.row), p = w - 1, a, v;
+        for (; w-- > 0; )
+          a = p - w, v = this.flys[a], i = e[a], g = a / o >> 0, this.$set(e, a, {
             data: v,
-            top: g * a,
-            left: c % f * (o + k),
+            top: g * c,
+            left: a % o * (f + d),
             index: g
           });
         e.length = p + 1;
-        let w = [];
-        u / a > p && w.push(["onend"]), this.scroll(), w.push(["update:space", { row: (p / f >> 0) + 1, column: f }]), this.trigger(w);
+        let m = [];
+        u / c > p / o && m.push(["onend"]), this.scroll(), m.push(["update:space", {
+          row: (p / o >> 0) + 1,
+          column: o,
+          showrow: this.row,
+          showcloumn: this.column
+        }]), this.trigger(m);
       });
     }
   }
-}, j = ["data"];
-function M(t, e, s, h, i, l) {
-  return x(), _("div", {
+};
+function j(t, e, i, l, s, h) {
+  return _(), b("div", {
     ref: "flyweight",
     class: O(["flyweight", {
-      "flyweight-active": i.actice
+      "flyweight-active": s.actice
     }]),
-    style: b({
-      "--width": i.realW + "px",
-      "--height": i.realH + "px"
+    style: k({
+      "--width": s.realW + "px",
+      "--height": s.realH + "px"
     }),
-    onScroll: e[0] || (e[0] = (...r) => l.scroll && l.scroll(...r))
+    onScroll: e[0] || (e[0] = (...n) => h.scroll && h.scroll(...n))
   }, [
     L("div", {
       class: "flyweight-all",
-      style: b({
-        "--flyweight-height": i.Height + "px"
+      style: k({
+        "--flyweight-height": s.Height + "px"
       })
     }, [
-      (x(!0), _(W, null, E(i.flyweights, (r, n) => (x(), _("div", {
-        key: n,
-        data: r.top,
-        style: b({
-          top: r.top + "px",
-          left: r.left + "px"
+      (_(!0), b(E, null, S(s.flyweights, (n, r) => (_(), b("div", {
+        key: r,
+        style: k({
+          top: n.top + "px",
+          left: n.left + "px"
         })
       }, [
         T(t.$slots, "default", {
-          data: r.data,
-          index: r.index
+          data: n.data,
+          index: n.index
         }, void 0, !0)
-      ], 12, j))), 128))
+      ], 4))), 128))
     ], 4),
-    i.flyweights.length ? T(t.$slots, "end", { key: 0 }, void 0, !0) : S("", !0)
+    s.flyweights.length ? T(t.$slots, "end", { key: 0 }, void 0, !0) : W("", !0)
   ], 38);
 }
-const R = /* @__PURE__ */ A(I, [["render", M], ["__scopeId", "data-v-1342d2cb"]]), V = [R], q = {
+const M = /* @__PURE__ */ A(I, [["render", j], ["__scopeId", "data-v-489f03db"]]), R = [M], U = {
   install(t) {
-    V.forEach((e) => {
+    R.forEach((e) => {
       t.component("s-" + e.name.toLowerCase(), e);
     });
   }
 };
 export {
-  R as Flyweight,
-  q as default
+  M as Flyweight,
+  U as default
 };

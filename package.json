@@ -1,0 +1,32 @@
+{
+  "name": "@soei/flyweight",
+  "private": false,
+  "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight",
+  "version": "0.0.11",
+  "type": "module",
+  "main": "Flyweight.cjs",
+  "module": "Flyweight.js",
+  "files": [
+    "Flyweight.cjs",
+    "Flyweight.js",
+    "style.css",
+    "src/Flyweight.vue"
+  ],
+  "homepage": "https://alwbg.github.io",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@soei/util": "^1.1.8"
+  },
+  "keywords": [
+    "Flyweight",
+    "享元模式",
+    "List",
+    "列表展示"
+  ],
+  "author": "soei | alwbg@163.com",
+  "license": "ISC"
+}

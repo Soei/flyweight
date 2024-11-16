@@ -2,26 +2,32 @@
 
 # 享元模式 [![Latest Version on NPM](https://img.shields.io/npm/v/@soei/flyweight?label=npm&style=flat-square)](https://npmjs.com/package/@soei/flyweight) [![Software License](https://img.shields.io/badge/license-ISC-brightgreen?label=&style=flat-square)](LICENSE.md) [![npm](https://img.shields.io/npm/dw/@soei/flyweight?label=Downloads&style=flat-square)](https://www.npmjs.com/package/@soei/flyweight) ![npm bundle size](https://img.shields.io/bundlephobia/min/%40soei%2Futil?label=Size&color=&style=flat-square)
 
- 
-
 ![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)
+
 ```html
 <div style="height:100px;width:300px;">
   <!-- 确认父容器 宽 高 存在, 依赖父容器 `宽`, `高` 计算 -->
   <s-flyweight ...></s-flyweight>
 </div>
 ```
-  ![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)
+
+![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)
 
 ### 更新日志
+
+### `0.1.1`
+
+- #### 拼写错误修复
+
 ### `0.1.0`
 
 - #### 新增 `v-model:space` 中字段
+
   ```javascript
   {
     // --- 新增 ---
     // 总行数
-    showrow, 
+    showrow,
     // 总列数
     showcolumn,
 
@@ -30,7 +36,9 @@
     column, // 数据填前列数
   }
   ```
+
 - #### 修复了 多列数据时 `@onend` 回调函数问题
+
 ### `0.0.9`
 
 - #### 问题修复 `v-model:space` 和 onend 冲突问题处理

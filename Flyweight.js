@@ -1,5 +1,5 @@
 import { isArray as F, each as x, runer as y, picker as z } from "@soei/util";
-import { openBlock as _, createElementBlock as b, normalizeClass as O, normalizeStyle as k, createElementVNode as L, Fragment as E, renderList as S, renderSlot as T, createCommentVNode as W } from "vue";
+import { openBlock as _, createElementBlock as k, normalizeClass as O, normalizeStyle as v, createElementVNode as L, Fragment as E, renderList as S, renderSlot as T, createCommentVNode as W } from "vue";
 const A = (t, e) => {
   const i = t.__vccOpts || t;
   for (const [l, s] of e)
@@ -197,10 +197,10 @@ const I = {
         this.row = g + 2, this.column = o, this.fwheight = c;
         let d;
         s ? (f = (r / o >> 0) - h / o * (o - 1), d = h) : d = r % f / (o - 1) >> 0, this.realW = f, this.Height = Math.ceil(t / o) * c;
-        let w = Math.min(t, o * this.row), p = w - 1, a, v;
+        let w = Math.min(t, o * this.row), p = w - 1, a, b;
         for (; w-- > 0; )
-          a = p - w, v = this.flys[a], i = e[a], g = a / o >> 0, this.$set(e, a, {
-            data: v,
+          a = p - w, b = this.flys[a], i = e[a], g = a / o >> 0, this.$set(e, a, {
+            data: b,
             top: g * c,
             left: a % o * (f + d),
             index: g
@@ -211,19 +211,19 @@ const I = {
           row: (p / o >> 0) + 1,
           column: o,
           showrow: this.row,
-          showcloumn: this.column
+          showcolumn: this.column
         }]), this.trigger(m);
       });
     }
   }
 };
 function j(t, e, i, l, s, h) {
-  return _(), b("div", {
+  return _(), k("div", {
     ref: "flyweight",
     class: O(["flyweight", {
       "flyweight-active": s.actice
     }]),
-    style: k({
+    style: v({
       "--width": s.realW + "px",
       "--height": s.realH + "px"
     }),
@@ -231,13 +231,13 @@ function j(t, e, i, l, s, h) {
   }, [
     L("div", {
       class: "flyweight-all",
-      style: k({
+      style: v({
         "--flyweight-height": s.Height + "px"
       })
     }, [
-      (_(!0), b(E, null, S(s.flyweights, (n, r) => (_(), b("div", {
+      (_(!0), k(E, null, S(s.flyweights, (n, r) => (_(), k("div", {
         key: r,
-        style: k({
+        style: v({
           top: n.top + "px",
           left: n.left + "px"
         })
@@ -251,7 +251,7 @@ function j(t, e, i, l, s, h) {
     s.flyweights.length ? T(t.$slots, "end", { key: 0 }, void 0, !0) : W("", !0)
   ], 38);
 }
-const M = /* @__PURE__ */ A(I, [["render", j], ["__scopeId", "data-v-489f03db"]]), R = [M], U = {
+const M = /* @__PURE__ */ A(I, [["render", j], ["__scopeId", "data-v-f7462fc9"]]), R = [M], U = {
   install(t) {
     R.forEach((e) => {
       t.component("s-" + e.name.toLowerCase(), e);

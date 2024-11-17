@@ -1,12 +1,12 @@
-import { isArray as F, each as x, runer as y, picker as z } from "@soei/util";
-import { openBlock as _, createElementBlock as k, normalizeClass as O, normalizeStyle as v, createElementVNode as L, Fragment as E, renderList as S, renderSlot as T, createCommentVNode as W } from "vue";
-const A = (t, e) => {
+import { isArray as F, each as x, runer as y, picker as z, merge as O } from "@soei/util";
+import { openBlock as _, createElementBlock as b, normalizeClass as L, normalizeStyle as k, createElementVNode as W, Fragment as E, renderList as S, renderSlot as T, createCommentVNode as A } from "vue";
+const B = (t, e) => {
   const i = t.__vccOpts || t;
-  for (const [l, s] of e)
-    i[l] = s;
+  for (const [r, s] of e)
+    i[r] = s;
   return i;
 };
-let H = (t) => t == null || t == null, B = /(\d+|[+\-\*/]|%)/g, N = {
+let H = (t) => t == null || t == null, C = /(\d+|[+\-\*/]|%)/g, N = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
   "*": (t, e) => t * e,
@@ -14,17 +14,17 @@ let H = (t) => t == null || t == null, B = /(\d+|[+\-\*/]|%)/g, N = {
   "%": (t, e, i) => parseFloat(t) / 100 * i
 }, $ = (t, e) => {
   let i;
-  if (i = y("match", t, B)) {
-    let l = i.length, s, h = 0, n, r = [];
-    for (; l--; )
-      h = i.shift(), h in N ? (s && r.push(s), h === "%" && (r.length = 2), n = h) : +h && r.push(+h), r.length == 2 && (r.push(e), s = N[n].apply(null, r), r.length = 0);
-    +s || (s = +r.pop()), t = s >> 0;
+  if (i = y("match", t, C)) {
+    let r = i.length, s, l = 0, n, h = [];
+    for (; r--; )
+      l = i.shift(), l in N ? (s && h.push(s), l === "%" && (h.length = 2), n = l) : +l && h.push(+l), h.length == 2 && (h.push(e), s = N[n].apply(null, h), h.length = 0);
+    +s || (s = +h.pop()), t = s >> 0;
   }
   return t;
-}, C = (...t) => {
+}, I = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
-const I = {
+const j = {
   name: "Flyweight",
   props: {
     flys: {
@@ -124,14 +124,14 @@ const I = {
         this.re(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (t) {
-      C(t);
+      I(t);
     }
   },
   methods: {
     trigger(t, e) {
       this.lazyrun(() => {
-        F(t) || (t = [[t, e]]), x(t, (i, l) => {
-          this.$emit(l[0], H(l[1]) ? !0 : l[1]);
+        F(t) || (t = [[t, e]]), x(t, (i, r) => {
+          this.$emit(r[0], H(r[1]) ? !0 : r[1]);
         });
       });
     },
@@ -142,9 +142,9 @@ const I = {
     setview(t) {
       y([this.cheackflys, (e) => {
         e = e || {};
-        let i = e.index || x(this.flys, (l, s, h, n) => {
-          if (s[h] == n)
-            return l;
+        let i = e.index || x(this.flys, (r, s, l, n) => {
+          if (s[l] == n)
+            return r;
         }, e.picker, e.id);
         H(i) || this.setindex(i);
       }], this, t);
@@ -152,8 +152,8 @@ const I = {
     setindex(t) {
       y([this.cheackflys, ({ index: e }) => {
         this.$nextTick(() => {
-          let i = e / this.column >> 0, l = this.fwheight;
-          (this.flyweight.scrollTop / l >> 0) + this.row - i - 1 > 0 || (this.flyweight.scrollTop = i * l, this.scroll());
+          let i = e / this.column >> 0, r = this.fwheight;
+          (this.flyweight.scrollTop / r >> 0) + this.row - i - 1 > 0 || (this.flyweight.scrollTop = i * r, this.scroll());
         });
       }], this, { index: t });
     },
@@ -163,51 +163,57 @@ const I = {
       }, e || this.lazy);
     },
     run(t) {
-      let e = z(t.target, "scrollTop=>top");
-      x(
+      let e = [], i = z(t.target, "scrollTop=>top");
+      O(i, {
+        height: this.realH,
+        width: this.realW,
+        /* 显示区域第一行的索引 */
+        index: i.top / this.fwheight >> 0
+        // ...this
+      }, this.space, "mix"), t.from || e.push(["onscroll", i]), x(
         this.flyweights,
-        (i, l, s, h, n, r, u, f) => {
-          if (s = i / n >> 0, u = s + h * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(s < r % h) + (r / h >> 0)), f = u * n + i % n, f >= this.count) {
-            this.trigger("onend");
+        (r, s, l, n, h, c, f, u) => {
+          if (l = r / h >> 0, f = l + n * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
+          (+(l < c % n) + (c / n >> 0)), u = f * h + r % h, u >= this.count) {
+            e.push(["onend"]);
             return;
           }
-          l.index = u, l.top = u * this.fwheight, l.data = this.flys[f];
+          s.index = f, s.top = f * this.fwheight, s.data = this.flys[u];
         },
         null,
         this.row,
         this.column,
         /* 显示区域第一行的索引 */
-        e.top / this.fwheight >> 0
-      );
+        i.index
+      ), this.trigger(e), e = null;
     },
     scroll(t) {
-      this.run(t || { target: this.flyweight });
+      this.run(t || { target: this.flyweight, from: "space" });
     },
     re() {
       let t = this.count || this.flys.length, e = this.flyweights;
       if (!t)
         return e.length = t;
       this.count = t;
-      let i = this.flyweight, l = z(i, "clientHeight=>height,clientWidth=>width");
+      let i = this.flyweight, r = z(i, "clientHeight=>height,clientWidth=>width");
       this.$nextTick(() => {
-        let s = this.auto === !0, [h, n] = this.offset, r = l.width, u = l.height, f = ($(this.width, r) || r) + h, c = $(this.height, u) + n;
-        this.realH = c - n;
-        let o = r / f >> 0 || 1, g = u / c >> 0;
-        this.row = g + 2, this.column = o, this.fwheight = c;
+        let s = this.auto === !0, [l, n] = this.offset, h = r.width, c = r.height, f = ($(this.width, h) || h) + l, u = $(this.height, c) + n;
+        this.realH = u - n;
+        let o = h / f >> 0 || 1, g = c / u >> 0;
+        this.row = g + 2, this.column = o, this.fwheight = u;
         let d;
-        s ? (f = (r / o >> 0) - h / o * (o - 1), d = h) : d = r % f / (o - 1) >> 0, this.realW = f, this.Height = Math.ceil(t / o) * c;
-        let w = Math.min(t, o * this.row), p = w - 1, a, b;
+        s ? (f = (h / o >> 0) - l / o * (o - 1), d = l) : d = h % f / (o - 1) >> 0, this.realW = f, this.Height = Math.ceil(t / o) * u;
+        let w = Math.min(t, o * this.row), p = w - 1, a, v;
         for (; w-- > 0; )
-          a = p - w, b = this.flys[a], i = e[a], g = a / o >> 0, this.$set(e, a, {
-            data: b,
-            top: g * c,
+          a = p - w, v = this.flys[a], i = e[a], g = a / o >> 0, this.$set(e, a, {
+            data: v,
+            top: g * u,
             left: a % o * (f + d),
             index: g
           });
         e.length = p + 1;
         let m = [];
-        u / c > p / o && m.push(["onend"]), this.scroll(), m.push(["update:space", {
+        c / u > p / o && m.push(["onend"]), this.scroll(), m.push(["update:space", {
           row: (p / o >> 0) + 1,
           column: o,
           showrow: this.row,
@@ -217,27 +223,27 @@ const I = {
     }
   }
 };
-function j(t, e, i, l, s, h) {
-  return _(), k("div", {
+function M(t, e, i, r, s, l) {
+  return _(), b("div", {
     ref: "flyweight",
-    class: O(["flyweight", {
+    class: L(["flyweight", {
       "flyweight-active": s.actice
     }]),
-    style: v({
+    style: k({
       "--width": s.realW + "px",
       "--height": s.realH + "px"
     }),
-    onScroll: e[0] || (e[0] = (...n) => h.scroll && h.scroll(...n))
+    onScroll: e[0] || (e[0] = (...n) => l.scroll && l.scroll(...n))
   }, [
-    L("div", {
+    W("div", {
       class: "flyweight-all",
-      style: v({
+      style: k({
         "--flyweight-height": s.Height + "px"
       })
     }, [
-      (_(!0), k(E, null, S(s.flyweights, (n, r) => (_(), k("div", {
-        key: r,
-        style: v({
+      (_(!0), b(E, null, S(s.flyweights, (n, h) => (_(), b("div", {
+        key: h,
+        style: k({
           top: n.top + "px",
           left: n.left + "px"
         })
@@ -248,17 +254,17 @@ function j(t, e, i, l, s, h) {
         }, void 0, !0)
       ], 4))), 128))
     ], 4),
-    s.flyweights.length ? T(t.$slots, "end", { key: 0 }, void 0, !0) : W("", !0)
+    s.flyweights.length ? T(t.$slots, "end", { key: 0 }, void 0, !0) : A("", !0)
   ], 38);
 }
-const M = /* @__PURE__ */ A(I, [["render", j], ["__scopeId", "data-v-f7462fc9"]]), R = [M], U = {
+const R = /* @__PURE__ */ B(j, [["render", M], ["__scopeId", "data-v-924b4e98"]]), V = [R], Y = {
   install(t) {
-    R.forEach((e) => {
+    V.forEach((e) => {
       t.component("s-" + e.name.toLowerCase(), e);
     });
   }
 };
 export {
-  M as Flyweight,
-  U as default
+  R as Flyweight,
+  Y as default
 };

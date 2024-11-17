@@ -2,7 +2,7 @@
   "name": "@soei/flyweight",
   "private": false,
   "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "main": "Flyweight.cjs",
   "module": "Flyweight.js",

@@ -13,7 +13,67 @@
 
 ![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)
 
+## `安装`
+
+```
+npm i @soei/flyweight
+
+```
+
+`Vue3` 引入方式
+
+```html
+<script>
+  import { Flyweight } from "@soei/flyweight";
+</script>
+<!-- 非 <style scoped>  scoped-->
+<style>
+  @import "@soei/flyweight/dist/style.css";
+</style>
+```
+
+```javascript
+// main.js
+import "@soei/flyweight/dist/style.css";
+import flyweight from "@soei/flyweight";
+Vue.use(flyweight);
+// use.vue
+<s-flyweight ...></s-flyweight>
+<s-card ...></s-card>
+```
+
+## `引用`
+
+```javascript
+import { Flyweight, Card } from "@soei/flyweight";
+```
+
 ### 更新日志
+
+### `0.2.0`
+
+- #### 新增 Card 组件
+
+```html
+<s-card
+  title="标题"
+  class="flyweight"
+
+  // ** 布局 **
+  flex row center column
+
+  // ** 边距 **
+  offset="20, 0, 10, 0"
+
+  // ** 是否显示关闭按钮 **
+  :close="true"
+  @close="close"
+
+  // ** 插槽 **
+  [#content, #inner, #default]
+>
+</s-card>
+```
 
 ### `0.1.1`
 

@@ -1,16 +1,15 @@
 {
   "name": "@soei/flyweight",
   "private": false,
-  "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight",
-  "version": "0.1.2",
+  "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight, Card组件",
+  "version": "0.2.0",
   "type": "module",
   "main": "Flyweight.cjs",
   "module": "Flyweight.js",
   "files": [
     "Flyweight.cjs",
     "Flyweight.js",
-    "style.css",
-    "src/Flyweight.vue"
+    "style.css"
   ],
   "homepage": "https://alwbg.github.io",
   "scripts": {

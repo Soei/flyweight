@@ -1,30 +1,31 @@
-import { isArray as W, each as w, runer as m, picker as k, merge as C, isEmpty as I, isSimplyType as H, isString as L } from "@soei/util";
-import { openBlock as _, createElementBlock as b, normalizeClass as F, normalizeStyle as g, createElementVNode as x, Fragment as j, renderList as A, renderSlot as d, createCommentVNode as B, createTextVNode as V, toDisplayString as M } from "vue";
-const E = (t, e) => {
-  const s = t.__vccOpts || t;
-  for (const [l, i] of e)
-    s[l] = i;
-  return s;
-};
-let N = (t) => t == null || t == null, R = /(\d+|[+\-\*/]|%)/g, O = {
+import { runer as w, isArray as L, each as m, picker as k, merge as $, isEmpty as j, isSimplyType as O, isString as A } from "@soei/util";
+import { openBlock as _, createElementBlock as x, normalizeClass as E, normalizeStyle as g, createElementVNode as b, Fragment as B, renderList as V, renderSlot as d, createCommentVNode as D, createTextVNode as M, toDisplayString as R } from "vue";
+let G = /(\d+|[+\-\*/]|%)/g, C = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
   "*": (t, e) => t * e,
   "/": (t, e) => t / e,
   "%": (t, e, s) => parseFloat(t) / 100 * s
-}, $ = (t, e) => {
+}, F = (t, e) => {
   let s;
-  if (s = m("match", t, R)) {
-    let l = s.length, i, h = 0, n, r = [];
-    for (; l--; )
-      h = s.shift(), h in O ? (i && r.push(i), h === "%" && (r.length = 2), n = h) : +h && r.push(+h), r.length == 2 && (r.push(e), i = O[n].apply(null, r), r.length = 0);
+  if (s = w("match", t, G)) {
+    let h = s.length, i, l = 0, n, r = [];
+    for (; h--; )
+      l = s.shift(), l in C ? (i && r.push(i), l === "%" && (r.length = 2), n = l) : +l && r.push(+l), r.length == 2 && (r.push(e), console.log(r, n, "W"), i = C[n].apply(null, r), r.length = 0);
     +i || (i = +r.pop()), t = i >> 0;
   }
   return t;
-}, D = (...t) => {
+}, U = (t) => t.replace(/\w+\((.*)\)/g, "$1").replace(/(?=\D)0(?!\w)/, "0px");
+const I = (t, e) => {
+  const s = t.__vccOpts || t;
+  for (const [h, i] of e)
+    s[h] = i;
+  return s;
+};
+let W = (t) => t == null || t == null, Y = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
-const G = {
+const q = {
   name: "Flyweight",
   props: {
     flys: {
@@ -49,7 +50,7 @@ const G = {
     },
     view: {
       type: Object,
-      default: () => null
+      default: () => ({ id: 0 })
     },
     index: {
       type: Number,
@@ -103,7 +104,8 @@ const G = {
       handler(t) {
         this.setview(t);
       },
-      immediate: !0
+      immediate: !0,
+      deep: !0
     },
     index(t) {
       this.setindex(t);
@@ -124,14 +126,14 @@ const G = {
         this.re(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (t) {
-      D(t);
+      Y(t);
     }
   },
   methods: {
     trigger(t, e) {
       this.lazyrun(() => {
-        W(t) || (t = [[t, e]]), w(t, (s, l) => {
-          this.$emit(l[0], N(l[1]) ? !0 : l[1]);
+        L(t) || (t = [[t, e]]), m(t, (s, h) => {
+          this.$emit(h[0], W(h[1]) ? !0 : h[1]);
         });
       });
     },
@@ -140,45 +142,47 @@ const G = {
         return t && this.task.push(t), !0;
     },
     setview(t) {
-      m([this.cheackflys, (e) => {
+      w([this.cheackflys, (e) => {
         e = e || {};
-        let s = e.index || w(this.flys, (l, i, h, n) => {
-          if (i[h] == n)
-            return l;
+        let s = e.index || m(this.flys, (h, i, l, n) => {
+          if (i[l] == n)
+            return h;
         }, e.picker, e.id);
-        N(s) || this.setindex(s);
+        W(s) || this.setindex(s);
       }], this, t);
     },
     setindex(t) {
-      m([this.cheackflys, ({ index: e }) => {
+      w([this.cheackflys, ({ index: e }) => {
         this.$nextTick(() => {
-          let s = e / this.column >> 0, l = this.fwheight;
-          (this.flyweight.scrollTop / l >> 0) + this.row - s - 1 > 0 || (this.flyweight.scrollTop = s * l, this.scroll());
+          let s = e / this.column >> 0, h = this.fwheight;
+          (this.flyweight.scrollTop / h >> 0) + this.row - s - 1 > 0 || (this.flyweight.scrollTop = s * h, this.scroll());
         });
       }], this, { index: t });
     },
     lazyrun(t, e) {
       clearTimeout(this.time), this.time = setTimeout(() => {
-        m(t);
+        w(t);
       }, e || this.lazy);
     },
     run(t) {
       let e = [], s = k(t.target, "scrollTop=>top");
-      C(s, {
+      $(s, {
         height: this.realH,
         width: this.realW,
         /* 显示区域第一行的索引 */
         index: s.top / this.fwheight >> 0
         // ...this
-      }, this.space, "mix"), t.from || e.push(["onscroll", s]), w(
+      }, this.space, "mix"), t.from || e.push(["onscroll", s]);
+      let h = !1;
+      m(
         this.flyweights,
-        (l, i, h, n, r, u, f, c) => {
-          if (h = l / r >> 0, f = h + n * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(h < u % n) + (u / n >> 0)), c = f * r + l % r, c >= this.count) {
-            e.push(["onend"]);
+        (i, l, n, r, u, f, c, o) => {
+          if (n = i / u >> 0, c = n + r * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
+          (+(n < f % r) + (f / r >> 0)), o = c * u + i % u, o >= this.count) {
+            h || (e.push(["onend"]), h = !0);
             return;
           }
-          i.index = f, i.top = f * this.fwheight, i.data = this.flys[c];
+          l.index = c, l.top = c * this.fwheight, l.data = this.flys[o];
         },
         null,
         this.row,
@@ -195,53 +199,53 @@ const G = {
       if (!t)
         return e.length = t;
       this.count = t;
-      let s = this.flyweight, l = k(s, "clientHeight=>height,clientWidth=>width");
+      let s = this.flyweight, h = k(s, "clientHeight=>height,clientWidth=>width");
       this.$nextTick(() => {
-        let i = this.auto === !0, [h, n] = this.offset, r = l.width, u = l.height, f = ($(this.width, r) || r) + h, c = $(this.height, u) + n;
+        let i = /true/.test(this.auto), [l, n] = this.offset, r = h.width, u = h.height, f = (F(this.width, r) || r) + l, c = F(this.height, u) + n;
         this.realH = c - n;
         let o = r / f >> 0 || 1, p = u / c >> 0;
         this.row = p + 2, this.column = o, this.fwheight = c;
-        let v;
-        i ? (f = (r / o >> 0) - h / o * (o - 1), v = h) : v = r % f / (o - 1) >> 0, this.realW = f, this.Height = Math.ceil(t / o) * c;
-        let S = Math.min(t, o * this.row), y = S - 1, a, z;
+        let v, H = 0;
+        i ? (f = (r / o >> 0) - l / o * (o - 1), v = l) : (v = 0, H = l / (o + 1) * o + r % f / (o + 1) >> 0, f -= l), this.realW = f, this.Height = Math.ceil(t / o) * c;
+        let S = Math.min(t, o * this.row), y = S - 1, a, T, N;
         for (; S-- > 0; )
-          a = y - S, z = this.flys[a], s = e[a], p = a / o >> 0, this.$set(e, a, {
-            data: z,
+          a = y - S, N = this.flys[a], s = e[a], p = a / o >> 0, T = a % o, this.$set(e, a, {
+            data: N,
             top: p * c,
-            left: a % o * (f + v),
+            left: T * (f + v) + (T + 1) * H,
             index: p
           });
         e.length = y + 1;
-        let T = [];
-        u / c > y / o && T.push(["onend"]), this.scroll(), T.push(["update:space", {
+        let z = [];
+        u / c > y / o && z.push(["onend"]), this.scroll(), z.push(["update:space", {
           row: (y / o >> 0) + 1,
           column: o,
           showrow: this.row,
           showcolumn: this.column
-        }]), this.trigger(T);
+        }]), this.trigger(z);
       });
     }
   }
 };
-function U(t, e, s, l, i, h) {
-  return _(), b("div", {
+function J(t, e, s, h, i, l) {
+  return _(), x("div", {
     ref: "flyweight",
-    class: F(["flyweight", {
+    class: E(["flyweight", {
       "flyweight-active": i.actice
     }]),
     style: g({
       "--width": i.realW + "px",
       "--height": i.realH + "px"
     }),
-    onScroll: e[0] || (e[0] = (...n) => h.scroll && h.scroll(...n))
+    onScroll: e[0] || (e[0] = (...n) => l.scroll && l.scroll(...n))
   }, [
-    x("div", {
+    b("div", {
       class: "flyweight-all",
       style: g({
         "--flyweight-height": i.Height + "px"
       })
     }, [
-      (_(!0), b(j, null, A(i.flyweights, (n, r) => (_(), b("div", {
+      (_(!0), x(B, null, V(i.flyweights, (n, r) => (_(), x("div", {
         key: r,
         style: g({
           top: n.top + "px",
@@ -254,11 +258,11 @@ function U(t, e, s, l, i, h) {
         }, void 0, !0)
       ], 4))), 128))
     ], 4),
-    i.flyweights.length ? d(t.$slots, "end", { key: 0 }, void 0, !0) : B("", !0)
+    i.flyweights.length ? d(t.$slots, "end", { key: 0 }, void 0, !0) : D("", !0)
   ], 38);
 }
-const Y = /* @__PURE__ */ E(G, [["render", U], ["__scopeId", "data-v-5f77e7a2"]]);
-const q = {
+const K = /* @__PURE__ */ I(q, [["render", J], ["__scopeId", "data-v-292d1069"]]);
+const P = {
   name: "Card",
   // inheritAttrs: false,
   props: {
@@ -320,31 +324,32 @@ const q = {
     }
   },
   methods: {
-    isEmpty: I,
-    isSimplyType: H,
+    exec: U,
+    isEmpty: j,
+    isSimplyType: O,
     change(t) {
-      H(t) || (this.closecss = k(t, "color=>--s-card-close-color,*"));
+      O(t) || (this.closecss = k(t, "color=>--s-card-close-color,*"));
     },
     offser(t) {
-      t = L(t) ? t.split(/\s*(?:,|\s+)\s*/) : t;
+      t = A(t) ? t.split(/\s*(?:,|\s+)\s*/) : t;
       let e = k(t, "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left", !0);
-      w(e, (s, l, i) => {
-        i[s] = l + "px";
-      }, e), C(this, e, !0);
+      m(e, (s, h, i) => {
+        i[s] = h + "px";
+      }, e), $(this, e, !0);
     }
   },
   mounted() {
     this.change(this.close), this.offser(this.offset);
   }
-}, J = { class: "card-title" }, K = { class: "card-content" };
-function P(t, e, s, l, i, h) {
-  return _(), b("div", {
+}, Q = { class: "card-title" }, X = { class: "card-content" };
+function Z(t, e, s, h, i, l) {
+  return _(), x("div", {
     class: "card",
     style: g({
-      "--card-bgc": s.background,
+      "--card-background-color": s.background,
       "--card-bw": s.border,
-      "--card-height": s.height,
-      "--card-width": s.width,
+      "--card-height": l.exec(s.height),
+      "--card-width": l.exec(s.width),
       "--top": i.top,
       "--right": i.right,
       "--bottom": i.bottom,
@@ -353,32 +358,32 @@ function P(t, e, s, l, i, h) {
   }, [
     d(t.$slots, "default", {}, () => [
       d(t.$slots, "title", {}, () => [
-        x("div", J, [
-          V(M(s.show || s.title) + " ", 1),
-          x("div", {
-            class: F(["card-close", { hide: h.isSimplyType(s.close) ? !s.close : !1 }]),
+        b("div", Q, [
+          M(R(s.show || s.title) + " ", 1),
+          b("div", {
+            class: E(["card-close", { hide: l.isSimplyType(s.close) ? !s.close : !1 }]),
             style: g(i.closecss),
             onClick: e[0] || (e[0] = (n) => t.$emit("close"))
           }, null, 6)
         ])
       ], !0),
       d(t.$slots, "content", {}, () => [
-        x("div", K, [
+        b("div", X, [
           d(t.$slots, "inner", {}, void 0, !0)
         ])
       ], !0)
     ], !0)
   ], 4);
 }
-const Q = /* @__PURE__ */ E(q, [["render", P], ["__scopeId", "data-v-74802ccb"]]), X = [Y, Q], et = {
+const tt = /* @__PURE__ */ I(P, [["render", Z], ["__scopeId", "data-v-84f183dc"]]), et = [K, tt], lt = {
   install(t) {
-    X.forEach((e) => {
+    et.forEach((e) => {
       t.component("S" + e.name, e), t.component(e.name + "S", e);
     });
   }
 };
 export {
-  Q as Card,
-  Y as Flyweight,
-  et as default
+  tt as Card,
+  K as Flyweight,
+  lt as default
 };

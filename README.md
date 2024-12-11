@@ -1,8 +1,8 @@
-![安装](https://img.shields.io/badge/安装-npm_i_@soei/flyweight-ffc107?style=flat)
+[![安装](https://img.shields.io/badge/安装-npm_i_@soei/flyweight-ffc107?style=flat)](https://npmjs.com/package/@soei/flyweight)
 
-# 享元模式 [![Latest Version on NPM](https://img.shields.io/npm/v/@soei/flyweight?label=npm&style=flat-square)](https://npmjs.com/package/@soei/flyweight) [![Software License](https://img.shields.io/badge/license-ISC-brightgreen?label=&style=flat-square)](LICENSE.md) [![npm](https://img.shields.io/npm/dw/@soei/flyweight?label=Downloads&style=flat-square)](https://www.npmjs.com/package/@soei/flyweight) ![npm bundle size](https://img.shields.io/bundlephobia/min/%40soei%2Futil?label=Size&color=&style=flat-square)
+# 享元模式 [![Latest Version on NPM](https://img.shields.io/npm/v/@soei/flyweight?label=npm&style=flat-square)](https://npmjs.com/package/@soei/flyweight) [![Software License](https://img.shields.io/badge/license-ISC-brightgreen?label=&style=flat-square)](LICENSE.md) [![npm](https://img.shields.io/npm/dw/@soei/flyweight?label=Downloads&style=flat-square)](https://www.npmjs.com/package/@soei/flyweight) [![npm bundle size](https://img.shields.io/bundlephobia/min/%40soei%2Futil?label=Size&color=&style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)
+[![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight) 
 
 ```html
 <div style="height:100px;width:300px;">
@@ -11,7 +11,7 @@
 </div>
 ```
 
-![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)
+[![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ## `安装`
 

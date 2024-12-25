@@ -2,7 +2,7 @@
   "name": "@soei/flyweight",
   "private": false,
   "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight, Card组件",
-  "version": "0.2.2",
+  "version": "0.2.5",
   "type": "module",
   "main": "Flyweight.cjs",
   "module": "Flyweight.js",
@@ -24,7 +24,9 @@
     "Flyweight",
     "享元模式",
     "List",
-    "列表展示"
+    "列表展示",
+    "Card",
+    "卡片展示"
   ],
   "author": "soei | alwbg@163.com",
   "license": "ISC"

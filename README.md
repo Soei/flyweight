@@ -2,7 +2,7 @@
 
 # 享元模式 [![Latest Version on NPM](https://img.shields.io/npm/v/@soei/flyweight?label=npm&style=flat-square)](https://npmjs.com/package/@soei/flyweight) [![Software License](https://img.shields.io/badge/license-ISC-brightgreen?label=&style=flat-square)](LICENSE.md) [![npm](https://img.shields.io/npm/dw/@soei/flyweight?label=Downloads&style=flat-square)](https://www.npmjs.com/package/@soei/flyweight) [![npm bundle size](https://img.shields.io/bundlephobia/min/%40soei%2Futil?label=Size&color=&style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-[![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight) 
+[![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
 <div style="height:100px;width:300px;">
@@ -20,6 +20,98 @@ npm i @soei/flyweight
 
 ```
 
+## `使用 <s-flyweight ...> `
+
+```html
+<!-- scroll-x 横向滚动, 无[scroll-x]属性这是上下滚动 -->
+<s-flyweight scroll-x></s-flyweight>
+
+<!-- hover-scroll 鼠标移入显示滚动条样式 -->
+<s-flyweight hover-scroll class="your-class"></s-flyweight>
+<s-card hover-scroll class="your-class"></s-card>
+<style lang="scss">
+  .your-class {
+    /* 设置滚动条颜色 */
+    --scrollbar-color: red;
+    /* 设置滚动条宽度 */
+    --scrollbar-width: 10px;
+  }
+</style>
+
+<!-- 设置高度 -->
+<s-flyweight height="100% - 10px"></s-flyweight>
+
+<!-- 设置宽度 -->
+<s-flyweight width="100% - 10px"></s-flyweight>
+<s-flyweight :width="`100% - 10px`"></s-flyweight>
+```
+
+## `使用 <s-card ...> `
+
+```html
+<!-- auto-scroll 默认显示滚动条样式 -->
+<s-card auto-scroll class="your-class"></s-card>
+<!-- hover-scroll 鼠标移入显示滚动条样式 -->
+<s-card hover-scroll class="your-class"></s-card>
+<style lang="scss">
+  .your-class {
+    /* 设置滚动条颜色 */
+    --scrollbar-color: red;
+    /* 设置滚动条宽度 */
+    --scrollbar-width: 10px;
+  }
+</style>
+
+<!-- 设置高度 -->
+<s-card height="100% - 10px"></s-card>
+
+<!-- 设置边距 -->
+<s-card offset="10px"></s-card>
+<s-card :offset="[10]"></s-card>
+
+<!-- 带删除的卡片 -->
+<s-card :close="true" #content @close="close"></s-card>
+<!-- 设置删除按钮颜色 -->
+<s-card
+  :close="{
+		color: 'red'
+	}"
+  #content
+  @close="close"
+></s-card>
+
+<s-card :close="true" @close="close">
+  <template #content>呈现内容</template>
+</s-card>
+<script setup>
+  let close = () => {
+    console.log("close");
+  };
+</script>
+
+<!-- 设置标题 -->
+<s-card
+  title="标题"
+  class="flyweight"
+
+  // ** 布局 **
+  flex row center column
+
+  // ** 边距 **
+  offset="20, 0, 10, 0"
+
+  // ** 是否显示关闭按钮 **
+  :close="true"
+  @close="close"
+
+  // ** 插槽 **
+  [#content, #inner, #default]
+>
+</s-card>
+```
+
+````
+
 `Vue3` 引入方式
 
 ```html
@@ -30,7 +122,7 @@ npm i @soei/flyweight
 <style>
   @import "@soei/flyweight/dist/style.css";
 </style>
-```
+````
 
 ```javascript
 // main.js

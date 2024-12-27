@@ -79,7 +79,7 @@ const Q = {
   },
   computed: {
     flyweight() {
-      return this.$refs.flyweight;
+      return this.$refs.flyweight || "";
     }
   },
   data() {
@@ -276,7 +276,7 @@ function ee(e, t, s, r, l, h) {
     l.flyweights.length ? p(e.$slots, "end", { key: 0 }, void 0, !0) : X("", !0)
   ], 38);
 }
-const te = /* @__PURE__ */ j(Q, [["render", ee], ["__scopeId", "data-v-5e2833e7"]]);
+const te = /* @__PURE__ */ j(Q, [["render", ee], ["__scopeId", "data-v-ec520e1e"]]);
 const se = {
   name: "Card",
   // inheritAttrs: false,

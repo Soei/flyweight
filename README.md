@@ -2,6 +2,8 @@
 
 # 享元模式 [![Latest Version on NPM](https://img.shields.io/npm/v/@soei/flyweight?label=npm&style=flat-square)](https://npmjs.com/package/@soei/flyweight) [![Software License](https://img.shields.io/badge/license-ISC-brightgreen?label=&style=flat-square)](LICENSE.md) [![npm](https://img.shields.io/npm/dw/@soei/flyweight?label=Downloads&style=flat-square)](https://www.npmjs.com/package/@soei/flyweight) [![npm bundle size](https://img.shields.io/bundlephobia/min/%40soei%2Futil?label=Size&color=&style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
+[DEMO(示例)](https://soei.github.io/demo/flyweight/)
+
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
@@ -14,11 +16,10 @@
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ## `安装`
-
 ```
 npm i @soei/flyweight
-
 ```
+### ` VUE2 ` 安装 移步 [这里](https://www.npmjs.com/package/@soei/flyweight/v/0.0.10)
 
 ## `使用 <s-flyweight ...> `
 

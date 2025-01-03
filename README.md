@@ -16,10 +16,21 @@
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ## `安装`
-```
+
+```bash
+# 安装
 npm i @soei/flyweight
 ```
-### ` VUE2 ` 安装 移步 [这里](https://www.npmjs.com/package/@soei/flyweight/v/0.0.10)
+
+## `Vue2` 引用
+
+```javascript
+// Vue2引用, 安装和Vue3相同
+import Flyweight from @soei/flyweight/vue2
+
+// 样式和vue相同
+import "@soei/flyweight/style.css";
+```
 
 ## `使用 <s-flyweight ...> `
 

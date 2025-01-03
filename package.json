@@ -7,6 +7,7 @@
   "main": "Flyweight.cjs",
   "module": "Flyweight.js",
   "files": [
+    "vue2/*",
     "Flyweight.cjs",
     "Flyweight.js",
     "style.css"

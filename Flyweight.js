@@ -237,9 +237,9 @@ const Q = {
           });
         t.length = x + 1;
         let L = [];
-        d / w > x / o && L.push(["onend"]), g(this.direction, this.flyweight, 0), this.$nextTick(() => {
-          this.setindex(this.selectIndex || 0);
-        }), this.scroll(), L.push(["update:space", {
+        d / w > x / o && L.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+          this.setindex(this.selectIndex || 0), this.scroll();
+        }), L.push(["update:space", {
           row: (x / o >> 0) + 1,
           column: o,
           showrow: this.row,
@@ -276,7 +276,7 @@ function ee(e, t, s, r, l, h) {
     l.flyweights.length ? p(e.$slots, "end", { key: 0 }, void 0, !0) : X("", !0)
   ], 38);
 }
-const te = /* @__PURE__ */ j(Q, [["render", ee], ["__scopeId", "data-v-a2549f79"]]);
+const te = /* @__PURE__ */ j(Q, [["render", ee], ["__scopeId", "data-v-15867e3c"]]);
 const se = {
   name: "Card",
   // inheritAttrs: false,

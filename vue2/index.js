@@ -259,9 +259,9 @@ const U = {
           });
         e.length = w + 1;
         let S = [];
-        f / y > w / o && S.push(["onend"]), g(this.direction, this.flyweight, 0), this.$nextTick(() => {
-          this.setindex(this.selectIndex || 0);
-        }), this.scroll(), S.push(["update:space", {
+        f / y > w / o && S.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+          this.setindex(this.selectIndex || 0), this.scroll();
+        }), S.push(["update:space", {
           row: (w / o >> 0) + 1,
           column: o,
           showrow: this.row,
@@ -291,7 +291,7 @@ var X = function() {
   G,
   !1,
   null,
-  "a2549f79",
+  "15867e3c",
   null,
   null
 );

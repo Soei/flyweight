@@ -11,9 +11,102 @@
   <!-- 确认父容器 宽 高 存在, 依赖父容器 `宽`, `高` 计算 -->
   <s-flyweight ...></s-flyweight>
 </div>
+<template>
+  <Card class="flyweight-test" flex column simply>
+    <template #title>
+      <div>Flyweight Test</div>
+    </template>
+    <template #inner>
+      <Card class="applist" backgroundd="#f7f7f7" border="0.1px" height="100%">
+        <Flyweight
+          :flys="flys"
+          hover-scroll
+          scroll-x
+          auto
+          :view="view"
+          :width="100"
+          padding
+          height="100% - 10px"
+          :offset="[10, 10]"
+        >
+          <template #default="{ data, x, y, width, height, space, i }">
+            <div
+              class="flyweight-item demo"
+              :class="{ [`flyweight-item-${i & 3}`]: true}"
+            >
+              {{ data.name }}
+            </div>
+          </template>
+          <template #end>
+            <div>end</div>
+          </template>
+        </Flyweight>
+      </Card>
+    </template>
+  </Card>
+</template>
+
+<script setup>
+  //...
+  /* 引入依赖 */
+  import { Flyweight, Card } from "@soei/flyweight";
+  let flys = ref([]);
+  flys.value = Array.from({ length: 200 }, (_, i) => ({ name: i }));
+  let view = reactive({
+    picker: "name",
+    id: 10,
+  });
+  //...
+</script>
 ```
 
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
+
+## 新增 `Stream` 组件池
+
+```html
+<template>
+  <Stream
+    class="form"
+    :T="[
+      { type: 'name', label: '输入框' },
+      { type: 'state', label: '选择任务', data: [{label, value}, ...] },
+      { type: 'state', label: '选择事件', data: [{label, value}, ...] },
+    ]"
+  >
+    <template #state="{ type, label, index, data }">
+      <div class="form_item">
+        <el-select size="mini" v-model="search[type]" :placeholder="label">
+          <el-option
+            v-for="item in data"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+    </template>
+    <template #default="{ slot, label, index }">
+      <div class="form_item">
+        <el-input
+          size="mini"
+          v-model="search[slot]"
+          :placeholder="label"
+        ></el-input>
+      </div>
+    </template>
+  </Stream>
+</template>
+<script setup>
+  // 导入
+  import { Stream } from "@soei/flyweight";
+</script>
+```
+
+## 问题修复
+
+- #### 修复了上版本极限显示,当`高度不足显示一行`的问题
 
 ## `安装`
 

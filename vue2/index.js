@@ -436,7 +436,7 @@ const K = J.exports, P = {
   },
   render(t) {
     return t(
-      this.type || "div",
+      this.type,
       {
         // ...item,
         props: {
@@ -444,7 +444,7 @@ const K = J.exports, P = {
         }
       },
       this._l(this.T, (e, s) => {
-        let i = m(e, "slot|name=>name").name, l = m(this, E("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", i));
+        let i = m(e, "slot|name|type=>name").name, l = m(this, E("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", i));
         return R(e, { index: s }), g(i, l, e);
       })
     );

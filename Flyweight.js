@@ -420,7 +420,7 @@ const ne = /* @__PURE__ */ j(ie, [["render", he], ["__scopeId", "data-v-def66c95
   },
   render(e) {
     return e(
-      this.type || "div",
+      this.type,
       {
         // ...item,
         props: {
@@ -428,7 +428,7 @@ const ne = /* @__PURE__ */ j(ie, [["render", he], ["__scopeId", "data-v-def66c95
         }
       },
       this._l(this.T, (t, s) => {
-        let r = x(t, "slot|name=>name").name, i = x(this, D("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", r));
+        let r = x(t, "slot|name|type=>name").name, i = x(this, D("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", r));
         return A(t, { index: s }), p(r, i, t);
       })
     );

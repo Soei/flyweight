@@ -427,7 +427,7 @@ const K = J.exports, P = {
     },
     data: {
       type: Array,
-      default: () => ({})
+      default: () => []
     },
     T: {
       type: Array,

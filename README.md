@@ -69,6 +69,7 @@
   <Stream
     class="form"
     :T="[
+      /* slot|name|type=>name 插槽名称 */
       { type: 'name', label: '输入框' },
       { type: 'state', label: '选择任务', data: [{label, value}, ...] },
       { type: 'state', label: '选择事件', data: [{label, value}, ...] },
@@ -87,11 +88,11 @@
         </el-select>
       </div>
     </template>
-    <template #default="{ slot, label, index }">
+    <template #default="{ type, label, index }">
       <div class="form_item">
         <el-input
           size="mini"
-          v-model="search[slot]"
+          v-model="search[type]"
           :placeholder="label"
         ></el-input>
       </div>

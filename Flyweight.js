@@ -411,7 +411,7 @@ const ne = /* @__PURE__ */ j(ie, [["render", he], ["__scopeId", "data-v-def66c95
     },
     data: {
       type: Array,
-      default: () => ({})
+      default: () => []
     },
     T: {
       type: Array,

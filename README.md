@@ -17,7 +17,7 @@
       <div>Flyweight Test</div>
     </template>
     <template #inner>
-      <Card class="applist" backgroundd="#f7f7f7" border="0.1px" height="100%">
+      <Card class="applist" background="#f7f7f7" border="0.1px" height="100%">
         <Flyweight
           :flys="flys"
           hover-scroll

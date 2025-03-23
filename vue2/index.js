@@ -351,10 +351,7 @@ const Y = {
   },
   computed: {
     style() {
-      let t = {};
-      return this.margin(this.offset), x(["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], (e, s) => {
-        this.css(t, s);
-      }), t;
+      return this.tr();
     }
   },
   watch: {
@@ -375,6 +372,12 @@ const Y = {
     exec: z,
     isEmpty: W,
     isSimplyType: N,
+    tr() {
+      let t = {};
+      return this.margin(this.offset), x(["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], (e, s) => {
+        this.css(t, s);
+      }), t;
+    },
     tolower(t, e) {
       return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
     },
@@ -399,7 +402,7 @@ const Y = {
 };
 var q = function() {
   var e = this, s = e._self._c;
-  return s("div", { staticClass: "card", style: e.style }, [e._t("default", function() {
+  return s("div", { staticClass: "card", style: e.isEmpty(e.style) ? e.tr() : e.style }, [e._t("default", function() {
     return [e._t("title", function() {
       return [s("div", { staticClass: "card-title" }, [e._v(" " + e._s(e.show || e.title) + " "), s("div", { staticClass: "card-close", class: { hide: e.isSimplyType(e.close) ? !e.close : !1 }, style: e.closecss, on: { click: function(i) {
         return e.$emit("close");
@@ -414,7 +417,7 @@ var q = function() {
   D,
   !1,
   null,
-  "b762d0c1",
+  "8e0b3365",
   null,
   null
 );

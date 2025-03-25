@@ -1,5 +1,5 @@
-import { runer as g, isArray as L, each as x, merge as R, picker as m, isEmpty as W, isSimplyType as N, isString as A, format as E } from "@soei/util";
-let I = /(\d+|[+\-\*/]|%)/g, H = {
+import { runer as g, isArray as E, each as m, merge as F, picker as w, isEmpty as I, isSimplyType as H, isString as U, format as X } from "@soei/util";
+let G = /(\d+|[+\-\*/]|%)/g, L = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
   "*": (t, e) => t * e,
@@ -7,15 +7,15 @@ let I = /(\d+|[+\-\*/]|%)/g, H = {
   "%": (t, e, s) => parseFloat(t) / 100 * s
 }, O = (t, e) => {
   let s;
-  if (s = g("match", t, I)) {
+  if (s = g("match", t, G)) {
     let i = s.length, l, a = 0, r, h = [];
     for (; i--; )
-      a = s.shift(), a in H ? (l && h.push(l), a === "%" && (h.length = 2), r = a) : +a && h.push(+a), h.length == 2 && (h.push(e), l = H[r].apply(null, h), h.length = 0);
+      a = s.shift(), a in L ? (l && h.push(l), a === "%" && (h.length = 2), r = a) : +a && h.push(+a), h.length == 2 && (h.push(e), l = L[r].apply(null, h), h.length = 0);
     +l || (l = +h.pop()), t = l >> 0;
   }
   return t;
 }, z = (t) => (t + "").replace(/\w+\((.*)\)/g, "$1").replace(/(?=\s+|^)(\d+(\.\d+)*)(?!(?:\.)*\d|%|\w)/g, "$1px");
-function F(t, e, s, i, l, a, r, h) {
+function N(t, e, s, i, l, a, r, h) {
   var n = typeof t == "function" ? t.options : t;
   e && (n.render = e, n.staticRenderFns = s, n._compiled = !0), i && (n.functional = !0), a && (n._scopeId = "data-v-" + a);
   var f;
@@ -44,10 +44,10 @@ function F(t, e, s, i, l, a, r, h) {
     options: n
   };
 }
-let B = (t) => t == null || t == null, U = (...t) => {
+let A = (t) => t == null || t == null, M = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
-const X = {
+const V = {
   name: "Flyweight",
   props: {
     flys: {
@@ -152,7 +152,7 @@ const X = {
         this.rebuild(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (t) {
-      U(t);
+      M(t);
     }
     this.scrollx = g("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
@@ -161,8 +161,8 @@ const X = {
     exec: z,
     trigger(t, e) {
       this.lazyrun(() => {
-        L(t) || (t = [[t, e]]), x(t, (s, i) => {
-          this.$emit(i[0], B(i[1]) ? !0 : i[1]);
+        E(t) || (t = [[t, e]]), m(t, (s, i) => {
+          this.$emit(i[0], A(i[1]) ? !0 : i[1]);
         });
       });
     },
@@ -173,11 +173,11 @@ const X = {
     setview(t) {
       g([this.cheackflys, (e) => {
         e = e || {};
-        let s = e.index || x(this.flys, (i, l, a, r) => {
+        let s = e.index || m(this.flys, (i, l, a, r) => {
           if (l[a] == r)
             return i;
         }, e.picker, e.id);
-        B(s) || this.setindex(s);
+        A(s) || this.setindex(s);
       }], this, t);
     },
     setindex(t) {
@@ -203,9 +203,9 @@ const X = {
         /* 显示区域第一行的索引 */
         index: s / this.expand >> 0
       };
-      R(i, this.space), t.from || e.push(["onscroll", i]);
+      F(i, this.space), t.from || e.push(["onscroll", i]);
       let l = !1;
-      x(
+      m(
         this.flyweights,
         (a, r, h, n, f, u, d, c, o) => {
           if (h = a / f >> 0, c = h + n * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
@@ -238,40 +238,40 @@ const X = {
       if (!t)
         return e.length = t;
       this.count = t;
-      let s = this.scrollx, i = this.flyweight, l = m(i, this.BoxRule);
+      let s = this.scrollx, i = this.flyweight, l = w(i, this.BoxRule);
       this.$nextTick(() => {
         let a = /true/.test(this.auto), [r, h] = this.offset, n = l.width, f = l.height, u = (O(this.width, n) || n) + r, d = O(this.height, f) + h, c = [n / u >> 0 || 1, f / d >> 0 || 1];
         s && c.reverse();
-        let [o, p] = c, v = this.padding, $, b = 0, y, S;
+        let [o, p] = c, $ = this.padding, v, b = 0, y, S;
         s ? (y = u, u -= r, S = (_) => (
           /* 计算top偏移量 */
           _ * (d - h) + (_ + 1) * h
-        )) : (a ? (u = (n - r * (o + 2 * v - 1)) / o, $ = !v * r, b = v * r) : ($ = 0, b = (n % u + r * o) / (o + 1) >> 0, u -= r), S = (_) => _ * (u + $) + (_ + 1) * b, y = d), this.row = p + 2, this.column = o, this.realH = d - h, this.realW = u, this.expand = y, this.Size = Math.ceil(t / o) * y;
-        let T = Math.min(t, o * this.row), w = T - 1, k;
+        )) : (a ? (u = (n - r * (o + 2 * $ - 1)) / o, v = !$ * r, b = $ * r) : (v = 0, b = (n % u + r * o) / (o + 1) >> 0, u -= r), S = (_) => _ * (u + v) + (_ + 1) * b, y = d), this.row = p + 2, this.column = o, this.realH = d - h, this.realW = u, this.expand = y, this.Size = Math.ceil(t / o) * y;
+        let T = Math.min(t, o * this.row), x = T - 1, C;
         for (; T-- > 0; )
-          k = w - T, this.$set(e, k, {
+          C = x - T, this.$set(e, C, {
             x: r,
             y: h,
             width: u,
             height: d - h,
-            space: S(k % o),
+            space: S(C % o),
             data: {}
           });
-        e.length = w + 1;
-        let C = [];
-        f / y > w / o && C.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        e.length = x + 1;
+        let k = [];
+        f / y > x / o && k.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
-        }), C.push(["update:space", {
-          row: (w / o >> 0) + 1,
+        }), k.push(["update:space", {
+          row: (x / o >> 0) + 1,
           column: o,
           showrow: this.row,
           showcolumn: this.column
-        }]), this.trigger(C);
+        }]), this.trigger(k);
       });
     }
   }
 };
-var G = function() {
+var j = function() {
   var e = this, s = e._self._c;
   return s("div", { ref: "flyweight", staticClass: "flyweight", class: {
     "flyweight-active": e.actice
@@ -285,18 +285,40 @@ var G = function() {
       left: i.left + "px"
     } }, [e._t("default", null, null, i)], 2);
   }), 0), e.flyweights.length ? e._t("end") : e._e()], 2);
-}, M = [], V = /* @__PURE__ */ F(
-  X,
-  G,
-  M,
+}, Y = [], q = /* @__PURE__ */ N(
+  V,
+  j,
+  Y,
   !1,
   null,
   "05373fe1",
   null,
   null
 );
-const j = V.exports;
-const Y = {
+const D = q.exports;
+function R(t, e) {
+  return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
+}
+let B = {
+  close: {
+    handler(t) {
+      this.change(t);
+    },
+    deep: !0
+  },
+  offset: {
+    handler(t) {
+      this.margin(t);
+    },
+    deep: !0
+  }
+}, J = ["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], W = {};
+m(J, (t, e, s) => {
+  t = R(e), W["--" + R(e, !0)] = t, s[t] = function() {
+    this.trigger++;
+  };
+}, B);
+const K = {
   name: "Card",
   // inheritAttrs: false,
   props: {
@@ -337,6 +359,7 @@ const Y = {
     return {
       closecss: {},
       style: {},
+      trigger: 0,
       default: {
         top: "0px",
         right: "0px",
@@ -354,43 +377,28 @@ const Y = {
       return this.tr();
     }
   },
-  watch: {
-    close: {
-      handler(t) {
-        this.change(t);
-      },
-      deep: !0
-    },
-    offset: {
-      handler(t) {
-        this.margin(t);
-      },
-      deep: !0
-    }
-  },
+  watch: B,
   methods: {
     exec: z,
-    isEmpty: W,
-    isSimplyType: N,
+    isEmpty: I,
+    isSimplyType: H,
     tr() {
       let t = {};
-      return this.margin(this.offset), x(["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], (e, s) => {
-        this.css(t, s);
+      return this.margin(this.offset), m(W, (e, s) => {
+        this.css(t, e, s);
       }), t;
     },
-    tolower(t, e) {
-      return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
-    },
-    css(t, e) {
-      let s = this.tolower(e), i = this[s] || this.default[s];
-      !i || this.default[s] == i || (t["--" + this.tolower(e, !0)] = z(i));
+    tolower: R,
+    css(t, e, s) {
+      let i = this[s] || this.default[s];
+      !i || this.default[s] == i || (t[e] = z(i));
     },
     change(t) {
-      N(t) || (this.closecss = m(t, "color=>--s-card-close-color,*"));
+      H(t) || (this.closecss = w(t, "color=>--s-card-close-color,*"));
     },
     margin(t) {
-      R(this, m(
-        A(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
+      F(this, w(
+        U(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
         "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
         !0
       ), !0);
@@ -400,9 +408,9 @@ const Y = {
     this.change(this.close);
   }
 };
-var q = function() {
+var P = function() {
   var e = this, s = e._self._c;
-  return s("div", { staticClass: "card", style: e.isEmpty(e.style) ? e.tr() : e.style }, [e._t("default", function() {
+  return s("div", { key: e.trigger, staticClass: "card", style: e.isEmpty(e.style) ? e.tr() : e.style }, [e._t("default", function() {
     return [e._t("title", function() {
       return [s("div", { staticClass: "card-title" }, [e._v(" " + e._s(e.show || e.title) + " "), s("div", { staticClass: "card-close", class: { hide: e.isSimplyType(e.close) ? !e.close : !1 }, style: e.closecss, on: { click: function(i) {
         return e.$emit("close");
@@ -411,17 +419,17 @@ var q = function() {
       return [s("div", { staticClass: "card-content" }, [e._t("inner")], 2)];
     })];
   })], 2);
-}, D = [], J = /* @__PURE__ */ F(
-  Y,
-  q,
-  D,
+}, Q = [], Z = /* @__PURE__ */ N(
+  K,
+  P,
+  Q,
   !1,
   null,
-  "8e0b3365",
+  "b6ea8a12",
   null,
   null
 );
-const K = J.exports, P = {
+const tt = Z.exports, et = {
   name: "Stream",
   props: {
     type: {
@@ -447,32 +455,32 @@ const K = J.exports, P = {
         }
       },
       this._l(this.T, (e, s) => {
-        let i = m(e, "slot|name|type=>name").name, l = m(this, E("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", i));
-        return R(e, { index: s }), g(i, l, e);
+        let i = w(e, "slot|name|type=>name").name, l = w(this, X("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", i));
+        return F(e, { index: s }), g(i, l, e);
       })
     );
   }
-}, Q = null, Z = null;
-var tt = /* @__PURE__ */ F(
-  P,
-  Q,
-  Z,
+}, st = null, it = null;
+var lt = /* @__PURE__ */ N(
+  et,
+  st,
+  it,
   !1,
   null,
   null,
   null,
   null
 );
-const et = tt.exports, st = [j, K, et], lt = {
+const rt = lt.exports, nt = [D, tt, rt], ot = {
   install(t) {
-    st.forEach((e) => {
+    nt.forEach((e) => {
       t.component("S" + e.name, e), t.component(e.name + "S", e);
     });
   }
 };
 export {
-  K as Card,
-  j as Flyweight,
-  et as Stream,
-  lt as default
+  tt as Card,
+  D as Flyweight,
+  rt as Stream,
+  ot as default
 };

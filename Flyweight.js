@@ -1,31 +1,31 @@
-import { runer as p, isArray as V, each as b, merge as A, picker as x, isEmpty as G, isSimplyType as E, isString as M, format as D } from "@soei/util";
-import { openBlock as S, createElementBlock as k, normalizeClass as W, normalizeStyle as T, createElementVNode as v, Fragment as P, renderList as U, renderSlot as g, mergeProps as X, createCommentVNode as Y, createTextVNode as q, toDisplayString as J } from "vue";
-let K = /(\d+|[+\-\*/]|%)/g, F = {
-  "+": (t, e) => t + e,
-  "-": (t, e) => t - e,
-  "*": (t, e) => t * e,
-  "/": (t, e) => t / e,
-  "%": (t, e, s) => parseFloat(t) / 100 * s
-}, I = (t, e) => {
+import { runer as p, isArray as D, each as x, merge as R, picker as _, isEmpty as P, isSimplyType as E, isString as U, format as X } from "@soei/util";
+import { openBlock as S, createElementBlock as T, normalizeClass as j, normalizeStyle as z, createElementVNode as k, Fragment as Y, renderList as q, renderSlot as g, mergeProps as J, createCommentVNode as K, createTextVNode as Q, toDisplayString as Z } from "vue";
+let ee = /(\d+|[+\-\*/]|%)/g, F = {
+  "+": (e, t) => e + t,
+  "-": (e, t) => e - t,
+  "*": (e, t) => e * t,
+  "/": (e, t) => e / t,
+  "%": (e, t, s) => parseFloat(e) / 100 * s
+}, I = (e, t) => {
   let s;
-  if (s = p("match", t, K)) {
+  if (s = p("match", e, ee)) {
     let r = s.length, i, h = 0, l, n = [];
     for (; r--; )
-      h = s.shift(), h in F ? (i && n.push(i), h === "%" && (n.length = 2), l = h) : +h && n.push(+h), n.length == 2 && (n.push(e), i = F[l].apply(null, n), n.length = 0);
-    +i || (i = +n.pop()), t = i >> 0;
+      h = s.shift(), h in F ? (i && n.push(i), h === "%" && (n.length = 2), l = h) : +h && n.push(+h), n.length == 2 && (n.push(t), i = F[l].apply(null, n), n.length = 0);
+    +i || (i = +n.pop()), e = i >> 0;
   }
-  return t;
-}, O = (t) => (t + "").replace(/\w+\((.*)\)/g, "$1").replace(/(?=\s+|^)(\d+(\.\d+)*)(?!(?:\.)*\d|%|\w)/g, "$1px");
-const j = (t, e) => {
-  const s = t.__vccOpts || t;
-  for (const [r, i] of e)
+  return e;
+}, C = (e) => (e + "").replace(/\w+\((.*)\)/g, "$1").replace(/(?=\s+|^)(\d+(\.\d+)*)(?!(?:\.)*\d|%|\w)/g, "$1px");
+const V = (e, t) => {
+  const s = e.__vccOpts || e;
+  for (const [r, i] of t)
     s[r] = i;
   return s;
 };
-let R = (t) => t == null || t == null, Q = (...t) => {
-  console.info("::::FLYWEIGHT", ...t);
+let W = (e) => e == null || e == null, te = (...e) => {
+  console.info("::::FLYWEIGHT", ...e);
 };
-const Z = {
+const se = {
   name: "Flyweight",
   props: {
     flys: {
@@ -97,82 +97,82 @@ const Z = {
     };
   },
   watch: {
-    flys(t) {
-      this.count = t.length, this.rebuild();
-      let e = this.task.shift();
-      e && this.$nextTick(() => {
-        this.setview(e);
+    flys(e) {
+      this.count = e.length, this.rebuild();
+      let t = this.task.shift();
+      t && this.$nextTick(() => {
+        this.setview(t);
       });
     },
     view: {
-      handler(t) {
-        this.setview(t);
+      handler(e) {
+        this.setview(e);
       },
       immediate: !0,
       deep: !0
     },
-    index(t) {
-      this.setindex(t);
+    index(e) {
+      this.setindex(e);
     },
-    top(t) {
-      this.flyweight.scrollTop = t;
+    top(e) {
+      this.flyweight.scrollTop = e;
     },
-    left(t) {
-      this.flyweight.scrollLeft = t;
+    left(e) {
+      this.flyweight.scrollLeft = e;
     }
   },
   mounted() {
-    this.flyweights = [], this.$set || (this.$set = (t, e, s) => {
-      t[e] = s;
+    this.flyweights = [], this.$set || (this.$set = (e, t, s) => {
+      e[t] = s;
     }), this.setindex(this.index);
     try {
       new ResizeObserver(() => {
         this.rebuild(), this.$emit("resize");
       }).observe(this.flyweight);
-    } catch (t) {
-      Q(t);
+    } catch (e) {
+      te(e);
     }
     this.scrollx = p("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
   },
   methods: {
-    exec: O,
-    trigger(t, e) {
+    exec: C,
+    trigger(e, t) {
       this.lazyrun(() => {
-        V(t) || (t = [[t, e]]), b(t, (s, r) => {
-          this.$emit(r[0], R(r[1]) ? !0 : r[1]);
+        D(e) || (e = [[e, t]]), x(e, (s, r) => {
+          this.$emit(r[0], W(r[1]) ? !0 : r[1]);
         });
       });
     },
-    cheackflys(t) {
+    cheackflys(e) {
       if (!this.flys.length)
-        return t && this.task.push(t), !0;
+        return e && this.task.push(e), !0;
     },
-    setview(t) {
-      p([this.cheackflys, (e) => {
-        e = e || {};
-        let s = e.index || b(this.flys, (r, i, h, l) => {
+    setview(e) {
+      p([this.cheackflys, (t) => {
+        t = t || {};
+        let s = t.index || x(this.flys, (r, i, h, l) => {
           if (i[h] == l)
             return r;
-        }, e.picker, e.id);
-        R(s) || this.setindex(s);
-      }], this, t);
+        }, t.picker, t.id);
+        W(s) || this.setindex(s);
+      }], this, e);
     },
-    setindex(t) {
-      p([this.cheackflys, ({ index: e }) => {
-        this.selectIndex = e, this.$nextTick(() => {
-          let s = e / this.column >> 0, r = this.expand;
+    setindex(e) {
+      p([this.cheackflys, ({ index: t }) => {
+        this.selectIndex = t, this.$nextTick(() => {
+          let s = t / this.column >> 0, r = this.expand;
           (this.flyweight[this.direction] / r >> 0) + this.row - s - 1 > 0 || (this.flyweight[this.direction] = s * r, this.scroll());
         });
-      }], this, { index: t });
+      }], this, { index: e });
     },
-    lazyrun(t, e) {
+    lazyrun(e, t) {
       clearTimeout(this.time), this.time = setTimeout(() => {
-        p(t);
-      }, e || this.lazy);
+        p(e);
+      }, t || this.lazy);
     },
-    run(t) {
-      let e = [], s = p(this.direction, t.target), r = {
+    run(e) {
+      let t = [], s = p(this.direction, e.target), r = {
         // ...this
         offset: s,
         top: s,
@@ -181,14 +181,14 @@ const Z = {
         /* 显示区域第一行的索引 */
         index: s / this.expand >> 0
       };
-      A(r, this.space), t.from || e.push(["onscroll", r]);
+      R(r, this.space), e.from || t.push(["onscroll", r]);
       let i = !1;
-      b(
+      x(
         this.flyweights,
-        (h, l, n, c, d, a, u, f, o) => {
-          if (n = h / d >> 0, f = n + c * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(n < a % c) + (a / c >> 0)), o = f * d + h % d, o >= this.count) {
-            i || (e.push(["onend"]), i = !0);
+        (h, l, n, c, u, a, d, f, o) => {
+          if (n = h / u >> 0, f = n + c * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
+          (+(n < a % c) + (a / c >> 0)), o = f * u + h % u, o >= this.count) {
+            i || (t.push(["onend"]), i = !0);
             return;
           }
           l.index = f, l.i = o, l.data = this.flys[o];
@@ -198,7 +198,7 @@ const Z = {
             /* left */
             l.space
           ];
-          u && y.reverse(), l.top = y[0], l.left = y[1];
+          d && y.reverse(), l.top = y[0], l.left = y[1];
         },
         null,
         this.row,
@@ -206,78 +206,100 @@ const Z = {
         /* 显示区域第一行的索引 */
         r.index,
         this.scrollx
-      ), this.trigger(e), e = null;
+      ), this.trigger(t), t = null;
     },
-    scroll(t) {
-      this.run(t || { target: this.flyweight, from: "space" });
+    scroll(e) {
+      this.run(e || { target: this.flyweight, from: "space" });
     },
     rebuild() {
-      let t = this.count || this.flys.length, e = this.flyweights;
-      if (!t)
-        return e.length = t;
-      this.count = t;
-      let s = this.scrollx, r = this.flyweight, i = x(r, this.BoxRule);
+      let e = this.count || this.flys.length, t = this.flyweights;
+      if (!e)
+        return t.length = e;
+      this.count = e;
+      let s = this.scrollx, r = this.flyweight, i = _(r, this.BoxRule);
       this.$nextTick(() => {
-        let h = /true/.test(this.auto), [l, n] = this.offset, c = i.width, d = i.height, a = (I(this.width, c) || c) + l, u = I(this.height, d) + n, f = [c / a >> 0 || 1, d / u >> 0 || 1];
+        let h = /true/.test(this.auto), [l, n] = this.offset, c = i.width, u = i.height, a = (I(this.width, c) || c) + l, d = I(this.height, u) + n, f = [c / a >> 0 || 1, u / d >> 0 || 1];
         s && f.reverse();
-        let [o, y] = f, z = this.padding, $, N = 0, m, B;
+        let [o, y] = f, v = this.padding, $, N = 0, m, B;
         s ? (m = a, a -= l, B = (w) => (
           /* 计算top偏移量 */
-          w * (u - n) + (w + 1) * n
-        )) : (h ? (a = (c - l * (o + 2 * z - 1)) / o, $ = !z * l, N = z * l) : ($ = 0, N = (c % a + l * o) / (o + 1) >> 0, a -= l), B = (w) => w * (a + $) + (w + 1) * N, m = u), this.row = y + 2, this.column = o, this.realH = u - n, this.realW = a, this.expand = m, this.Size = Math.ceil(t / o) * m;
-        let H = Math.min(t, o * this.row), _ = H - 1, L;
-        for (; H-- > 0; )
-          L = _ - H, this.$set(e, L, {
+          w * (d - n) + (w + 1) * n
+        )) : (h ? (a = (c - l * (o + 2 * v - 1)) / o, $ = !v * l, N = v * l) : ($ = 0, N = (c % a + l * o) / (o + 1) >> 0, a -= l), B = (w) => w * (a + $) + (w + 1) * N, m = d), this.row = y + 2, this.column = o, this.realH = d - n, this.realW = a, this.expand = m, this.Size = Math.ceil(e / o) * m;
+        let L = Math.min(e, o * this.row), b = L - 1, H;
+        for (; L-- > 0; )
+          H = b - L, this.$set(t, H, {
             x: l,
             y: n,
             width: a,
-            height: u - n,
-            space: B(L % o),
+            height: d - n,
+            space: B(H % o),
             data: {}
           });
-        e.length = _ + 1;
-        let C = [];
-        d / m > _ / o && C.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        t.length = b + 1;
+        let A = [];
+        u / m > b / o && A.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
-        }), C.push(["update:space", {
-          row: (_ / o >> 0) + 1,
+        }), A.push(["update:space", {
+          row: (b / o >> 0) + 1,
           column: o,
           showrow: this.row,
           showcolumn: this.column
-        }]), this.trigger(C);
+        }]), this.trigger(A);
       });
     }
   }
-}, tt = { class: "flyweight-all" };
-function et(t, e, s, r, i, h) {
-  return S(), k("div", {
+}, ie = { class: "flyweight-all" };
+function le(e, t, s, r, i, h) {
+  return S(), T("div", {
     ref: "flyweight",
-    class: W(["flyweight", {
+    class: j(["flyweight", {
       "flyweight-active": i.actice
     }]),
-    style: T({
+    style: z({
       "--width": h.exec(i.realW),
       "--height": h.exec(i.realH),
       "--flyweight-content": h.exec(i.Size)
     }),
-    onScroll: e[0] || (e[0] = (...l) => h.scroll && h.scroll(...l))
+    onScroll: t[0] || (t[0] = (...l) => h.scroll && h.scroll(...l))
   }, [
-    v("div", tt, [
-      (S(!0), k(P, null, U(i.flyweights, (l, n) => (S(), k("div", {
+    k("div", ie, [
+      (S(!0), T(Y, null, q(i.flyweights, (l, n) => (S(), T("div", {
         key: n,
-        style: T({
+        style: z({
           top: l.top + "px",
           left: l.left + "px"
         })
       }, [
-        g(t.$slots, "default", X({ ref_for: !0 }, l), void 0, !0)
+        g(e.$slots, "default", J({ ref_for: !0 }, l), void 0, !0)
       ], 4))), 128))
     ]),
-    i.flyweights.length ? g(t.$slots, "end", { key: 0 }, void 0, !0) : Y("", !0)
+    i.flyweights.length ? g(e.$slots, "end", { key: 0 }, void 0, !0) : K("", !0)
   ], 38);
 }
-const st = /* @__PURE__ */ j(Z, [["render", et], ["__scopeId", "data-v-8f29f044"]]);
-const it = {
+const re = /* @__PURE__ */ V(se, [["render", le], ["__scopeId", "data-v-8f29f044"]]);
+function O(e, t) {
+  return t && (e = e.replace(/[a-z]/g, "")), e.toLowerCase();
+}
+let G = {
+  close: {
+    handler(e) {
+      this.change(e);
+    },
+    deep: !0
+  },
+  offset: {
+    handler(e) {
+      this.margin(e);
+    },
+    deep: !0
+  }
+}, he = ["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], M = {};
+x(he, (e, t, s) => {
+  e = O(t), M["--" + O(t, !0)] = e, s[e] = function() {
+    this.trigger++;
+  };
+}, G);
+const ne = {
   name: "Card",
   // inheritAttrs: false,
   props: {
@@ -318,6 +340,7 @@ const it = {
     return {
       closecss: {},
       style: {},
+      trigger: 0,
       default: {
         top: "0px",
         right: "0px",
@@ -335,43 +358,28 @@ const it = {
       return this.tr();
     }
   },
-  watch: {
-    close: {
-      handler(t) {
-        this.change(t);
-      },
-      deep: !0
-    },
-    offset: {
-      handler(t) {
-        this.margin(t);
-      },
-      deep: !0
-    }
-  },
+  watch: G,
   methods: {
-    exec: O,
-    isEmpty: G,
+    exec: C,
+    isEmpty: P,
     isSimplyType: E,
     tr() {
-      let t = {};
-      return this.margin(this.offset), b(["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], (e, s) => {
-        this.css(t, s);
-      }), t;
+      let e = {};
+      return this.margin(this.offset), x(M, (t, s) => {
+        this.css(e, t, s);
+      }), e;
     },
-    tolower(t, e) {
-      return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
+    tolower: O,
+    css(e, t, s) {
+      let r = this[s] || this.default[s];
+      !r || this.default[s] == r || (e[t] = C(r));
     },
-    css(t, e) {
-      let s = this.tolower(e), r = this[s] || this.default[s];
-      !r || this.default[s] == r || (t["--" + this.tolower(e, !0)] = O(r));
+    change(e) {
+      E(e) || (this.closecss = _(e, "color=>--s-card-close-color,*"));
     },
-    change(t) {
-      E(t) || (this.closecss = x(t, "color=>--s-card-close-color,*"));
-    },
-    margin(t) {
-      A(this, x(
-        M(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
+    margin(e) {
+      R(this, _(
+        U(e) ? e.split(/\s*(?:,|\s+)\s*/) : e,
         "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
         !0
       ), !0);
@@ -380,32 +388,33 @@ const it = {
   mounted() {
     this.change(this.close);
   }
-}, lt = { class: "card-title" }, rt = { class: "card-content" };
-function ht(t, e, s, r, i, h) {
-  return S(), k("div", {
+}, oe = { class: "card-title" }, ae = { class: "card-content" };
+function ce(e, t, s, r, i, h) {
+  return S(), T("div", {
     class: "card",
-    style: T(h.isEmpty(h.style) ? h.tr() : h.style)
+    key: i.trigger,
+    style: z(h.isEmpty(h.style) ? h.tr() : h.style)
   }, [
-    g(t.$slots, "default", {}, () => [
-      g(t.$slots, "title", {}, () => [
-        v("div", lt, [
-          q(J(s.show || s.title) + " ", 1),
-          v("div", {
-            class: W(["card-close", { hide: h.isSimplyType(s.close) ? !s.close : !1 }]),
-            style: T(i.closecss),
-            onClick: e[0] || (e[0] = (l) => t.$emit("close"))
+    g(e.$slots, "default", {}, () => [
+      g(e.$slots, "title", {}, () => [
+        k("div", oe, [
+          Q(Z(s.show || s.title) + " ", 1),
+          k("div", {
+            class: j(["card-close", { hide: h.isSimplyType(s.close) ? !s.close : !1 }]),
+            style: z(i.closecss),
+            onClick: t[0] || (t[0] = (l) => e.$emit("close"))
           }, null, 6)
         ])
       ], !0),
-      g(t.$slots, "content", {}, () => [
-        v("div", rt, [
-          g(t.$slots, "inner", {}, void 0, !0)
+      g(e.$slots, "content", {}, () => [
+        k("div", ae, [
+          g(e.$slots, "inner", {}, void 0, !0)
         ])
       ], !0)
     ], !0)
   ], 4);
 }
-const nt = /* @__PURE__ */ j(it, [["render", ht], ["__scopeId", "data-v-03bba61c"]]), ot = {
+const ue = /* @__PURE__ */ V(ne, [["render", ce], ["__scopeId", "data-v-23ece4cb"]]), de = {
   name: "Stream",
   props: {
     type: {
@@ -421,8 +430,8 @@ const nt = /* @__PURE__ */ j(it, [["render", ht], ["__scopeId", "data-v-03bba61c
       default: () => []
     }
   },
-  render(t) {
-    return t(
+  render(e) {
+    return e(
       this.type,
       {
         // ...item,
@@ -430,22 +439,22 @@ const nt = /* @__PURE__ */ j(it, [["render", ht], ["__scopeId", "data-v-03bba61c
           data: this.data
         }
       },
-      this._l(this.T, (e, s) => {
-        let r = x(e, "slot|name|type=>name").name, i = x(this, D("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", r));
-        return A(e, { index: s }), p(r, i, e);
+      this._l(this.T, (t, s) => {
+        let r = _(t, "slot|name|type=>name").name, i = _(this, X("$scopedSlots.?|$slots.?|$scopedSlots.default=>?", r));
+        return R(t, { index: s }), p(r, i, t);
       })
     );
   }
-}, at = [st, nt, ot], ut = {
-  install(t) {
-    at.forEach((e) => {
-      t.component("S" + e.name, e), t.component(e.name + "S", e);
+}, fe = [re, ue, de], ye = {
+  install(e) {
+    fe.forEach((t) => {
+      e.component("S" + t.name, t), e.component(t.name + "S", t);
     });
   }
 };
 export {
-  nt as Card,
-  st as Flyweight,
-  ot as Stream,
-  ut as default
+  ue as Card,
+  re as Flyweight,
+  de as Stream,
+  ye as default
 };

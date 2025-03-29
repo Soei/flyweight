@@ -1,5 +1,5 @@
 import { runer as p, isArray as X, each as _, merge as V, picker as H, isEmpty as Y, isSimplyType as F, isString as q } from "@soei/util";
-import { openBlock as y, createElementBlock as b, normalizeClass as D, normalizeStyle as T, createElementVNode as k, Fragment as G, renderList as M, renderSlot as g, mergeProps as A, createCommentVNode as J, createTextVNode as K, toDisplayString as Q, createBlock as Z, resolveDynamicComponent as tt, withCtx as et } from "vue";
+import { openBlock as y, createElementBlock as S, normalizeClass as D, normalizeStyle as T, createElementVNode as k, Fragment as G, renderList as M, renderSlot as g, mergeProps as A, createCommentVNode as J, createTextVNode as K, toDisplayString as Q, createBlock as Z, resolveDynamicComponent as tt, withCtx as et } from "vue";
 let st = /(\d+|[+\-\*/]|%)/g, I = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
@@ -220,14 +220,14 @@ const lt = {
       this.$nextTick(() => {
         let r = /true/.test(this.auto), [i, n] = this.offset, c = l.width, u = l.height, a = (W(this.width, c) || c) + i, d = W(this.height, u) + n, f = [c / a >> 0 || 1, u / d >> 0 || 1];
         s && f.reverse();
-        let [o, m] = f, v = this.padding, z, $ = 0, w, B;
+        let [o, m] = f, $ = this.padding, v, z = 0, w, B;
         s ? (w = a, a -= i, B = (x) => (
           /* 计算top偏移量 */
           x * (d - n) + (x + 1) * n
-        )) : (r ? (a = (c - i * (o + 2 * v - 1)) / o, z = !v * i, $ = v * i) : (z = 0, $ = (c % a + i * o) / (o + 1) >> 0, a -= i), B = (x) => x * (a + z) + (x + 1) * $, w = d), this.row = m + 2, this.column = o, this.realH = d - n, this.realW = a, this.expand = w, this.Size = Math.ceil(t / o) * w;
-        let N = Math.min(t, o * this.row), S = N - 1, C;
+        )) : (r ? (a = (c - i * (o + 2 * $ - 1)) / o, v = !$ * i, z = $ * i) : (v = 0, z = (c % a + i * o) / (o + 1) >> 0, a -= i), B = (x) => x * (a + v) + (x + 1) * z, w = d), this.row = m + 2, this.column = o, this.realH = d - n, this.realW = a, this.expand = w, this.Size = Math.ceil(t / o) * w;
+        let N = Math.min(t, o * this.row), b = N - 1, C;
         for (; N-- > 0; )
-          C = S - N, this.$set(e, C, {
+          C = b - N, this.$set(e, C, {
             x: i,
             y: n,
             width: a,
@@ -235,12 +235,12 @@ const lt = {
             space: B(C % o),
             data: {}
           });
-        e.length = S + 1;
+        e.length = b + 1;
         let L = [];
-        u / w > S / o && L.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        u / w > b / o && L.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
         }), L.push(["update:space", {
-          row: (S / o >> 0) + 1,
+          row: (b / o >> 0) + 1,
           column: o,
           showrow: this.row,
           showcolumn: this.column
@@ -250,7 +250,7 @@ const lt = {
   }
 }, rt = { class: "flyweight-all" };
 function ht(t, e, s, h, l, r) {
-  return y(), b("div", {
+  return y(), S("div", {
     ref: "flyweight",
     class: D(["flyweight", {
       "flyweight-active": l.actice
@@ -263,7 +263,7 @@ function ht(t, e, s, h, l, r) {
     onScroll: e[0] || (e[0] = (...i) => r.scroll && r.scroll(...i))
   }, [
     k("div", rt, [
-      (y(!0), b(G, null, M(l.flyweights, (i, n) => (y(), b("div", {
+      (y(!0), S(G, null, M(l.flyweights, (i, n) => (y(), S("div", {
         key: n,
         style: T({
           top: i.top + "px",
@@ -390,7 +390,7 @@ const at = {
   }
 }, ct = { class: "card-title" }, ut = { class: "card-content" };
 function dt(t, e, s, h, l, r) {
-  return y(), b("div", {
+  return y(), S("div", {
     class: "card",
     key: l.trigger,
     style: T(r.isEmpty(r.style) ? r.tr() : r.style)
@@ -429,12 +429,18 @@ const ft = /* @__PURE__ */ E(at, [["render", dt], ["__scopeId", "data-v-fcd6014d
       type: Array,
       default: () => []
     }
+  },
+  methods: {
+    trigger(t) {
+      let e = t.slot || t.type;
+      return (this.$scopedSlots || this.$slots)[e] ? e : "default";
+    }
   }
 };
 function pt(t, e, s, h, l, r) {
   return y(), Z(tt(s.type), A(t.$attrs, { data: s.data }), {
     default: et(() => [
-      (y(!0), b(G, null, M(s.T, (i) => g(t.$slots, i.slot || i.type || "default", A({
+      (y(!0), S(G, null, M(s.T, (i) => g(t.$slots, r.trigger(i), A({
         key: i.type,
         ref_for: !0
       }, i))), 128))

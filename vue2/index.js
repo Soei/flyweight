@@ -247,14 +247,14 @@ const M = {
           /* 计算top偏移量 */
           _ * (d - h) + (_ + 1) * h
         )) : (a ? (u = (r - l * (o + 2 * x - 1)) / o, v = !x * l, $ = x * l) : (v = 0, $ = (r % u + l * o) / (o + 1) >> 0, u -= l), b = (_) => _ * (u + v) + (_ + 1) * $, y = d), this.row = p + 2, this.column = o, this.realH = d - h, this.realW = u, this.expand = y, this.Size = Math.ceil(e / o) * y;
-        let T = Math.min(e, o * this.row), w = T - 1, S;
-        for (; T-- > 0; )
-          S = w - T, this.$set(t, S, {
+        let S = Math.min(e, o * this.row), w = S - 1, T;
+        for (; S-- > 0; )
+          T = w - S, this.$set(t, T, {
             x: l,
             y: h,
             width: u,
             height: d - h,
-            space: b(S % o),
+            space: b(T % o),
             data: {}
           });
         t.length = w + 1;
@@ -444,12 +444,18 @@ const Z = Q.exports, tt = {
       type: Array,
       default: () => []
     }
+  },
+  methods: {
+    trigger(e) {
+      let t = e.slot || e.type;
+      return (this.$scopedSlots || this.$slots)[t] ? t : "default";
+    }
   }
 };
 var et = function() {
   var t = this, s = t._self._c;
   return s(t.type, t._b({ tag: "component", attrs: { data: t.data } }, "component", t.$attrs, !1), [t._l(t.T, function(i) {
-    return [t._t(i.slot || i.type || "default", null, null, i)];
+    return [t._t(t.trigger(i), null, null, i)];
   })], 2);
 }, st = [], it = /* @__PURE__ */ F(
   tt,

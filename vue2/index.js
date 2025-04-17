@@ -1,4 +1,4 @@
-import { runer as g, isArray as E, each as m, merge as A, picker as k, isEmpty as I, isSimplyType as N, isString as U } from "@soei/util";
+import { runer as g, isArray as E, each as m, merge as A, picker as z, isEmpty as I, isSimplyType as N, isString as U } from "@soei/util";
 let X = /(\d+|[+\-\*/]|%)/g, H = {
   "+": (e, t) => e + t,
   "-": (e, t) => e - t,
@@ -14,7 +14,7 @@ let X = /(\d+|[+\-\*/]|%)/g, H = {
     +n || (n = +h.pop()), e = n >> 0;
   }
   return e;
-}, z = (e) => (e + "").replace(/\w+\((.*)\)/g, "$1").replace(/(?=\s+|^)(\d+(\.\d+)*)(?!(?:\.)*\d|%|\w)/g, "$1px");
+}, R = (e) => (e + "").replace(/\w+\((.*)\)/g, "$1").replace(/(?=\s+|^)(\d+(\.\d+)*)(?!(?:\.)*\d|%|\w)/g, "$1px");
 function F(e, t, s, i, n, a, l, h) {
   var r = typeof e == "function" ? e.options : e;
   t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), i && (r.functional = !0), a && (r._scopeId = "data-v-" + a);
@@ -158,10 +158,10 @@ const M = {
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
   },
   methods: {
-    exec: z,
+    exec: R,
     trigger(e, t) {
-      this.lazyrun(() => {
-        E(e) || (e = [[e, t]]), m(e, (s, i) => {
+      E(e) || (e = e && t ? [[e, t]] : []), e.length && this.lazyrun(() => {
+        m(e, (s, i) => {
           this.$emit(i[0], O(i[1]) ? !0 : i[1]);
         });
       });
@@ -238,15 +238,15 @@ const M = {
       if (!e)
         return t.length = e;
       this.count = e;
-      let s = this.scrollx, i = this.flyweight, n = k(i, this.BoxRule);
+      let s = this.scrollx, i = this.flyweight, n = z(i, this.BoxRule);
       this.$nextTick(() => {
         let a = /true/.test(this.auto), [l, h] = this.offset, r = n.width, f = n.height, u = (L(this.width, r) || r) + l, d = L(this.height, f) + h, c = [r / u >> 0 || 1, f / d >> 0 || 1];
         s && c.reverse();
-        let [o, p] = c, x = this.padding, v, $ = 0, y, b;
-        s ? (y = u, u -= l, b = (_) => (
+        let [o, p] = c, x = this.padding, v, $ = 0, _, b;
+        s ? (_ = u, u -= l, b = (y) => (
           /* 计算top偏移量 */
-          _ * (d - h) + (_ + 1) * h
-        )) : (a ? (u = (r - l * (o + 2 * x - 1)) / o, v = !x * l, $ = x * l) : (v = 0, $ = (r % u + l * o) / (o + 1) >> 0, u -= l), b = (_) => _ * (u + v) + (_ + 1) * $, y = d), this.row = p + 2, this.column = o, this.realH = d - h, this.realW = u, this.expand = y, this.Size = Math.ceil(e / o) * y;
+          y * (d - h) + (y + 1) * h
+        )) : (a ? (u = (r - l * (o + 2 * x - 1)) / o, v = !x * l, $ = x * l) : (v = 0, $ = (r % u + l * o) / (o + 1) >> 0, u -= l), b = (y) => y * (u + v) + (y + 1) * $, _ = d), this.row = p + 2, this.column = o, this.realH = d - h, this.realW = u, this.expand = _, this.Size = Math.ceil(e / o) * _;
         let S = Math.min(e, o * this.row), w = S - 1, T;
         for (; S-- > 0; )
           T = w - S, this.$set(t, T, {
@@ -259,7 +259,7 @@ const M = {
           });
         t.length = w + 1;
         let C = [];
-        f / y > w / o && C.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        f / _ > w / o && C.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
         }), C.push(["update:space", {
           row: (w / o >> 0) + 1,
@@ -291,12 +291,12 @@ var V = function() {
   j,
   !1,
   null,
-  "05373fe1",
+  "95f71719",
   null,
   null
 );
 const q = Y.exports;
-function R(e, t) {
+function k(e, t) {
   return t && (e = e.replace(/[a-z]/g, "")), e.toLowerCase();
 }
 let B = {
@@ -314,7 +314,7 @@ let B = {
   }
 }, D = ["BackGround", "BordeR", "Height", "Width", "Top", "Right", "Bottom", "Left"], W = {};
 m(D, (e, t, s) => {
-  e = R(t), W["--" + R(t, !0)] = e, s[e] = function() {
+  e = k(t), W["--" + k(t, !0)] = e, s[e] = function() {
     this.trigger++;
   };
 }, B);
@@ -379,7 +379,7 @@ const J = {
   },
   watch: B,
   methods: {
-    exec: z,
+    exec: R,
     isEmpty: I,
     isSimplyType: N,
     tr() {
@@ -388,16 +388,16 @@ const J = {
         this.css(e, t, s);
       }), e;
     },
-    tolower: R,
+    tolower: k,
     css(e, t, s) {
       let i = this[s] || this.default[s];
-      !i || this.default[s] == i || (e[t] = z(i));
+      !i || this.default[s] == i || (e[t] = R(i));
     },
     change(e) {
-      N(e) || (this.closecss = k(e, "color=>--s-card-close-color,*"));
+      N(e) || (this.closecss = z(e, "color=>--s-card-close-color,size=>--s-close-width,bold=>--s-close-height,*"));
     },
     margin(e) {
-      A(this, k(
+      A(this, z(
         U(e) ? e.split(/\s*(?:,|\s+)\s*/) : e,
         "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
         !0
@@ -425,7 +425,7 @@ var K = function() {
   P,
   !1,
   null,
-  "19340aef",
+  "6065b432",
   null,
   null
 );

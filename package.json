@@ -2,7 +2,7 @@
   "name": "@soei/flyweight",
   "private": false,
   "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight, Card, Stream组件",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "type": "module",
   "main": "Flyweight.cjs",
   "module": "Flyweight.js",

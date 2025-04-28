@@ -7,6 +7,17 @@
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
+<!-- 版本 0.3.3 新增  属性 w, h, 默认 100% -->
+<s-flyweight
+  ...
+  h="容器高"
+  w="容器宽"
+  width="内容宽"
+  height="内容高"
+></s-flyweight>
+
+Or
+
 <div style="height:100px;width:300px;">
   <!-- 确认父容器 宽 高 存在, 依赖父容器 `宽`, `高` 计算 -->
   <s-flyweight ...></s-flyweight>

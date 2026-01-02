@@ -510,8 +510,8 @@ const tt = Z.exports, et = {
 };
 var st = function() {
   var t = this, s = t._self._c;
-  return s(t.type, t._b({ tag: "component", attrs: { data: t.data } }, "component", t.$attrs, !1), [t._l(t.column, function(i) {
-    return [t._t(t.trigger(i), null, null, i)];
+  return s(t.type, t._b({ tag: "component" }, "component", t.$attrs, !1), [t._l(t.column, function(i) {
+    return t._t(t.trigger(i), null, null, i);
   })], 2);
 }, it = [], lt = /* @__PURE__ */ F(
   et,

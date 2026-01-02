@@ -7,6 +7,23 @@
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
+<!-- 版本 0.3.6 新增属性 bridge, T==columns -->
+<!-- bridge="property" 绑定属性: columns对应属性 -->
+<Stream
+  type="组件名|div|Card|s-flyweight|..."
+  bridge="key"
+  :columns="[{key:1, name:'x'}]|{key:1, name:'x'}"
+  [...组件的属性]
+>
+  <!-- 插槽 #1中的1 为插槽名称 对应columns中的key对应的值决定, 由bridge指定 -->
+  <template #1="{ name }"> {{name}} </template>
+  <template #2> 2 </template>
+
+  <template #default> 默认输出[可以不写] </template>
+</Stream>
+```
+
+```html
 <!-- 版本 0.3.3 新增  属性 w, h, 默认 100% -->
 <s-flyweight
   ...

@@ -1,24 +1,24 @@
-import { runer as y, merge as R, isArray as W, each as w, picker as k, isEmpty as E, isSimplyType as A, isString as U } from "@soei/util";
-let X = /(\d+|[+\-\*/]|%)/g, H = {
+import { runer as y, merge as R, isArray as W, each as w, picker as k, isEmpty as E, isSimplyType as O, isString as U } from "@soei/util";
+let X = /(\d+|[+\-\*/]|%)/g, A = {
   "+": (e, t) => e + t,
   "-": (e, t) => e - t,
   "*": (e, t) => e * t,
   "/": (e, t) => e / t,
   "%": (e, t, s) => parseFloat(e) / 100 * s
-}, L = (e, t) => {
+}, H = (e, t) => {
   let s;
   if (s = y("match", e, X)) {
     let i = s.length, l, a = 0, r, h = [];
     for (; i--; )
-      a = s.shift(), a in H ? (l && h.push(l), a === "%" && (h.length = 2), r = a) : +a && h.push(+a), h.length == 2 && (h.push(t), l = H[r].apply(null, h), h.length = 0);
+      a = s.shift(), a in A ? (l && h.push(l), a === "%" && (h.length = 2), r = a) : +a && h.push(+a), h.length == 2 && (h.push(t), l = A[r].apply(null, h), h.length = 0);
     +l || (l = +h.pop()), e = l >> 0;
   }
   return e;
-}, O = {}, g = (e, t) => (e + "").replace(
+}, L = {}, g = (e, t) => (e + "").replace(
   /\w+\((.*)\)/g,
   "$1"
 ).replace(
-  O[t] || (O[t] = new RegExp("(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)", "g")),
+  L[t] || (L[t] = new RegExp("(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)", "g")),
   "$1px"
 );
 function F(e, t, s, i, l, a, r, h) {
@@ -50,10 +50,10 @@ function F(e, t, s, i, l, a, r, h) {
     options: n
   };
 }
-let B = (e) => e == null || e == null, G = (...e) => {
+let B = (e) => e == null || e == null, j = (...e) => {
   console.info("::::FLYWEIGHT", ...e);
 };
-const V = {
+const G = {
   name: "Flyweight",
   props: {
     flys: {
@@ -176,7 +176,7 @@ const V = {
         this.rebuild(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (e) {
-      G(e);
+      j(e);
     }
     this.scrollx = y("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
@@ -264,7 +264,7 @@ const V = {
       this.count = e;
       let s = this.scrollx, i = this.flyweight, l = k(i, this.BoxRule);
       this.$nextTick(() => {
-        let a = /true/.test(this.auto), [r, h] = this.offset, n = l.width, u = l.height, f = (L(this.width, n) || n) + r, d = L(this.height, u) + h, c = [n / f >> 0 || 1, u / d >> 0 || 1];
+        let a = /true/.test(this.auto), [r, h] = this.offset, n = l.width, u = l.height, f = (H(this.width, n) || n) + r, d = H(this.height, u) + h, c = [n / f >> 0 || 1, u / d >> 0 || 1];
         s && c.reverse();
         let [o, p] = c, v = this.padding, b, $ = 0, _, S;
         s ? (_ = f, f -= r, S = (m) => (
@@ -295,7 +295,7 @@ const V = {
     }
   }
 };
-var j = function() {
+var V = function() {
   var t = this, s = t._self._c;
   return s("div", { ref: "flyweight", staticClass: "flyweight", class: {
     "flyweight-active": t.actice
@@ -306,8 +306,8 @@ var j = function() {
     } }, [t._t("default", null, null, i)], 2);
   }), 0), t.flyweights.length ? t._t("end") : t._e()], 2);
 }, Y = [], q = /* @__PURE__ */ F(
+  G,
   V,
-  j,
   Y,
   !1,
   null,
@@ -414,7 +414,7 @@ const K = {
   methods: {
     exec: g,
     isEmpty: E,
-    isSimplyType: A,
+    isSimplyType: O,
     tr() {
       let e = {};
       return this.margin(this.offset), w(M, (t, s) => {
@@ -427,7 +427,7 @@ const K = {
       !i || this.default[s] == i || (e[t] = g(i));
     },
     change(e) {
-      A(e) || (this.closecss = k(
+      O(e) || (this.closecss = k(
         e,
         "color=>--s-card-close-color,size=>--s-close-width,bold=>--s-close-height,*"
       ));
@@ -493,7 +493,7 @@ const tt = Z.exports, et = {
       default: () => []
     },
     columns: {
-      type: Array,
+      type: [Object, Array],
       default: () => null
     },
     T: {
@@ -504,7 +504,7 @@ const tt = Z.exports, et = {
   methods: {
     trigger(e) {
       let t = e[this.bridge] || e.type;
-      return (this.$scopedSlots || this.$slots)[t] ? t : "default";
+      return (this.$slots || this.$scopedSlots)[t] ? t : "default";
     }
   }
 };

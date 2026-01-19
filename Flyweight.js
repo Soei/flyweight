@@ -22,7 +22,7 @@ let rt = /(\d+|[+\-\*/]|%)/g, I = {
   j[e] || (j[e] = new RegExp("(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)", "g")),
   "$1px"
 );
-const O = (t, e) => {
+const E = (t, e) => {
   const s = t.__vccOpts || t;
   for (const [l, h] of e)
     s[l] = h;
@@ -296,8 +296,8 @@ function at(t, e, s, l, h, r) {
     h.flyweights.length ? p(t.$slots, "end", { key: 0 }, void 0, !0) : K("", !0)
   ], 38);
 }
-const ct = /* @__PURE__ */ O(nt, [["render", at], ["__scopeId", "data-v-ae52e0f1"]]);
-function E(t, e) {
+const ct = /* @__PURE__ */ E(nt, [["render", at], ["__scopeId", "data-v-ae52e0f1"]]);
+function O(t, e) {
   return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
 }
 let Y = {
@@ -326,7 +326,7 @@ let Y = {
 b(
   ut,
   (t, e, s) => {
-    t = E(e), q["--" + E(e, !0)] = t, s[t] = function() {
+    t = O(e), q["--" + O(e, !0)] = t, s[t] = function() {
       this.trigger++;
     };
   },
@@ -402,7 +402,7 @@ const dt = {
         this.css(t, e, s);
       }), t;
     },
-    tolower: E,
+    tolower: O,
     css(t, e, s) {
       let l = this[s] || this.default[s];
       !l || this.default[s] == l || (t[e] = u(l));
@@ -458,7 +458,7 @@ function yt(t, e, s, l, h, r) {
     ], !0)
   ], 4);
 }
-const mt = /* @__PURE__ */ O(dt, [["render", yt], ["__scopeId", "data-v-c1ad1d74"]]), wt = {
+const mt = /* @__PURE__ */ E(dt, [["render", yt], ["__scopeId", "data-v-c1ad1d74"]]), wt = {
   name: "Stream",
   computed: {
     column() {
@@ -481,7 +481,7 @@ const mt = /* @__PURE__ */ O(dt, [["render", yt], ["__scopeId", "data-v-c1ad1d74
       default: () => []
     },
     columns: {
-      type: Array,
+      type: [Object, Array],
       default: () => null
     },
     T: {
@@ -492,7 +492,7 @@ const mt = /* @__PURE__ */ O(dt, [["render", yt], ["__scopeId", "data-v-c1ad1d74
   methods: {
     trigger(t) {
       let e = t[this.bridge] || t.type;
-      return (this.$scopedSlots || this.$slots)[e] ? e : "default";
+      return (this.$slots || this.$scopedSlots)[e] ? e : "default";
     }
   }
 };
@@ -507,7 +507,7 @@ function xt(t, e, s, l, h, r) {
     _: 3
   }, 16);
 }
-const _t = /* @__PURE__ */ O(wt, [["render", xt]]), bt = [ct, mt, _t], Tt = {
+const _t = /* @__PURE__ */ E(wt, [["render", xt]]), bt = [ct, mt, _t], Tt = {
   install(t) {
     bt.forEach((e) => {
       t.component("S" + e.name, e), t.component(e.name + "S", e);

@@ -1,5 +1,5 @@
 import { runer as y, merge as A, isArray as P, each as b, picker as H, isEmpty as V, isSimplyType as F, isString as J } from "@soei/util";
-import { openBlock as m, createElementBlock as S, normalizeClass as D, normalizeStyle as k, createElementVNode as T, Fragment as G, renderList as U, renderSlot as p, mergeProps as X, createCommentVNode as K, createTextVNode as Q, toDisplayString as Z, createBlock as tt, resolveDynamicComponent as et, normalizeProps as st, guardReactiveProps as it, withCtx as lt } from "vue";
+import { openBlock as m, createElementBlock as S, normalizeClass as D, normalizeStyle as z, createElementVNode as k, Fragment as G, renderList as U, renderSlot as p, mergeProps as X, createCommentVNode as K, createTextVNode as Q, toDisplayString as Z, createBlock as tt, resolveDynamicComponent as et, normalizeProps as st, guardReactiveProps as it, withCtx as lt } from "vue";
 let rt = /(\d+|[+\-\*/]|%)/g, I = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
@@ -39,11 +39,11 @@ const nt = {
       default: () => []
     },
     width: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     height: {
-      type: Number,
+      type: [String, Number],
       default: 100
     },
     w: {
@@ -69,12 +69,12 @@ const nt = {
       default: 0
     },
     top: {
-      type: Number,
-      default: !1
+      type: [String, Number],
+      default: 0
     },
     left: {
-      type: Number,
-      default: !1
+      type: [String, Number],
+      default: 0
     },
     auto: {
       type: [Boolean, String],
@@ -244,19 +244,19 @@ const nt = {
       this.$nextTick(() => {
         let r = /true/.test(this.auto), [i, n] = this.offset, c = h.width, d = h.height, a = (W(this.width, c) || c) + i, f = W(this.height, d) + n, g = [c / a >> 0 || 1, d / f >> 0 || 1];
         s && g.reverse();
-        let [o, w] = g, z = this.padding, v, N = 0, x, B;
+        let [o, w] = g, T = this.padding, v, N = 0, x, B;
         s ? (x = a, a -= i, B = (_) => (
           /* 计算top偏移量 */
           _ * (f - n) + (_ + 1) * n
-        )) : (r ? (a = (c - i * (o + 2 * z - 1)) / o, v = !z * i, N = z * i) : (v = 0, N = (c % a + i * o) / (o + 1) >> 0, a -= i), B = (_) => _ * (a + v) + (_ + 1) * N, x = f), this.row = w + 2, this.column = o, this.realH = f - n, this.realW = a, this.expand = x, this.Size = Math.ceil(t / o) * x;
-        let C = Math.min(t, o * this.row), $ = C - 1, L;
+        )) : (r ? (a = (c - i * (o + 2 * T - 1)) / o, v = !T * i, N = T * i) : (v = 0, N = (c % a + i * o) / (o + 1) >> 0, a -= i), B = (_) => _ * (a + v) + (_ + 1) * N, x = f), this.row = w + 2, this.column = o, this.realH = f - n, this.realW = a, this.expand = x, this.Size = Math.ceil(t / o) * x;
+        let C = Math.min(t, o * this.row), $ = C - 1, O;
         for (; C-- > 0; )
-          L = $ - C, this.$set(e, L, {
+          O = $ - C, this.$set(e, O, {
             x: i,
             y: n,
             width: a,
             height: f - n,
-            space: B(L % o),
+            space: B(O % o),
             data: {}
           });
         e.length = $ + 1;
@@ -279,13 +279,13 @@ function at(t, e, s, l, h, r) {
     class: D(["flyweight", {
       "flyweight-active": h.actice
     }]),
-    style: k(r.style),
+    style: z(r.style),
     onScroll: e[0] || (e[0] = (...i) => r.scroll && r.scroll(...i))
   }, [
-    T("div", ot, [
+    k("div", ot, [
       (m(!0), S(G, null, U(h.flyweights, (i, n) => (m(), S("div", {
         key: n,
-        style: k({
+        style: z({
           top: i.top + "px",
           left: i.left + "px"
         })
@@ -296,8 +296,8 @@ function at(t, e, s, l, h, r) {
     h.flyweights.length ? p(t.$slots, "end", { key: 0 }, void 0, !0) : K("", !0)
   ], 38);
 }
-const ct = /* @__PURE__ */ E(nt, [["render", at], ["__scopeId", "data-v-ae52e0f1"]]);
-function O(t, e) {
+const ct = /* @__PURE__ */ E(nt, [["render", at], ["__scopeId", "data-v-35b94e9b"]]);
+function L(t, e) {
   return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
 }
 let Y = {
@@ -326,7 +326,7 @@ let Y = {
 b(
   ut,
   (t, e, s) => {
-    t = O(e), q["--" + O(e, !0)] = t, s[t] = function() {
+    t = L(e), q["--" + L(e, !0)] = t, s[t] = function() {
       this.trigger++;
     };
   },
@@ -402,7 +402,7 @@ const dt = {
         this.css(t, e, s);
       }), t;
     },
-    tolower: O,
+    tolower: L,
     css(t, e, s) {
       let l = this[s] || this.default[s];
       !l || this.default[s] == l || (t[e] = u(l));
@@ -433,17 +433,17 @@ function yt(t, e, s, l, h, r) {
   return m(), S("div", {
     class: "card",
     key: h.trigger,
-    style: k(r.isEmpty(r.style) ? r.tr() : r.style)
+    style: z(r.isEmpty(r.style) ? r.tr() : r.style)
   }, [
     p(t.$slots, "default", {}, () => [
       p(t.$slots, "title", {}, () => {
         var i;
         return [
-          T("div", ft, [
+          k("div", ft, [
             Q(Z(s.show || s.title) + " ", 1),
-            T("div", {
+            k("div", {
               class: D(["card-close", { hide: r.isSimplyType(s.close) ? !s.close : !1 }]),
-              style: k(h.closecss),
+              style: z(h.closecss),
               onClick: e[0] || (e[0] = (n) => t.$emit("close")),
               title: (i = s.close) == null ? void 0 : i.tips
             }, null, 14, gt)
@@ -451,14 +451,14 @@ function yt(t, e, s, l, h, r) {
         ];
       }, !0),
       p(t.$slots, "content", {}, () => [
-        T("div", pt, [
+        k("div", pt, [
           p(t.$slots, "inner", {}, void 0, !0)
         ])
       ], !0)
     ], !0)
   ], 4);
 }
-const mt = /* @__PURE__ */ E(dt, [["render", yt], ["__scopeId", "data-v-c1ad1d74"]]), wt = {
+const mt = /* @__PURE__ */ E(dt, [["render", yt], ["__scopeId", "data-v-2008eeb3"]]), wt = {
   name: "Stream",
   computed: {
     column() {
@@ -485,7 +485,7 @@ const mt = /* @__PURE__ */ E(dt, [["render", yt], ["__scopeId", "data-v-c1ad1d74
       default: () => null
     },
     T: {
-      type: Array,
+      type: [Array, Object],
       default: () => null
     }
   },
@@ -507,7 +507,7 @@ function xt(t, e, s, l, h, r) {
     _: 3
   }, 16);
 }
-const _t = /* @__PURE__ */ E(wt, [["render", xt]]), bt = [ct, mt, _t], Tt = {
+const _t = /* @__PURE__ */ E(wt, [["render", xt]]), bt = [ct, mt, _t], kt = {
   install(t) {
     bt.forEach((e) => {
       t.component("S" + e.name, e), t.component(e.name + "S", e);
@@ -518,5 +518,5 @@ export {
   mt as Card,
   ct as Flyweight,
   _t as Stream,
-  Tt as default
+  kt as default
 };

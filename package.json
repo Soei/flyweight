@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@soei/tools": "^1.0.15",
-    "@soei/util": "^1.1.8",
+    "@soei/util": "^1.1.8"
   },
   "keywords": [
     "Flyweight",

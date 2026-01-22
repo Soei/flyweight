@@ -1,4 +1,4 @@
-import { runer as T, merge as B, isArray as nt, each as H, picker as O, isEmpty as ot, isSimplyType as J, isString as bt } from "@soei/util";
+import { runer as T, merge as B, isArray as nt, each as H, picker as O, isEmpty as ot, isSimplyType as J, isString as _t } from "@soei/util";
 import { openBlock as z, createElementBlock as M, normalizeClass as ht, normalizeStyle as I, createElementVNode as P, Fragment as at, renderList as ct, renderSlot as m, mergeProps as U, createCommentVNode as ut, createTextVNode as dt, toDisplayString as D, createBlock as xt, resolveDynamicComponent as vt, normalizeProps as St, guardReactiveProps as $t, withCtx as zt } from "vue";
 import { runer as p, each as K } from "@soei/tools";
 import kt from "@soei/picker";
@@ -17,7 +17,7 @@ let Nt = /(\d+|[+\-\*/]|%)/g, Q = {
     +n || (n = +h.pop()), t = n >> 0;
   }
   return t;
-}, tt = {}, b = (t, e) => (t + "").replace(
+}, tt = {}, _ = (t, e) => (t + "").replace(
   /\w+\((.*)\)/g,
   "$1"
 ).replace(
@@ -98,13 +98,13 @@ const Mt = {
     style() {
       var t = this.w, e = this.h, i = this.Size, r = {};
       return B(r, {
-        "--width": b(this.realW),
-        "--height": b(this.realH),
-        "--flyweight-content": b(i)
+        "--width": _(this.realW),
+        "--height": _(this.realH),
+        "--flyweight-content": _(i)
       }, e && {
-        "--flyweight-h": b(e)
+        "--flyweight-h": _(e)
       }, t && r, {
-        "--flyweight-w": b(t)
+        "--flyweight-w": _(t)
       }, "mix"), r;
     }
   },
@@ -162,7 +162,7 @@ const Mt = {
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
   },
   methods: {
-    exec: b,
+    exec: _,
     trigger(t, e) {
       nt(t) || (t = t && e ? [[t, e]] : []), t.length && this.lazyrun(() => {
         H(t, (i, r) => {
@@ -247,10 +247,10 @@ const Mt = {
         let l = /true/.test(this.auto), [s, h] = this.offset, o = n.width, u = n.height, c = (Z(this.width, o) || o) + s, d = Z(this.height, u) + h, f = [o / c >> 0 || 1, u / d >> 0 || 1];
         i && f.reverse();
         let [a, x] = f, v = this.padding, L, S = 0, g, y;
-        i ? (g = c, c -= s, y = (_) => (
+        i ? (g = c, c -= s, y = (b) => (
           /* 计算top偏移量 */
-          _ * (d - h) + (_ + 1) * h
-        )) : (l ? (c = (o - s * (a + 2 * v - 1)) / a, L = !v * s, S = v * s) : (L = 0, S = (o % c + s * a) / (a + 1) >> 0, c -= s), y = (_) => _ * (c + L) + (_ + 1) * S, g = d), this.row = x + 2, this.column = a, this.realH = d - h, this.realW = c, this.expand = g, this.Size = Math.ceil(t / a) * g;
+          b * (d - h) + (b + 1) * h
+        )) : (l ? (c = (o - s * (a + 2 * v - 1)) / a, L = !v * s, S = v * s) : (L = 0, S = (o % c + s * a) / (a + 1) >> 0, c -= s), y = (b) => b * (c + L) + (b + 1) * S, g = d), this.row = x + 2, this.column = a, this.realH = d - h, this.realW = c, this.expand = g, this.Size = Math.ceil(t / a) * g;
         let $ = Math.min(t, a * this.row), w = $ - 1, k;
         for (; $-- > 0; )
           k = w - $, this.$set(e, k, {
@@ -395,7 +395,7 @@ const Wt = {
   },
   watch: ft,
   methods: {
-    exec: b,
+    exec: _,
     isEmpty: ot,
     isSimplyType: J,
     tr() {
@@ -407,7 +407,7 @@ const Wt = {
     tolower: G,
     css(t, e, i) {
       let r = this[i] || this.default[i];
-      !r || this.default[i] == r || (t[e] = b(r));
+      !r || this.default[i] == r || (t[e] = _(r));
     },
     change(t) {
       J(t) || (this.closecss = O(
@@ -419,7 +419,7 @@ const Wt = {
       B(
         this,
         O(
-          bt(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
+          _t(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
           "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
           !0
         ),
@@ -560,8 +560,8 @@ function mt(t) {
   ];
   h && (K(
     h.split(it),
-    function(wt, A, F, _t) {
-      _t.push(F[A]);
+    function(wt, A, F, bt) {
+      bt.push(F[A]);
     },
     Dt,
     f = []
@@ -577,10 +577,10 @@ function mt(t) {
   if (s != null) {
     var w = s == 0 || s == 2, k = s == 3 || s == 1;
     g = k ? Math.min(o.left, v) : s == 2 ? o.right + r : S[0], u -= r * +w;
-    var N = Math.max(o.top, 0), _ = Math.min(
+    var N = Math.max(o.top, 0), b = Math.min(
       o.bottom,
       i
-    ), Y = (_ - u + Math.min(i - u, N)) / 2;
+    ), Y = (b - u + Math.min(i - u, N)) / 2;
     y = Math.max(
       w ? Y : s == 3 ? o.top + a + r : Math.min(Y, S[1]),
       0
@@ -591,7 +591,7 @@ function mt(t) {
     r,
     Math.min(
       /* 底边距 */
-      (Math.min(y + u, _) + Math.max(y, N)) / 2 - y + r / 2,
+      (Math.min(y + u, b) + Math.max(y, N)) / 2 - y + r / 2,
       /* 容器高度 - offset / 2 */
       u - 0.5 * r
     )
@@ -735,7 +735,7 @@ function Jt(t, e, i, r, n, l) {
     ], !0)
   ], 16, Yt)) : ut("", !0);
 }
-const Kt = /* @__PURE__ */ j(Xt, [["render", Jt], ["__scopeId", "data-v-660ad090"]]), Qt = [Ht, Ot, Ft, Kt], se = {
+const Kt = /* @__PURE__ */ j(Xt, [["render", Jt], ["__scopeId", "data-v-b1c3381c"]]), Qt = [Ht, Ot, Ft, Kt], se = {
   install(t) {
     Qt.forEach((e) => {
       t.component("S" + e.name, e), t.component(e.name + "S", e);

@@ -7,6 +7,29 @@
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
+<!-- 版本 0.3.9 新增属Tips -->
+<Tips
+  // 是否显示
+  visible="Boolean"
+  // 偏移位置
+  offset="Number"
+
+  // 显示内容
+  title="String"
+  content=" 条更新"
+
+  // 显示位置 按照顺序显示
+  position="right,top,left,bottom"
+  // 滚动延迟时间 ms
+  delay="10"
+  // 颜色 背景色 边框宽度
+  background="red|#f00"
+  color="red|#f00"
+  boder="3"
+/>
+```
+
+```html
 <!-- 版本 0.3.6 新增属性 bridge, T==columns -->
 <!-- bridge="property" 绑定属性: columns对应属性 -->
 <Stream
@@ -353,7 +376,7 @@ import { Flyweight, Card } from "@soei/flyweight";
       () => notice.value,
       (val) => {
         console.log(val);
-      }
+      },
     );
   </script>
 

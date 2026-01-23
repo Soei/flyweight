@@ -7,6 +7,19 @@
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
+<!-- 版本 0.3.10 新增属Tips -->
+<!-- arrow: 显示箭头 -->
+<!-- [notice|warn|simply]: 内置样式, 不喜欢可以background="..." color="..." -->
+<Tips 
+class="notice|warn|simply|arrow|animate" 
+... 
+/>
+<Tips >
+  .....
+</Tips>
+```
+
+```html
 <!-- 版本 0.3.9 新增属Tips -->
 <Tips
   // 是否显示

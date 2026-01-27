@@ -1,4 +1,4 @@
-import { runer as z, merge as E, isArray as et, each as k, picker as L, isEmpty as it, isSimplyType as X, isString as ct } from "@soei/util";
+import { runer as z, merge as M, isArray as et, each as k, picker as L, isEmpty as it, isSimplyType as X, isString as ct } from "@soei/util";
 import { runer as g, isNil as ft, each as G } from "@soei/tools";
 import ut from "@soei/picker";
 let dt = /(\d+|[+\-\*/]|%)/g, q = {
@@ -119,7 +119,7 @@ const gt = {
     },
     style() {
       var t = this.w, e = this.h, i = this.Size, s = {};
-      return E(s, {
+      return M(s, {
         "--width": w(this.realW),
         "--height": w(this.realH),
         "--flyweight-content": w(i)
@@ -229,7 +229,7 @@ const gt = {
         /* 显示区域第一行的索引 */
         index: i / this.expand >> 0
       };
-      E(s, this.space), t.from || e.push(["onscroll", s]);
+      M(s, this.space), t.from || e.push(["onscroll", s]);
       let l = !1;
       k(
         this.flyweights,
@@ -268,27 +268,27 @@ const gt = {
       this.$nextTick(() => {
         let a = /true/.test(this.auto), [n, h] = this.offset, r = l.width, o = l.height, u = (D(this.width, r) || r) + n, d = D(this.height, o) + h, c = [r / u >> 0 || 1, o / d >> 0 || 1];
         i && c.reverse();
-        let [f, p] = c, b = this.padding, T, x = 0, _, m;
-        i ? (_ = u, u -= n, m = (S) => (
+        let [f, p] = c, b = this.padding, T, x = 0, _, y;
+        i ? (_ = u, u -= n, y = (S) => (
           /* 计算top偏移量 */
           S * (d - h) + (S + 1) * h
-        )) : (a ? (u = (r - n * (f + 2 * b - 1)) / f, T = !b * n, x = b * n) : (T = 0, x = (r % u + n * f) / (f + 1) >> 0, u -= n), m = (S) => S * (u + T) + (S + 1) * x, _ = d), this.row = p + 2, this.column = f, this.realH = d - h, this.realW = u, this.expand = _, this.Size = Math.ceil(t / f) * _;
-        let v = Math.min(t, f * this.row), y = v - 1, $;
+        )) : (a ? (u = (r - n * (f + 2 * b - 1)) / f, T = !b * n, x = b * n) : (T = 0, x = (r % u + n * f) / (f + 1) >> 0, u -= n), y = (S) => S * (u + T) + (S + 1) * x, _ = d), this.row = p + 2, this.column = f, this.realH = d - h, this.realW = u, this.expand = _, this.Size = Math.ceil(t / f) * _;
+        let v = Math.min(t, f * this.row), m = v - 1, $;
         for (; v-- > 0; )
-          $ = y - v, this.$set(e, $, {
+          $ = m - v, this.$set(e, $, {
             x: n,
             y: h,
             width: u,
             height: d - h,
-            space: m($ % f),
+            space: y($ % f),
             data: {}
           });
-        e.length = y + 1;
+        e.length = m + 1;
         let N = [];
-        o / _ > y / f && N.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        o / _ > m / f && N.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
         }), N.push(["update:space", {
-          row: (y / f >> 0) + 1,
+          row: (m / f >> 0) + 1,
           column: f,
           showrow: this.row,
           showcolumn: this.column
@@ -307,18 +307,18 @@ var _t = function() {
       left: s.left + "px"
     } }, [e._t("default", null, null, s)], 2);
   }), 0), e.flyweights.length ? e._t("end") : e._e()], 2);
-}, yt = [], mt = /* @__PURE__ */ W(
+}, mt = [], yt = /* @__PURE__ */ W(
   gt,
   _t,
-  yt,
+  mt,
   !1,
   null,
   "d5f1cd63",
   null,
   null
 );
-const vt = mt.exports;
-function O(t, e) {
+const vt = yt.exports;
+function A(t, e) {
   return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
 }
 let st = {
@@ -347,7 +347,7 @@ let st = {
 k(
   wt,
   (t, e, i) => {
-    t = O(e), rt["--" + O(e, !0)] = t, i[t] = function() {
+    t = A(e), rt["--" + A(e, !0)] = t, i[t] = function() {
       this.trigger++;
     };
   },
@@ -423,7 +423,7 @@ const bt = {
         this.css(t, e, i);
       }), t;
     },
-    tolower: O,
+    tolower: A,
     css(t, e, i) {
       let s = this[i] || this.default[i];
       !s || this.default[i] == s || (t[e] = w(s));
@@ -435,7 +435,7 @@ const bt = {
       ));
     },
     margin(t) {
-      E(
+      M(
         this,
         L(
           ct(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
@@ -475,6 +475,9 @@ var xt = function() {
 const Nt = $t.exports, zt = {
   name: "Stream",
   computed: {
+    component() {
+      return this.$refs.component;
+    },
     column() {
       let { columns: t, T: e } = this, i = t || e;
       return it(i) ? [] : et(i) ? i : [i];
@@ -490,10 +493,6 @@ const Nt = $t.exports, zt = {
       type: String,
       default: "div"
     },
-    data: {
-      type: Array,
-      default: () => []
-    },
     columns: {
       type: [Object, Array],
       default: () => null
@@ -503,8 +502,11 @@ const Nt = $t.exports, zt = {
       default: () => null
     }
   },
+  mounted() {
+    this.$.vnode.ref && M(this, { ...this.component });
+  },
   methods: {
-    trigger(t) {
+    __trigger(t) {
       let e = t[this.bridge] || t.type;
       return (this.$slots || this.$scopedSlots)[e] ? e : "default";
     }
@@ -512,8 +514,8 @@ const Nt = $t.exports, zt = {
 };
 var Tt = function() {
   var e = this, i = e._self._c;
-  return i(e.type, e._b({ tag: "component" }, "component", e.$attrs, !1), [e._l(e.column, function(s) {
-    return e._t(e.trigger(s), null, null, s);
+  return i(e.type, e._b({ ref: "component", tag: "component" }, "component", e.$attrs, !1), [e._l(e.column, function(s) {
+    return e._t(e.__trigger(s), null, null, s);
   })], 2);
 }, Ct = [], Rt = /* @__PURE__ */ W(
   zt,
@@ -555,13 +557,13 @@ function Et(t, e) {
     s - i >= e && (i = s, g(t, this, arguments));
   };
 }
-const H = () => {
+const E = () => {
   lt();
 };
 function Lt(t) {
   F.push(t);
 }
-const R = new ResizeObserver(H);
+const R = new ResizeObserver(E);
 R.observe(nt);
 function ot(t) {
   t.onresize || (F.push([ot, null, t]), t.onresize = !0);
@@ -577,40 +579,40 @@ function ot(t) {
   ];
   h && (G(
     h.split(J),
-    function(ht, M, A, at) {
-      at.push(A[M]);
+    function(ht, H, O, at) {
+      at.push(O[H]);
     },
     Mt,
     c = []
   ), d.unshift.apply(d, c)), n = G(
     d,
-    function(ht, M, A) {
-      if (A[M] > 0)
-        return M;
+    function(ht, H, O) {
+      if (O[H] > 0)
+        return H;
     },
     x
   );
-  var _ = 0, m = 0, v = 0;
+  var _ = 0, y = 0, v = 0;
   if (n != null) {
-    var y = n == 0 || n == 2, $ = n == 3 || n == 1;
-    _ = $ ? Math.min(r.left, b) : n == 2 ? r.right + s : x[0], o -= s * +y;
+    var m = n == 0 || n == 2, $ = n == 3 || n == 1;
+    _ = $ ? Math.min(r.left, b) : n == 2 ? r.right + s : x[0], o -= s * +m;
     var N = Math.max(r.top, 0), S = Math.min(
       r.bottom,
       i
     ), B = (S - o + Math.min(i - o, N)) / 2;
-    m = Math.max(
-      y ? B : n == 3 ? r.top + f + s : Math.min(B, x[1]),
+    y = Math.max(
+      m ? B : n == 3 ? r.top + f + s : Math.min(B, x[1]),
       0
     ), $ && r.left > b && (v = r.left - _ - s + p / 2);
   }
   let I = a.classList, C = t.css;
-  I.remove(...tt), I.add(tt[n]), t.index = n, C.left = _ + K, C.top = m + K;
-  let j = C["--tips-arrow-top"] = y ? Math.min(
+  I.remove(...tt), I.add(tt[n]), t.index = n, C.left = _ + K, C.top = y + K;
+  let j = C["--tips-arrow-top"] = m ? Math.min(
     /* 底边距 */
-    Math.max(m, N) - m,
+    Math.max(y, N) - y,
     o - s
   ) : Q, U = u - 3 * s;
-  C["--tips-arrow"] = v > U - 10 || y && (j + (o > 50 ? 15 : 0) > o || !j) ? "hidden" : "visible", C["--tips-arrow-left"] = v ? Math.min(v, U) : Q;
+  C["--tips-arrow"] = v > U - 10 || m && (j + (o > 50 ? 15 : 0) > o || !j) ? "hidden" : "visible", C["--tips-arrow-left"] = v ? Math.min(v, U) : Q;
 }
 const Wt = {
   name: "Tips",
@@ -719,12 +721,12 @@ const Wt = {
     },
     scrollListener() {
       this.static || this.parent((t, e, i) => {
-        e ? g(t.addEventListener, t, "scroll", H) : (g(R.observe, R, t), (t.offsetHeight < t.scrollHeight || t.offsetWidth < t.scrollWidth) && (i = this.attr(t, "-tips-scroll"), i || (g(t.addEventListener, t, "scroll", H), this.attr(t, "-tips-scroll", "true"))));
+        e ? g(t.addEventListener, t, "scroll", E) : (g(R.observe, R, t), (t.offsetHeight < t.scrollHeight || t.offsetWidth < t.scrollWidth) && (i = this.attr(t, "-tips-scroll"), i || (g(t.addEventListener, t, "scroll", E), this.attr(t, "-tips-scroll", "true"))));
       });
     }
   },
   mounted() {
-    E(
+    M(
       this.css,
       L(
         this.$props,
@@ -736,11 +738,11 @@ const Wt = {
   },
   unmounted() {
     this.parent(function(t, e) {
-      g(t.removeEventListener, t, "scroll", H), g(t.removeAttribute, t, "-tips-scroll", void 0), e || g(R.unobserve, R, t);
+      g(t.removeEventListener, t, "scroll", E), g(t.removeAttribute, t, "-tips-scroll", void 0), e || g(R.unobserve, R, t);
     });
   }
 };
-var At = function() {
+var Ot = function() {
   var e = this, i = e._self._c;
   return e.visible ? i("div", e._b({ staticClass: "tips", style: e.static ? null : e.css, attrs: { static: e.static ? "" : null } }, "div", e.$attrs, !1), [e._t("default", function() {
     return [e._t("title", function() {
@@ -749,10 +751,10 @@ var At = function() {
       return [e._v(e._s(e.content))];
     })];
   })], 2) : e._e();
-}, Ot = [], Ft = /* @__PURE__ */ W(
+}, At = [], Ft = /* @__PURE__ */ W(
   Wt,
-  At,
   Ot,
+  At,
   !1,
   null,
   "72d69fdc",

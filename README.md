@@ -7,7 +7,14 @@
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
-<!-- 版本 0.3.10 新增属Tips -->
+<!-- 版本 0.3.12 优化 和 部分代码优化-->
+<Card [space|space="around|evenly"|nothing]
+... 
+/>
+```
+
+```html
+<!-- 版本 0.3.11 新增属Tips -->
 <!-- arrow: 显示箭头 -->
 <!-- [notice|warn|simply]: 内置样式, 不喜欢可以background="..." color="..." -->
 <Tips 

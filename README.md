@@ -7,23 +7,75 @@
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
 ```html
+<!-- 版本 0.4.0 -->
+
+<!-- 
+┌───────────────────────┐
+│  #title               │
+│   └──────────#icons   │
+│               └─#icon │
+│-----------------------│
+│  #content             │
+│  └─ tag.card-content  │
+│   └─ #inner           │
+│                       │
+└───────────────────────┘
+层级关系 
+    -->
+<!-- 如果不写插槽 则为默认插槽,替换title和content -->
+<Card>
+  <!-- 插槽 #icon 删除 -->
+  <!-- 
+┌───────────────────────┐
+│ title           [...]X│
+│-----------------------│
+│                       │
+│                       │
+│                       │
+└───────────────────────┘
+    中括号位置 为插槽内容
+    -->
+  <template #icon>-</template>
+  <!-- 替换删除在内的内容 -->
+
+  <!-- 
+┌───────────────────────┐
+│ title            [...]│
+│-----------------------│
+│                       │
+│                       │
+│                       │
+└───────────────────────┘
+    中括号位置 为插槽内容
+    -->
+  <template #icons>-</template>
+  <!-- 以前版本  -->
+
+  <!-- 
+┌───────────────────────┐
+│  #title               │
+│-----------------------│
+│                       │
+│  #content             │
+│                       │
+└───────────────────────┘
+    -->
+  <template #title>-</template>
+  <template #content>-</template>
+</Card>
+```
+
+```html
 <!-- 版本 0.3.12 优化 和 部分代码优化-->
-<Card [space|space="around|evenly"|nothing]
-... 
-/>
+<Card [space|space="around|evenly"|nothing] ... />
 ```
 
 ```html
 <!-- 版本 0.3.11 新增属Tips -->
 <!-- arrow: 显示箭头 -->
 <!-- [notice|warn|simply]: 内置样式, 不喜欢可以background="..." color="..." -->
-<Tips 
-class="notice|warn|simply|arrow|animate" 
-... 
-/>
-<Tips >
-  .....
-</Tips>
+<Tips class="notice|warn|simply|arrow|animate" ... />
+<Tips> ..... </Tips>
 ```
 
 ```html

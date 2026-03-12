@@ -1,61 +1,61 @@
-import { runer as b, each as R, isEmpty as it, picker as M, isSimplyType as D, merge as H, isString as gt, isArray as st } from "@soei/util";
-import { runer as _, isNil as mt, each as G } from "@soei/tools";
-import yt from "@soei/picker";
-let wt = /(\d+|[+\-\*/]|%)/g, q = {
+import { runer as $, each as R, isEmpty as tt, picker as k, isSimplyType as U, merge as H, isString as pt, isArray as et } from "@soei/util";
+import { runer as g, isNil as _t, each as X } from "@soei/tools";
+import gt from "@soei/picker";
+let mt = /(\d+|[+\-\*/]|%)/g, D = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
   "*": (t, e) => t * e,
   "/": (t, e) => t / e,
   "%": (t, e, i) => parseFloat(t) / 100 * i
-}, V = (t, e) => {
+}, G = (t, e) => {
   let i;
-  if (i = b("match", t, wt)) {
-    let s = i.length, l, a = 0, n, h = [];
+  if (i = $("match", t, mt)) {
+    let s = i.length, l, n = 0, o, h = [];
     for (; s--; )
-      a = i.shift(), a in q ? (l && h.push(l), a === "%" && (h.length = 2), n = a) : +a && h.push(+a), h.length == 2 && (h.push(e), l = q[n].apply(null, h), h.length = 0);
+      n = i.shift(), n in D ? (l && h.push(l), n === "%" && (h.length = 2), o = n) : +n && h.push(+n), h.length == 2 && (h.push(e), l = D[o].apply(null, h), h.length = 0);
     +l || (l = +h.pop()), t = l >> 0;
   }
   return t;
-}, Y = {}, v = (t, e) => (t + "").replace(
+}, V = {}, S = (t, e) => (t + "").replace(
   /\w+\((.*)\)/g,
   "$1"
 ).replace(
-  Y[e] || (Y[e] = new RegExp("(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)", "g")),
+  V[e] || (V[e] = new RegExp("(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)", "g")),
   "$1px"
 );
-function A(t, e, i, s, l, a, n, h) {
+function W(t, e, i, s, l, n, o, h) {
   var r = typeof t == "function" ? t.options : t;
-  e && (r.render = e, r.staticRenderFns = i, r._compiled = !0), s && (r.functional = !0), a && (r._scopeId = "data-v-" + a);
-  var o;
-  if (n ? (o = function(c) {
-    c = c || // cached call
+  e && (r.render = e, r.staticRenderFns = i, r._compiled = !0), s && (r.functional = !0), n && (r._scopeId = "data-v-" + n);
+  var a;
+  if (o ? (a = function(u) {
+    u = u || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
-    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !c && typeof __VUE_SSR_CONTEXT__ < "u" && (c = __VUE_SSR_CONTEXT__), l && l.call(this, c), c && c._registeredComponents && c._registeredComponents.add(n);
-  }, r._ssrRegister = o) : l && (o = h ? function() {
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !u && typeof __VUE_SSR_CONTEXT__ < "u" && (u = __VUE_SSR_CONTEXT__), l && l.call(this, u), u && u._registeredComponents && u._registeredComponents.add(o);
+  }, r._ssrRegister = a) : l && (a = h ? function() {
     l.call(
       this,
       (r.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : l), o)
+  } : l), a)
     if (r.functional) {
-      r._injectStyles = o;
+      r._injectStyles = a;
       var f = r.render;
-      r.render = function(u, p) {
-        return o.call(p), f(u, p);
+      r.render = function(c, p) {
+        return a.call(p), f(c, p);
       };
     } else {
       var d = r.beforeCreate;
-      r.beforeCreate = d ? [].concat(d, o) : [o];
+      r.beforeCreate = d ? [].concat(d, a) : [a];
     }
   return {
     exports: t,
     options: r
   };
 }
-function F(t, e) {
+function B(t, e) {
   return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
 }
-let rt = {
+let it = {
   close: {
     handler(t) {
       this.change(t);
@@ -68,7 +68,7 @@ let rt = {
     },
     deep: !0
   }
-}, vt = [
+}, yt = [
   "BackGround",
   "BordeR",
   "Height",
@@ -77,17 +77,17 @@ let rt = {
   "Right",
   "Bottom",
   "Left"
-], nt = {};
+], st = {};
 R(
-  vt,
+  yt,
   (t, e, i) => {
-    t = F(e), nt["--" + F(e, !0)] = t, i[t] = function() {
+    t = B(e), st["--" + B(e, !0)] = t, i[t] = function() {
       this.trigger++;
     };
   },
-  rt
+  it
 );
-const bt = {
+const wt = {
   name: "Card",
   // inheritAttrs: false,
   props: {
@@ -149,29 +149,29 @@ const bt = {
       return this.show || this.title;
     },
     tips() {
-      return b("tips", this.close || {}) || "关闭[" + this.sub + "]";
+      return $("tips", this.close || {}) || "关闭[" + this.sub + "]";
     }
   },
-  watch: rt,
+  watch: it,
   methods: {
-    exec: v,
-    isEmpty: it,
-    picker: M,
-    runer: b,
-    isSimplyType: D,
+    exec: S,
+    isEmpty: tt,
+    picker: k,
+    runer: $,
+    isSimplyType: U,
     tr() {
       let t = {};
-      return this.margin(this.offset), R(nt, (e, i) => {
+      return this.margin(this.offset), R(st, (e, i) => {
         this.css(t, e, i);
       }), t;
     },
-    tolower: F,
+    tolower: B,
     css(t, e, i) {
       let s = this[i] || this.default[i];
-      !s || this.default[i] == s || (t[e] = v(s));
+      !s || this.default[i] == s || (t[e] = S(s));
     },
     change(t) {
-      D(t) || (this.closecss = M(
+      U(t) || (this.closecss = k(
         t,
         "color=>--s-card-close-color,size=>--s-close-width,bold=>--s-close-height,*"
       ));
@@ -179,8 +179,8 @@ const bt = {
     margin(t) {
       H(
         this,
-        M(
-          gt(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
+        k(
+          pt(t) ? t.split(/\s*(?:,|\s+)\s*/) : t,
           "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
           !0
         ),
@@ -192,7 +192,7 @@ const bt = {
     this.change(this.close);
   }
 };
-var xt = function() {
+var vt = function() {
   var e = this, i = e._self._c;
   return i("div", { key: e.trigger, staticClass: "card", style: e.isEmpty(e.style) ? e.tr() : e.style }, [e._t("default", function() {
     return [e._t("title", function() {
@@ -205,21 +205,21 @@ var xt = function() {
       return [i("div", { staticClass: "card-content" }, [e._t("inner")], 2)];
     })];
   })], 2);
-}, St = [], $t = /* @__PURE__ */ A(
+}, bt = [], xt = /* @__PURE__ */ W(
+  wt,
+  vt,
   bt,
-  xt,
-  St,
   !1,
   null,
   "b1e09a6c",
   null,
   null
 );
-const lt = $t.exports;
-let J = (t) => t == null || t == null, Nt = (...t) => {
+const rt = xt.exports;
+let q = (t) => t == null || t == null, St = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
-const Tt = {
+const $t = {
   name: "Flyweight",
   props: {
     flys: {
@@ -284,13 +284,13 @@ const Tt = {
     style() {
       var t = this.w, e = this.h, i = this.Size, s = {};
       return H(s, {
-        "--width": v(this.realW),
-        "--height": v(this.realH),
-        "--flyweight-content": v(i)
+        "--width": S(this.realW),
+        "--height": S(this.realH),
+        "--flyweight-content": S(i)
       }, e && {
-        "--flyweight-h": v(e)
+        "--flyweight-h": S(e)
       }, t && s, {
-        "--flyweight-w": v(t)
+        "--flyweight-w": S(t)
       }, "mix"), s;
     }
   },
@@ -342,17 +342,17 @@ const Tt = {
         this.rebuild(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (t) {
-      Nt(t);
+      St(t);
     }
-    this.scrollx = b("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
+    this.scrollx = $("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
   },
   methods: {
-    exec: v,
+    exec: S,
     trigger(t, e) {
-      st(t) || (t = t && e ? [[t, e]] : []), t.length && this.lazyrun(() => {
+      et(t) || (t = t && e ? [[t, e]] : []), t.length && this.lazyrun(() => {
         R(t, (i, s) => {
-          this.$emit(s[0], J(s[1]) ? !0 : s[1]);
+          this.$emit(s[0], q(s[1]) ? !0 : s[1]);
         });
       });
     },
@@ -361,17 +361,17 @@ const Tt = {
         return t && this.task.push(t), !0;
     },
     setview(t) {
-      b([this.cheackflys, (e) => {
+      $([this.cheackflys, (e) => {
         e = e || {};
-        let i = e.index || R(this.flys, (s, l, a, n) => {
-          if (l[a] == n)
+        let i = e.index || R(this.flys, (s, l, n, o) => {
+          if (l[n] == o)
             return s;
         }, e.picker, e.id);
-        J(i) || this.setindex(i);
+        q(i) || this.setindex(i);
       }], this, t);
     },
     setindex(t) {
-      b([this.cheackflys, ({ index: e }) => {
+      $([this.cheackflys, ({ index: e }) => {
         this.selectIndex = e, this.$nextTick(() => {
           let i = e / this.column >> 0, s = this.expand;
           (this.flyweight[this.direction] / s >> 0) + this.row - i - 1 > 0 || (this.flyweight[this.direction] = i * s, this.scroll());
@@ -380,11 +380,11 @@ const Tt = {
     },
     lazyrun(t, e) {
       clearTimeout(this.time), this.time = setTimeout(() => {
-        b(t);
+        $(t);
       }, e || this.lazy);
     },
     run(t) {
-      let e = [], i = b(this.direction, t.target), s = {
+      let e = [], i = $(this.direction, t.target), s = {
         // ...this
         offset: i,
         top: i,
@@ -397,20 +397,20 @@ const Tt = {
       let l = !1;
       R(
         this.flyweights,
-        (a, n, h, r, o, f, d, c, u) => {
-          if (h = a / o >> 0, c = h + r * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(h < f % r) + (f / r >> 0)), u = c * o + a % o, u >= this.count) {
+        (n, o, h, r, a, f, d, u, c) => {
+          if (h = n / a >> 0, u = h + r * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
+          (+(h < f % r) + (f / r >> 0)), c = u * a + n % a, c >= this.count) {
             l || (e.push(["onend"]), l = !0);
             return;
           }
-          n.index = c, n.i = u, n.data = this.flys[u];
+          o.index = u, o.i = c, o.data = this.flys[c];
           let p = [
             /* top */
-            c * this.expand + n.x,
+            u * this.expand + o.x,
             /* left */
-            n.space
+            o.space
           ];
-          d && p.reverse(), n.top = p[0], n.left = p[1];
+          d && p.reverse(), o.top = p[0], o.left = p[1];
         },
         null,
         this.row,
@@ -428,40 +428,40 @@ const Tt = {
       if (!t)
         return e.length = t;
       this.count = t;
-      let i = this.scrollx, s = this.flyweight, l = M(s, this.BoxRule);
+      let i = this.scrollx, s = this.flyweight, l = k(s, this.BoxRule);
       this.$nextTick(() => {
-        let a = /true/.test(this.auto), [n, h] = this.offset, r = l.width, o = l.height, f = (V(this.width, r) || r) + n, d = V(this.height, o) + h, c = [r / f >> 0 || 1, o / d >> 0 || 1];
-        i && c.reverse();
-        let [u, p] = c, x = this.padding, z, S = 0, g, y;
-        i ? (g = f, f -= n, y = ($) => (
+        let n = /true/.test(this.auto), [o, h] = this.offset, r = l.width, a = l.height, f = (G(this.width, r) || r) + o, d = G(this.height, a) + h, u = [r / f >> 0 || 1, a / d >> 0 || 1];
+        i && u.reverse();
+        let [c, p] = u, w = this.padding, v, z = 0, m, T;
+        i ? (m = f, f -= o, T = (y) => (
           /* 计算top偏移量 */
-          $ * (d - h) + ($ + 1) * h
-        )) : (a ? (f = (r - n * (u + 2 * x - 1)) / u, z = !x * n, S = x * n) : (z = 0, S = (r % f + n * u) / (u + 1) >> 0, f -= n), y = ($) => $ * (f + z) + ($ + 1) * S, g = d), this.row = p + 2, this.column = u, this.realH = d - h, this.realW = f, this.expand = g, this.Size = Math.ceil(t / u) * g;
-        let w = Math.min(t, u * this.row), m = w - 1, N;
-        for (; w-- > 0; )
-          N = m - w, this.$set(e, N, {
-            x: n,
+          y * (d - h) + (y + 1) * h
+        )) : (n ? (f = (r - o * (c + 2 * w - 1)) / c, v = !w * o, z = w * o) : (v = 0, z = (r % f + o * c) / (c + 1) >> 0, f -= o), T = (y) => y * (f + v) + (y + 1) * z, m = d), this.row = p + 2, this.column = c, this.realH = d - h, this.realW = f, this.expand = m, this.Size = Math.ceil(t / c) * m;
+        let N = Math.min(t, c * this.row), _ = N - 1, b;
+        for (; N-- > 0; )
+          b = _ - N, this.$set(e, b, {
+            x: o,
             y: h,
             width: f,
             height: d - h,
-            space: y(N % u),
+            space: T(b % c),
             data: {}
           });
-        e.length = m + 1;
-        let T = [];
-        o / g > m / u && T.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        e.length = _ + 1;
+        let x = [];
+        a / m > _ / c && x.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
-        }), T.push(["update:space", {
-          row: (m / u >> 0) + 1,
-          column: u,
+        }), x.push(["update:space", {
+          row: (_ / c >> 0) + 1,
+          column: c,
           showrow: this.row,
           showcolumn: this.column
-        }]), this.trigger(T);
+        }]), this.trigger(x);
       });
     }
   }
 };
-var zt = function() {
+var Tt = function() {
   var e = this, i = e._self._c;
   return i("div", { ref: "flyweight", staticClass: "flyweight", class: {
     "flyweight-active": e.actice
@@ -471,17 +471,17 @@ var zt = function() {
       left: s.left + "px"
     } }, [e._t("default", null, null, s)], 2);
   }), 0), e.flyweights.length ? e._t("end") : e._e()], 2);
-}, Ct = [], kt = /* @__PURE__ */ A(
+}, Nt = [], zt = /* @__PURE__ */ W(
+  $t,
   Tt,
-  zt,
-  Ct,
+  Nt,
   !1,
   null,
   "d5f1cd63",
   null,
   null
 );
-const ot = kt.exports, Rt = {
+const nt = zt.exports, Ct = {
   name: "Stream",
   computed: {
     component() {
@@ -489,7 +489,7 @@ const ot = kt.exports, Rt = {
     },
     column() {
       let { columns: t, T: e } = this, i = t || e;
-      return it(i) ? [] : st(i) ? i : [i];
+      return tt(i) ? [] : et(i) ? i : [i];
     }
   },
   props: {
@@ -521,30 +521,30 @@ const ot = kt.exports, Rt = {
     }
   }
 };
-var Mt = function() {
+var Rt = function() {
   var e = this, i = e._self._c;
   return i(e.type, e._b({ ref: "component", tag: "component" }, "component", e.$attrs, !1), [e._l(e.column, function(s) {
     return e._t(e.__trigger(s), null, null, s);
   })], 2);
-}, Ht = [], Et = /* @__PURE__ */ A(
+}, kt = [], Ht = /* @__PURE__ */ W(
+  Ct,
   Rt,
-  Mt,
-  Ht,
+  kt,
   !1,
   null,
   null,
   null,
   null
 );
-const ht = Et.exports, K = /(?:\,|\|{2})/, Q = "px", Z = "";
-let at = document.documentElement, tt, et = ["s-left", "s-top", "s-right", "s-bottom"], Wt = { left: 0, top: 1, right: 2, bottom: 3 };
-const P = [];
-var At = yt(
+const lt = Ht.exports, Y = /(?:\,|\|{2})/, J = "px", K = "";
+let ot = document.documentElement, Q, Z = ["s-left", "s-top", "s-right", "s-bottom"], Lt = { left: 0, top: 1, right: 2, bottom: 3 };
+const F = [];
+var Mt = gt(
   window,
   "Reflect.defineProperty|Object.defineProperty=>Proxy"
 ).Proxy;
-let B = {}, ct = null;
-At(B, "delay", {
+let P = {}, ht = null;
+Mt(P, "delay", {
   /**
    * 获取延迟时间值
    * @returns {number} 返回当前实例的延迟时间属性值
@@ -553,77 +553,76 @@ At(B, "delay", {
     return this._delay;
   },
   set(t) {
-    ct = Lt(() => {
-      _(P);
+    ht = Et(() => {
+      g(F);
     }, t), this._delay = t;
   }
 });
-B.delay = 60;
-function Lt(t, e) {
+P.delay = 60;
+function Et(t, e) {
   let i = 0;
   return function() {
     const s = Date.now();
-    s - i >= e && (i = s, _(t, this, arguments));
+    s - i >= e && (i = s, g(t, this, arguments));
   };
 }
-const W = () => {
-  ct();
+const E = () => {
+  ht();
 };
-function Ot(t) {
-  P.push(t);
+function Wt(t) {
+  F.push(t);
 }
-const k = new ResizeObserver(W);
-k.observe(at);
-function ut(t) {
-  t.onresize || (P.push([ut, null, t]), t.onresize = !0);
-  var e = at, i = e.clientHeight, s = mt(t.offset) ? 15 : t.offset, l = t.target, a = t.room, n = t.index, h = t.position, r = l.getBoundingClientRect(), o = a.offsetHeight + s, f = a.offsetWidth + s, d = "3,0,2,1".split(K), c, u = (r.height == tt ? r.bottom - r.top : r.height) >> 0, p = (r.width == tt ? r.right - r.left : r.width) >> 0, x = e.clientWidth - f, z = i - o, S = [
+const C = new ResizeObserver(E);
+C.observe(ot);
+function at(t) {
+  t.onresize || (F.push([at, null, t]), t.onresize = !0);
+  var e = ot, i = _t(t.offset) ? 15 : t.offset, s = t.target, l = t.room, n = t.index, o = t.position, h = t.edge || 15, r = s.getBoundingClientRect(), a = l.offsetHeight + i, f = l.offsetWidth + i, d = "3,0,2,1".split(Y), u, c = r.left, p = r.top, w = Math.max(p, 0), v = (r.height == Q ? r.bottom - r.top : r.height) >> 0, z = (r.width == Q ? r.right - c : r.width) >> 0, m = e.clientWidth - f, T = e.clientHeight - a, N = [
     /* left: 0 */
-    r.left - f,
+    c - f,
     /* top: 1 */
-    r.top - o,
+    r.top - a,
     /* right: 2 */
-    x - r.right,
+    m - r.right,
     /* bottom: 3 */
-    z - r.bottom
+    T - r.bottom
   ];
-  h && (G(
-    h.split(K),
-    function(pt, E, L, _t) {
-      _t.push(L[E]);
+  o && (X(
+    o.split(Y),
+    function(L, M, A, dt) {
+      dt.push(A[M]);
     },
-    Wt,
-    c = []
-  ), d.unshift.apply(d, c)), n = G(
+    Lt,
+    u = []
+  ), d.unshift.apply(d, u)), n = X(
     d,
-    function(pt, E, L) {
-      if (L[E] > 0)
-        return E;
+    function(L, M, A) {
+      if (A[M] > 0)
+        return M;
     },
-    S
+    N
   );
-  var g = 0, y = 0, w = 0;
+  let _ = t.css;
+  var b = 0, x = 0, y = 0, j = 0;
   if (n != null) {
-    var m = n == 0 || n == 2, N = n == 3 || n == 1;
-    g = N ? Math.min(r.left, x) : n == 2 ? r.right + s : S[0], o -= s * +m;
-    var T = Math.max(r.top, 0), $ = Math.min(
-      r.bottom,
-      i
-    ), j = ($ - o + Math.min(i - o, T)) / 2;
-    y = Math.max(
-      m ? j : n == 3 ? r.top + u + s : Math.min(j, S[1]),
-      0
-    ), N && r.left > x && (w = r.left - g - s + p / 2);
+    var ft = n == 0 || n == 2;
+    n == 3 || n == 1 ? (b = Math.min(
+      c,
+      m,
+      c - (f - z) / 2 * 0.3
+      /* 交集的偏移量 与 tLeft */
+    ), y = Math.max(c - b + i, 5), x = n == 3 ? w + v : N[1]) : (b = n == 2 ? r.right + i : N[0], x = Math.min(
+      w,
+      T,
+      w - (a - v) / 2 * 0.3
+      /* 交集的偏移量 与 tLeft */
+    ), j = v > a ? a / 4 - 1 : Math.max(w - x + v / 4, 4)), _.left = Math.min(b, m) + J, _.top = Math.min(x, T) + J;
+    let L = _["--tips-arrow-top"] = j || K;
+    _["--tips-arrow-left"] = y || K, _["--tips-arrow"] = y > f - h || ft && (L + (a > 50 ? h : 0) > a || !L) ? "hidden" : "visible";
   }
-  let I = a.classList, C = t.css;
-  I.remove(...et), I.add(et[n]), t.index = n, C.left = g + Q, C.top = y + Q;
-  let U = C["--tips-arrow-top"] = m ? Math.min(
-    /* 底边距 */
-    Math.max(y, T) - y,
-    o - s
-  ) : Z, X = f - 3 * s;
-  C["--tips-arrow"] = w > X - 10 || m && (U + (o > 50 ? 15 : 0) > o || !U) ? "hidden" : "visible", C["--tips-arrow-left"] = w ? Math.min(w, X) : Z;
+  let I = l.classList;
+  I.remove(...Z), I.add(Z[n]), t.index = n;
 }
-const O = "data-tips-scroll", Ft = {
+const O = "data-tips-scroll", At = {
   name: "Tips",
   props: {
     /* 目标对象 */
@@ -699,17 +698,19 @@ const O = "data-tips-scroll", Ft = {
   },
   data() {
     return {
-      css: {}
+      css: {
+        opacity: 0
+      }
     };
   },
   methods: {
     __parent(t) {
       let e = this.$el, i;
-      for (; e && (e = e.parentNode, e && e.nodeType == 1 || (e = window, i = !0), _(t, null, e, i), !i); )
+      for (; e && (e = e.parentNode, e && e.nodeType == 1 || (e = window, i = !0), g(t, null, e, i), !i); )
         ;
     },
     __attr(t, e, i) {
-      return _(
+      return g(
         t[i === void 0 ? "getAttribute" : "setAttribute"],
         t,
         e,
@@ -719,7 +720,7 @@ const O = "data-tips-scroll", Ft = {
     /* 初始化 */
     init() {
       let t = this.$el;
-      t.nodeName != "#comment" && ut({
+      t.nodeName != "#comment" && (at({
         onresize: !1,
         /* 监控的目标 */
         target: t.parentNode,
@@ -731,24 +732,24 @@ const O = "data-tips-scroll", Ft = {
         css: this.css,
         /* 偏移量 */
         offset: +this.offset >> 0
-      });
+      }), this.css.opacity = 1);
     },
     __2listener() {
       this.static || this.__parent((t, e, i) => {
-        e ? _(t.addEventListener, t, "scroll", W) : (_(k.observe, k, t), (t.offsetHeight < t.scrollHeight || t.offsetWidth < t.scrollWidth) && (i = this.__attr(t, O), i || (_(t.addEventListener, t, "scroll", W), this.__attr(t, O, "true"))));
+        e ? g(t.addEventListener, t, "scroll", E) : (g(C.observe, C, t), (t.offsetHeight < t.scrollHeight || t.offsetWidth < t.scrollWidth) && (i = this.__attr(t, O), i || (g(t.addEventListener, t, "scroll", E), this.__attr(t, O, "true"))));
       });
     },
     __css() {
       let t = {}, e;
       return this.target ? e = {
         [this.position]: this.offset + "px"
-      } : (e = M(
+      } : (e = k(
         this.$props,
         "color=>--tips-color,background=>--tips-background-color,border=>--tips-border-width,fontSize=>--tips-font-size,borderRadius=>--tips-border-radius"
       ), t["--arrow-size"] = Math.sqrt(2 * Math.pow((this.border || 3) * 2 + 2, 2)) / 2 >> 0), H(t, e), t;
     },
     __2next() {
-      this.target || (this.init(), B.delay = +this.delay, Ot((t) => {
+      this.target || (this.init(), P.delay = +this.delay, Wt((t) => {
         this.__2listener();
       }), this.__2listener());
     }
@@ -758,11 +759,11 @@ const O = "data-tips-scroll", Ft = {
   },
   unmounted() {
     this.__parent(function(t, e) {
-      _(t.removeEventListener, t, "scroll", W), _(t.removeAttribute, t, O, void 0), e || _(k.unobserve, k, t);
+      g(t.removeEventListener, t, "scroll", E), g(t.removeAttribute, t, O, void 0), e || g(C.unobserve, C, t);
     });
   }
 };
-var Pt = function() {
+var Ot = function() {
   var e = this, i = e._self._c;
   return e.visible ? i("div", e._b({ staticClass: "tips", class: e.target ? "tips-" + e.position : "", style: e.static ? null : e.css, attrs: { static: e.static ? "" : null } }, "div", e.$attrs, !1), [e._t("default", function() {
     return [e._t("title", function() {
@@ -771,29 +772,29 @@ var Pt = function() {
       return [e._v(e._s(e.content))];
     })];
   })], 2) : e._e();
-}, Bt = [], jt = /* @__PURE__ */ A(
-  Ft,
-  Pt,
+}, Bt = [], Ft = /* @__PURE__ */ W(
+  At,
+  Ot,
   Bt,
   !1,
   null,
-  "b7f54162",
+  "dd3a7816",
   null,
   null
 );
-const ft = jt.exports, It = {}, dt = [];
-dt.push(lt, ot, ht, ft);
-const Gt = { Card: lt, Flyweight: ot, Stream: ht, Tips: ft };
-It.install = function(t, e = {}) {
-  dt.forEach((i) => {
+const ct = Ft.exports, Pt = {}, ut = [];
+ut.push(rt, nt, lt, ct);
+const Xt = { Card: rt, Flyweight: nt, Stream: lt, Tips: ct };
+Pt.install = function(t, e = {}) {
+  ut.forEach((i) => {
     t.component(i.name, i), t.component("S" + i.name, i), t.component(i.name + "S", i);
   });
 };
 export {
-  lt as Card,
-  ot as Flyweight,
-  ht as Stream,
-  ft as Tips,
-  Gt as components,
-  It as default
+  rt as Card,
+  nt as Flyweight,
+  lt as Stream,
+  ct as Tips,
+  Xt as components,
+  Pt as default
 };

@@ -6,10 +6,63 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
+## 版本 0.4.4
+
+### `Card` 新增 `#subtitle` 插槽 与 `#icons` 同级
+
+```html
+<!--
+┌───────────────────────┐
+│ #title                │
+│  └─#subtitle──#icons  │
+│               └─#icon │
+│-----------------------│
+│  #content             │
+│  └─ tag.card-content  │
+│   └─ #inner           │
+│                       │
+└───────────────────────┘
+-->
+```
+
+### `Flyweight` 新增 `#mix` 插槽
+
+#### 新增 `--flyweight-line-offset`: 30px;
+
+#### 新增 `--flyweight-min-width`: 400px
+
+```html
+<Flyweight ... :flys="list" ...>
+  <template #title="{ width }">
+    <!-- 标题栏固定显示 -->
+    <Card
+      height="30px"
+      :width="width"
+      style="position: sticky; top: 0; z-index: 1000"
+    >
+      <div>Title</div>
+      <div>Source</div>
+      <div>Date</div>
+    </Card>
+  </template>
+  <template #mix="{ length, end, ... }">
+    <Stream type="span" :columns="{ type: length == 0 ? 0 : end ? 1 : '-1' }">
+      <template #0>
+        <Card height="100% - 10px" width="100%" center nothing vcenter>
+          空空如也~
+        </Card>
+      </template>
+      <template #1> ~ 这是底线 ~ </template>
+      <template #-1>...</template>
+    </Stream>
+  </template>
+</Flyweight>
+```
+
 ```html
 <!-- 版本 0.4.0 -->
 
-<!-- 
+<!--
 ┌───────────────────────┐
 │  #title               │
 │   └──────────#icons   │
@@ -20,7 +73,7 @@
 │   └─ #inner           │
 │                       │
 └───────────────────────┘
-层级关系 
+层级关系
     -->
 <!-- 如果不写插槽 则为默认插槽,替换title和content -->
 <Card>
@@ -48,7 +101,9 @@
 └───────────────────────┘
     中括号位置 为插槽内容
     -->
+
   <template #icons>-</template>
+
   <!-- 以前版本  -->
 
   <!-- 
@@ -60,6 +115,7 @@
 │                       │
 └───────────────────────┘
     -->
+
   <template #title>-</template>
   <template #content>-</template>
 </Card>

@@ -6,7 +6,7 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## 版本 0.4.4
+## 版本 0.5.0
 
 ### `Card` 新增 `#subtitle` 插槽 与 `#icons` 同级
 
@@ -25,11 +25,11 @@
 -->
 ```
 
-### `Flyweight` 新增 `#mix` 插槽
+### `Flyweight`
 
-#### 新增 `--flyweight-line-offset`: 30px;
-
-#### 新增 `--flyweight-min-width`: 400px
+- `#mix` 插槽
+- `--flyweight-line-offset`: 30px;
+- `--flyweight-min-width`: 400px
 
 ```html
 <Flyweight ... :flys="list" ...>
@@ -127,7 +127,6 @@
 ```
 
 ```html
-<!-- 版本 0.3.11 新增属Tips -->
 <!-- arrow: 显示箭头 -->
 <!-- [notice|warn|simply]: 内置样式, 不喜欢可以background="..." color="..." -->
 <Tips class="notice|warn|simply|arrow|animate" ... />
@@ -135,7 +134,6 @@
 ```
 
 ```html
-<!-- 版本 0.3.9 新增属Tips -->
 <Tips
   // 是否显示
   visible="Boolean"
@@ -158,7 +156,6 @@
 ```
 
 ```html
-<!-- 版本 0.3.6 新增属性 bridge, T==columns -->
 <!-- bridge="property" 绑定属性: columns对应属性 -->
 <Stream
   type="组件名|div|Card|s-flyweight|..."
@@ -175,7 +172,6 @@
 ```
 
 ```html
-<!-- 版本 0.3.3 新增  属性 w, h, 默认 100% -->
 <s-flyweight
   ...
   h="容器高"
@@ -283,10 +279,6 @@ Or
   import { Stream } from "@soei/flyweight";
 </script>
 ```
-
-## 问题修复
-
-- #### 修复了上版本极限显示,当`高度不足显示一行`的问题
 
 ## `安装`
 
@@ -425,11 +417,7 @@ Vue.use(flyweight);
 import { Flyweight, Card } from "@soei/flyweight";
 ```
 
-### 更新日志
-
-### `0.2.0`
-
-- #### 新增 Card 组件
+- #### Card 组件
 
 ```html
 <s-card
@@ -452,13 +440,7 @@ import { Flyweight, Card } from "@soei/flyweight";
 </s-card>
 ```
 
-### `0.1.1`
-
-- #### 拼写错误修复
-
-### `0.1.0`
-
-- #### 新增 `v-model:space` 中字段
+- #### `v-model:space` 中字段
 
   ```javascript
   {
@@ -474,15 +456,7 @@ import { Flyweight, Card } from "@soei/flyweight";
   }
   ```
 
-- #### 修复了 多列数据时 `@onend` 回调函数问题
-
-### `0.0.9`
-
-- #### 问题修复 `v-model:space` 和 onend 冲突问题处理
-
-### `0.0.8`
-
-- #### 新增 `v-model:space`, 计算空间显示 `行` 与 `列`
+- #### `v-model:space`, 计算空间显示 `行` 与 `列`
 
   被通知对象 `notice`: {`row`, `column`}
 
@@ -523,9 +497,7 @@ import { Flyweight, Card } from "@soei/flyweight";
   </script>
   ```
 
-### `0.0.7`
-
-- #### 新增 `:auto`, 默认值: `false`
+- #### `:auto`, 默认值: `false`
 
 当 `auto` 为 `true` 时, `:width` 赋值会被视为 `最小值`, 剩余空间自动填充
 
@@ -533,13 +505,9 @@ import { Flyweight, Card } from "@soei/flyweight";
 <s-flyweight :auto="true" :width="100"></s-flyweight>
 ```
 
-### `0.0.6`
+- #### `flys` 初始化赋值,不改变时,获取 length 问题
 
-- #### 优化 `flys` 初始化赋值,不改变时,获取 length 问题
-
-### `0.0.5`
-
-- #### 扩展 `width` 赋值
+- #### `width`
   ```html
   <!-- 添加`百分比`计算, 计算顺序, 左 => 右 -->
   <s-flyweight width="100% / 2 - 10px"></s-flyweight>
@@ -548,7 +516,7 @@ import { Flyweight, Card } from "@soei/flyweight";
   <s-flyweight width="100px - 10px"></s-flyweight>
   <s-flyweight width="100px"></s-flyweight>
   ```
-- #### 优化了 slot `end` 的呈现逻辑
+- #### slot `end` 的呈现逻辑
 
   ```html
   <!-- onend为滑动到底时, 回调函数 -->
@@ -558,17 +526,11 @@ import { Flyweight, Card } from "@soei/flyweight";
   </s-flyweight>
   ```
 
-### `0.0.3`
-
-- #### 新增 `:top`
+- #### `:top`
 
   ```html
   <s-flyweight :top="滚动高度"></s-flyweight>
   ```
-
-### `0.0.2`
-
-- #### 优化了 `Vue3` 的 `兼容` 问题
 
   `Vue3` 引入方式
 

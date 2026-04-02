@@ -82,11 +82,11 @@ const At = {
       default: "1px"
     },
     height: {
-      type: String,
+      type: [String, Number],
       default: "100%"
     },
     width: {
-      type: String,
+      type: [String, Number],
       default: "100%"
     },
     show: {
@@ -209,7 +209,7 @@ function Dt(t, e, i, r, n, s) {
     ], !0)
   ], 4);
 }
-const _t = /* @__PURE__ */ F(At, [["render", Dt], ["__scopeId", "data-v-1522e92a"]]);
+const _t = /* @__PURE__ */ F(At, [["render", Dt], ["__scopeId", "data-v-1b917e35"]]);
 let rt = (t) => t == null || t == null, Vt = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
@@ -294,7 +294,7 @@ const Gt = {
         /* 容器宽度或者高度 */
         content: this.Size,
         /* 当前顶部 */
-        index: this.index,
+        index: this.__index,
         row: this.row,
         /* 是否滚动到底部 */
         end: this.end
@@ -334,9 +334,10 @@ const Gt = {
       task: [],
       realW: 0,
       realH: 0,
-      index: 0,
       end: !1,
-      __top: 0
+      __top: 0,
+      __index: 0,
+      scrollx: ""
     };
   },
   watch: {
@@ -419,8 +420,8 @@ const Gt = {
           this.cheackflys,
           ({ index: e }) => {
             this.selectIndex = e, this.$nextTick(() => {
-              let i = e / this.column >> 0, r = this.expand;
-              (this.flyweight[this.direction] / r >> 0) + this.row - i - 1 > 0 || (this.flyweight[this.direction] = i * r, this.scroll());
+              let i = e / this.column >> 0, r = this.expand, n = this.flyweight[this.direction] / r >> 0;
+              i > n && i < n + this.row - 2 || (this.flyweight[this.direction] = i * r - r / 2, this.scroll());
             });
           }
         ],
@@ -445,7 +446,7 @@ const Gt = {
       };
       B(r, this.space), t.from || (!this.line || (this.__top = i), e.push(["onscroll", r]));
       let n = !1;
-      this.end = !1, this.index = r.index, M(
+      this.end = !1, this.__index = r.index, M(
         this.flyweights,
         (s, l, o, h, c, d, f, p, a) => {
           if (o = s / c >> 0, p = o + h * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
@@ -455,13 +456,13 @@ const Gt = {
             return;
           }
           l.index = p, l.i = a, l.data = this.flys[a];
-          let T = [
+          let N = [
             /* top */
             p * this.expand + l.x,
             /* left */
             l.space
           ];
-          f && T.reverse(), l.top = T[0], l.left = T[1];
+          f && N.reverse(), l.top = N[0], l.left = N[1];
         },
         null,
         this.row,
@@ -483,19 +484,19 @@ const Gt = {
       this.$nextTick(() => {
         let s = /true/.test(this.auto), [l, o] = this.offset, h = n.width, c = n.height, d = (it(this.width, h) || h) + l, f = it(this.height, c) + o, p = [h / d >> 0 || 1, c / f >> 0 || 1];
         i && p.reverse();
-        let [a, T] = p, w = this.padding, b, C = 0, m, z;
-        i ? (m = d, d -= l, z = (_) => (
+        let [a, N] = p, w = this.padding, b, C = 0, m, T;
+        i ? (m = d, d -= l, T = (_) => (
           /* 计算top偏移量 */
           _ * (f - o) + (_ + 1) * o
-        )) : (s ? (d = (h - l * (a + 2 * w - 1)) / a, b = !w * l, C = w * l) : (b = 0, C = h < d ? 0 : (h % d + l * a) / (a + 1) >> 0, d -= l), z = (_) => _ * (d + b) + (_ + 1) * C, m = f), this.row = T + 2, this.column = a, this.realH = f - o, this.realW = d, this.expand = m, this.Size = Math.ceil(t / a) * m;
-        let N = Math.min(t, a * this.row), g = N - 1, x;
-        for (; N-- > 0; )
-          x = g - N, this.$set(e, x, {
+        )) : (s ? (d = (h - l * (a + 2 * w - 1)) / a, b = !w * l, C = w * l) : (b = 0, C = h < d ? 0 : (h % d + l * a) / (a + 1) >> 0, d -= l), T = (_) => _ * (d + b) + (_ + 1) * C, m = f), this.row = N + 2, this.column = a, this.realH = f - o, this.realW = d, this.expand = m, this.Size = Math.ceil(t / a) * m;
+        let z = Math.min(t, a * this.row), g = z - 1, x;
+        for (; z-- > 0; )
+          x = g - z, this.$set(e, x, {
             x: l,
             y: o,
             width: d,
             height: f - o,
-            space: z(x % a),
+            space: T(x % a),
             data: {}
           });
         e.length = g + 1;
@@ -557,7 +558,7 @@ function Ut(t, e, i, r, n, s) {
     ], !0)
   ], 38);
 }
-const wt = /* @__PURE__ */ F(Gt, [["render", Ut], ["__scopeId", "data-v-95f1edaa"]]), Xt = {
+const wt = /* @__PURE__ */ F(Gt, [["render", Ut], ["__scopeId", "data-v-1013c30a"]]), Xt = {
   name: "Stream",
   computed: {
     component() {
@@ -647,7 +648,7 @@ const E = new ResizeObserver(j);
 E.observe(xt);
 function St(t) {
   t.onresize || (Y.push([St, null, t]), t.onresize = !0);
-  var e = xt, i = Rt(t.offset) ? 15 : t.offset, r = t.target, n = t.room, s = t.index, l = t.position, o = t.edge || 15, h = r.getBoundingClientRect(), c = n.offsetHeight + i, d = n.offsetWidth + i, f = "3,0,2,1".split(nt), p, a = h.left, T = h.top, w = Math.max(T, 0), b = (h.height == ht ? h.bottom - h.top : h.height) >> 0, C = (h.width == ht ? h.right - a : h.width) >> 0, m = e.clientWidth - d, z = e.clientHeight - c, N = [
+  var e = xt, i = Rt(t.offset) ? 15 : t.offset, r = t.target, n = t.room, s = t.index, l = t.position, o = t.edge || 15, h = r.getBoundingClientRect(), c = n.offsetHeight + i, d = n.offsetWidth + i, f = "3,0,2,1".split(nt), p, a = h.left, N = h.top, w = Math.max(N, 0), b = (h.height == ht ? h.bottom - h.top : h.height) >> 0, C = (h.width == ht ? h.right - a : h.width) >> 0, m = e.clientWidth - d, T = e.clientHeight - c, z = [
     /* left: 0 */
     a - d,
     /* top: 1 */
@@ -655,12 +656,12 @@ function St(t) {
     /* right: 2 */
     m - h.right,
     /* bottom: 3 */
-    z - h.bottom
+    T - h.bottom
   ];
   l && (tt(
     l.split(nt),
-    function(P, A, D, Nt) {
-      Nt.push(D[A]);
+    function(P, A, D, zt) {
+      zt.push(D[A]);
     },
     Jt,
     p = []
@@ -670,25 +671,25 @@ function St(t) {
       if (D[A] > 0)
         return A;
     },
-    N
+    z
   );
   let g = t.css;
   var x = 0, v = 0, _ = 0, K = 0;
   if (s != null) {
-    var zt = s == 0 || s == 2;
+    var Tt = s == 0 || s == 2;
     s == 3 || s == 1 ? (x = Math.min(
       a,
       m,
       a - (d - C) / 2 * 0.3
       /* 交集的偏移量 与 tLeft */
-    ), _ = Math.max(a - x + i, 5), v = s == 3 ? w + b : N[1]) : (x = s == 2 ? h.right + i : N[0], v = Math.min(
+    ), _ = Math.max(a - x + i, 5), v = s == 3 ? w + b : z[1]) : (x = s == 2 ? h.right + i : z[0], v = Math.min(
       w,
-      z,
+      T,
       w - (c - b) / 2 * 0.3
       /* 交集的偏移量 与 tLeft */
-    ), K = b > c ? c / 4 - 1 : Math.max(w - v + b / 4, 4)), g.left = Math.min(x, m) + lt, g.top = Math.min(v, z) + lt;
+    ), K = b > c ? c / 4 - 1 : Math.max(w - v + b / 4, 4)), g.left = Math.min(x, m) + lt, g.top = Math.min(v, T) + lt;
     let P = g["--tips-arrow-top"] = K || ot;
-    g["--tips-arrow-left"] = _ || ot, g["--tips-arrow"] = _ > d - o || zt && (P + (c > 50 ? o : 0) > c || !P) ? "hidden" : "visible";
+    g["--tips-arrow-left"] = _ || ot, g["--tips-arrow"] = _ > d - o || Tt && (P + (c > 50 ? o : 0) > c || !P) ? "hidden" : "visible";
   }
   let Q = n.classList;
   Q.remove(...at), Q.add(at[s]), t.index = s;
@@ -850,11 +851,11 @@ function se(t, e, i, r, n, s) {
     ], !0)
   ], 16, ee)) : Mt("", !0);
 }
-const $t = /* @__PURE__ */ F(te, [["render", se], ["__scopeId", "data-v-713e0018"]]), re = {}, Tt = [];
-Tt.push(_t, wt, bt, $t);
+const $t = /* @__PURE__ */ F(te, [["render", se], ["__scopeId", "data-v-713e0018"]]), re = {}, Nt = [];
+Nt.push(_t, wt, bt, $t);
 const ae = { Card: _t, Flyweight: wt, Stream: bt, Tips: $t };
 re.install = function(t, e = {}) {
-  Tt.forEach((i) => {
+  Nt.forEach((i) => {
     t.component(i.name, i), t.component("S" + i.name, i), t.component(i.name + "S", i);
   });
 };

@@ -420,6 +420,8 @@ const Gt = {
           this.cheackflys,
           ({ index: e }) => {
             this.selectIndex = e, this.$nextTick(() => {
+              if (e < 0)
+                return;
               let i = e / this.column >> 0, r = this.expand, n = this.flyweight[this.direction] / r >> 0;
               i > n && i < n + this.row - 2 || (this.flyweight[this.direction] = i * r - r / 2, this.scroll());
             });
@@ -501,7 +503,7 @@ const Gt = {
           });
         e.length = g + 1;
         let v = [];
-        c / m > g / a && v.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        c / m > g / a && v.push(["onend"]), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
         }), v.push([
           "update:space",
@@ -558,7 +560,7 @@ function Ut(t, e, i, r, n, s) {
     ], !0)
   ], 38);
 }
-const wt = /* @__PURE__ */ F(Gt, [["render", Ut], ["__scopeId", "data-v-1013c30a"]]), Xt = {
+const wt = /* @__PURE__ */ F(Gt, [["render", Ut], ["__scopeId", "data-v-0e5d0d75"]]), Xt = {
   name: "Stream",
   computed: {
     component() {

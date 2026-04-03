@@ -428,6 +428,8 @@ const $t = {
           this.cheackflys,
           ({ index: e }) => {
             this.selectIndex = e, this.$nextTick(() => {
+              if (e < 0)
+                return;
               let i = e / this.column >> 0, s = this.expand, n = this.flyweight[this.direction] / s >> 0;
               i > n && i < n + this.row - 2 || (this.flyweight[this.direction] = i * s - s / 2, this.scroll());
             });
@@ -509,7 +511,7 @@ const $t = {
           });
         e.length = _ + 1;
         let x = [];
-        a / m > _ / u && x.push(["onend"]), this.flyweight && (this.flyweight[this.direction] = 0), this.$nextTick(() => {
+        a / m > _ / u && x.push(["onend"]), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
         }), x.push([
           "update:space",
@@ -546,7 +548,7 @@ var Tt = function() {
   Nt,
   !1,
   null,
-  "5cbd6157",
+  "f62b1c5c",
   null,
   null
 );

@@ -6,7 +6,31 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## 版本 0.5.0
+## 版本 0.5.3
+
+<!-- offset="10" -->
+
+```html
+<Tips
+  empty
+  @toggle="toggle = $event"
+  position="right,left,bottom"
+  visible="hover|click"
+  delay="100"
+>
+  <!-- 
+   visible="hover|click" 新增
+   hover: 鼠标移入时显示
+   click: 点击时显示
+    -->
+  <!-- 
+  empty 新增, 空样式
+  @toggle="toggle = $event"
+  状态改变是触发
+   -->
+  .......
+</Tips>
+```
 
 ### `Card` 新增 `#subtitle` 插槽 与 `#icons` 同级
 

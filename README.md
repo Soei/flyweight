@@ -6,6 +6,57 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
+## 版本 0.5.6
+
+<!-- offset="10" -->
+
+```html
+<style lang="scss">
+  /* 已下的样式变量 默认值 */
+  class{
+    --s-input-border-radius: 10px; /* 边框的圆角 */
+    --s-input-color: #077aed; /* 选中的颜色 */
+    --s-input-primary-color: #4caf50; /* 默认有内容时的样式 */
+    --s-input-label-primary-color: #999; /* 默认无内容文字颜色变量*/
+    --s-input-label-color: #fff;
+    --s-input-label-border-radius: 10px;
+    --s-input-duration: 0.7s; /* 动画时间 默认 */
+    --s-input-label-font-size: /* label的字体大小 */
+  }
+
+</style>
+<!--
+┌────────────────────────────────────┐
+│ .s-wrap                            │
+│ └─input.s-wrap-input               │
+│ └─label.s-wrap-label               │
+│         └─ #default                │
+│            └─ #icon + #tips        │
+│            └─ #icon + #placeholder │
+│                                    │
+└────────────────────────────────────┘
+-->
+<Input|SInput|s-input
+  type="password|text|..."
+  static|空(默认动画开启)
+  placeholder="请输入"
+  tips="密码"
+  slow|fast|空(不写默认中间)
+
+  v-model="value"
+>
+  <!-- 同属性 placeholder-->
+  <template #placeholder>
+  </template>
+  <!-- 同属性 tips-->
+  <template #tips>
+  </template>
+  <!-- 自定义图标插槽 -->
+  <template #icon={type="placeholder|tips"}>
+  </template>
+</Input>
+```
+
 ## 版本 0.5.3
 
 <!-- offset="10" -->

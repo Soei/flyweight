@@ -6,13 +6,31 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
+## 版本 0.5.7
+
+### 新增 `mix` 混合样式 转化为行内样式
+
+```html
+<Card 
+  ...
+  h="30px" 
+  max="400px" 
+  mix="max=>max-width,h=>line-height,h=>--h" 
+  ...
+>
+</Card>
+<!-- 
+ <div class="card" style="--h: 30px; max-width: 400px; line-height: 30px;">...</div>
+ -->
+```
+
 ## 版本 0.5.6
 
 <!-- offset="10" -->
 
 ```html
 <style lang="scss">
-  /* 已下的样式变量 默认值 */
+  /* 以下样式变量为默认值 */
   class{
     --s-input-border-radius: 10px; /* 边框的圆角 */
     --s-input-color: #077aed; /* 选中的颜色 */

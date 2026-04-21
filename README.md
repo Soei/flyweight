@@ -6,18 +6,36 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
+## 版本 0.5.8
+
+### 新增 `mix` 默认样式
+
+```html
+<!-- 默认样式变量 -->
+<!--
+  bg|bgc    => background-color
+  c|color   => color
+  fs        => font-size
+  lh        => line-height
+  mw|maxw   => max-width
+  mh|maxh   => max-height
+  m         => margin
+  p         => padding
+ -->
+<Card color="red" bg="green"> </Card>
+<!-- 转换为行内样式 -->
+<div class="card" style="color:red;color:green">...</div>
+
+ <!-- 自定义 -->
+<Card color="red" mix="color=>background-color"> </Card>
+```
+
 ## 版本 0.5.7
 
 ### 新增 `mix` 混合样式 转化为行内样式
 
 ```html
-<Card 
-  ...
-  h="30px" 
-  max="400px" 
-  mix="max=>max-width,h=>line-height,h=>--h" 
-  ...
->
+<Card ... h="30px" max="400px" mix="max=>max-width,h=>line-height,h=>--h" ...>
 </Card>
 <!-- 
  <div class="card" style="--h: 30px; max-width: 400px; line-height: 30px;">...</div>

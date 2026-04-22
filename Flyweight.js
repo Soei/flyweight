@@ -53,7 +53,7 @@ let mt = {
         return;
       let e = {};
       R(e, this.$data, this.$props, this.$attrs, "mix"), this._style = M(e, t, (i, n, r) => {
-        console.log(i, n, r), this.$nextTick(() => {
+        this.$nextTick(() => {
           x("removeAttribute", this.$el, i);
         });
       });
@@ -162,7 +162,7 @@ const Dt = {
     tolower: U,
     css(t, e) {
       E(t, (i, n) => {
-        let r = this[n] || this.default[n];
+        let r = n in this ? this[n] : this.default[n];
         !r || this.default[n] == r || (e[i] = v(r));
       });
     },
@@ -227,7 +227,7 @@ function Xt(t, e, i, n, r, s) {
     ], !0)
   ], 4);
 }
-const wt = /* @__PURE__ */ I(Dt, [["render", Xt], ["__scopeId", "data-v-00608410"]]);
+const wt = /* @__PURE__ */ I(Dt, [["render", Xt], ["__scopeId", "data-v-c49c634f"]]);
 let nt = (t) => t == null || t == null, Jt = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };

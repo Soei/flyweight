@@ -6,9 +6,11 @@
 
 [![安装](https://img.shields.io/badge/-@soei-ae8aff?style=flat-square)![NPM Downloads by package author](https://img.shields.io/npm-stat/dw/soeiz?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## 版本 0.5.8
+[![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-### 新增 `mix` 默认样式
+## # 版本: `0.5.8`
+
+### # `Card` 新增 `mix` 默认样式
 
 ```html
 <!-- 默认样式变量 -->
@@ -24,29 +26,88 @@
  -->
 <Card color="red" bg="green"> </Card>
 <!-- 转换为行内样式 -->
-<div class="card" style="color:red;color:green">...</div>
+<div class="card" style="color:red;background-color:green">...</div>
 
- <!-- 自定义 -->
+<!-- 自定义 -->
 <Card color="red" mix="color=>background-color"> </Card>
 ```
 
-## 版本 0.5.7
+## # **目录**
 
-### 新增 `mix` 混合样式 转化为行内样式
+- [`Input`](#-input-)
+- [`Tips`](#-tips-)
+- [`Stream`](#-stream-)
+- [`Card`](#-card-)
+- [`Flyweight`](#-flyweight-)
 
-```html
-<Card ... h="30px" max="400px" mix="max=>max-width,h=>line-height,h=>--h" ...>
-</Card>
-<!-- 
- <div class="card" style="--h: 30px; max-width: 400px; line-height: 30px;">...</div>
- -->
+## # `安装`
+
+```bash
+# 安装
+npm i @soei/flyweight
 ```
 
-## 版本 0.5.6
+### `Vue3` 引用
 
-<!-- offset="10" -->
+```javascript
+// main.js
+import flyweight from "@soei/flyweight";
+import "@soei/flyweight/style.css";
+
+Vue.use(flyweight);
+/* 单个导出 */
+import { Flyweight, Card } from "@soei/flyweight";
+```
+
+### `Vue2` 引用
+
+```javascript
+// Vue2引用, 安装和Vue3相同
+// main.js
+import Flyweight from "@soei/flyweight/vue2/index";
+import "@soei/flyweight/vue2/style.css";
+```
+
+### # 例子 🌰
 
 ```html
+<!-- vue3 -->
+<script setup>
+  /* 引入依赖 */
+  import { Flyweight, Card } from "@soei/flyweight";
+  let flys = ref([]);
+  flys.value = Array.from({ length: 200 }, (_, i) => ({ name: i }));
+  let view = reactive({
+    picker: "name",
+    id: 10,
+  });
+  //...
+</script>
+```
+
+```html
+<!-- 相应的用法和属性在下面 -->
+<!-- use.vue 多种写法 s-[*]  S[*大写][小写]  [*大写][小写] -->
+<!-- 共享容器 -->
+<s-flyweight ...></s-flyweight>
+<!-- 卡片弹性布局 -->
+<s-card ...></s-card>
+<!-- 提示容器 -->
+<s-tips ...></s-tips>
+<!-- 流式容器 -->
+<s-stream ...></s-stream>
+<!-- 输入框 -->
+<s-input ...></s-input>
+
+<!-- ... -->
+```
+
+## # <`Input` />
+
+[返回目录](#-目录)
+
+```html
+<!-- (版本 0.5.6) -->
 <style lang="scss">
   /* 以下样式变量为默认值 */
   class{
@@ -72,7 +133,7 @@
 │                                    │
 └────────────────────────────────────┘
 -->
-<Input|SInput|s-input
+<Input
   type="password|text|..."
   static|空(默认动画开启)
   placeholder="请输入"
@@ -93,11 +154,12 @@
 </Input>
 ```
 
-## 版本 0.5.3
+## # <`Tips` />
 
-<!-- offset="10" -->
+[返回目录](#-目录)
 
 ```html
+<!-- (版本 0.5.3) -->
 <Tips
   empty
   @toggle="toggle = $event"
@@ -119,9 +181,109 @@
 </Tips>
 ```
 
-### `Card` 新增 `#subtitle` 插槽 与 `#icons` 同级
+#### - `arrow`: 显示箭头
 
 ```html
+<!-- [notice|warn|simply]: 内置样式, 不喜欢可以background="..." color="..." -->
+<Tips class="notice|warn|simply|arrow|animate" ... />
+<Tips> ..... </Tips>
+```
+
+#### 基础配置
+
+```html
+<Tips
+  // 是否显示
+  visible="Boolean"
+  // 偏移位置
+  offset="Number"
+
+  // 显示内容
+  title="String"
+  content=" 条更新"
+
+  // 显示位置 按照顺序显示
+  position="right,top,left,bottom"
+  // 滚动延迟时间 ms
+  delay="10"
+  // 颜色 背景色 边框宽度
+  background="red|#f00"
+  color="red|#f00"
+  boder="3"
+/>
+```
+
+## # <`Stream` />
+
+[返回目录](#-目录)
+
+### `组件池`
+
+```html
+<!-- bridge="property" 绑定属性: columns对应属性 -->
+<Stream
+  type="组件名|div|Card|s-flyweight|..."
+  bridge="key"
+  :columns="[{key:1, name:'x'}]|{key:1, name:'x'}"
+  [...组件的属性]
+>
+  <!-- 插槽 #1中的1 为插槽名称 对应columns中的key对应的值决定, 由bridge指定 -->
+  <template #1="{ name }"> {{name}} </template>
+  <template #2> 2 </template>
+
+  <template #default> 默认输出[可以不写] </template>
+</Stream>
+```
+
+#### `示例`
+
+```html
+<template>
+  <Stream
+    class="form"
+    :T="[
+      /* slot|name|type=>name 插槽名称 */
+      { type: 'name', label: '输入框' },
+      { type: 'state', label: '选择任务', data: [{label, value}, ...] },
+      { type: 'state', label: '选择事件', data: [{label, value}, ...] },
+    ]"
+  >
+    <template #state="{ type, label, index, data }">
+      <div class="form_item">
+        <el-select size="mini" v-model="search[type]" :placeholder="label">
+          <el-option
+            v-for="item in data"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+    </template>
+    <template #default="{ type, label, index }">
+      <div class="form_item">
+        <el-input
+          size="mini"
+          v-model="search[type]"
+          :placeholder="label"
+        ></el-input>
+      </div>
+    </template>
+  </Stream>
+</template>
+<script setup>
+  // 导入
+  import { Stream } from "@soei/flyweight";
+</script>
+```
+
+## # <`Card` />
+
+[返回目录](#-目录)
+
+````html
+<!-- `Card` 新增 `#subtitle` 插槽 与 `#icons` 同级 -->
 <!--
 ┌───────────────────────┐
 │ #title                │
@@ -134,43 +296,7 @@
 │                       │
 └───────────────────────┘
 -->
-```
-
-### `Flyweight`
-
-- `#mix` 插槽
-- `--flyweight-line-offset`: 30px;
-- `--flyweight-min-width`: 400px
-
-```html
-<Flyweight ... :flys="list" ...>
-  <template #title="{ width }">
-    <!-- 标题栏固定显示 -->
-    <Card
-      height="30px"
-      :width="width"
-      style="position: sticky; top: 0; z-index: 1000"
-    >
-      <div>Title</div>
-      <div>Source</div>
-      <div>Date</div>
-    </Card>
-  </template>
-  <template #mix="{ length, end, ... }">
-    <Stream type="span" :columns="{ type: length == 0 ? 0 : end ? 1 : '-1' }">
-      <template #0>
-        <Card height="100% - 10px" width="100%" center nothing vcenter>
-          空空如也~
-        </Card>
-      </template>
-      <template #1> ~ 这是底线 ~ </template>
-      <template #-1>...</template>
-    </Stream>
-  </template>
-</Flyweight>
-```
-
-```html
+``` ### 其它使用 ```html
 <!-- 版本 0.4.0 -->
 
 <!--
@@ -230,211 +356,15 @@
   <template #title>-</template>
   <template #content>-</template>
 </Card>
-```
+````
+
+### `版本` 0.3.12 优化 和 `部分代码`优化
 
 ```html
-<!-- 版本 0.3.12 优化 和 部分代码优化-->
 <Card [space|space="around|evenly"|nothing] ... />
 ```
 
-```html
-<!-- arrow: 显示箭头 -->
-<!-- [notice|warn|simply]: 内置样式, 不喜欢可以background="..." color="..." -->
-<Tips class="notice|warn|simply|arrow|animate" ... />
-<Tips> ..... </Tips>
-```
-
-```html
-<Tips
-  // 是否显示
-  visible="Boolean"
-  // 偏移位置
-  offset="Number"
-
-  // 显示内容
-  title="String"
-  content=" 条更新"
-
-  // 显示位置 按照顺序显示
-  position="right,top,left,bottom"
-  // 滚动延迟时间 ms
-  delay="10"
-  // 颜色 背景色 边框宽度
-  background="red|#f00"
-  color="red|#f00"
-  boder="3"
-/>
-```
-
-```html
-<!-- bridge="property" 绑定属性: columns对应属性 -->
-<Stream
-  type="组件名|div|Card|s-flyweight|..."
-  bridge="key"
-  :columns="[{key:1, name:'x'}]|{key:1, name:'x'}"
-  [...组件的属性]
->
-  <!-- 插槽 #1中的1 为插槽名称 对应columns中的key对应的值决定, 由bridge指定 -->
-  <template #1="{ name }"> {{name}} </template>
-  <template #2> 2 </template>
-
-  <template #default> 默认输出[可以不写] </template>
-</Stream>
-```
-
-```html
-<s-flyweight
-  ...
-  h="容器高"
-  w="容器宽"
-  width="内容宽"
-  height="内容高"
-></s-flyweight>
-
-Or
-
-<div style="height:100px;width:300px;">
-  <!-- 确认父容器 宽 高 存在, 依赖父容器 `宽`, `高` 计算 -->
-  <s-flyweight ...></s-flyweight>
-</div>
-<template>
-  <Card class="flyweight-test" flex column simply>
-    <template #title>
-      <div>Flyweight Test</div>
-    </template>
-    <template #inner>
-      <Card class="applist" background="#f7f7f7" border="0.1px" height="100%">
-        <Flyweight
-          :flys="flys"
-          hover-scroll
-          scroll-x
-          auto
-          :view="view"
-          :width="100"
-          padding
-          height="100% - 10px"
-          :offset="[10, 10]"
-        >
-          <template #default="{ data, x, y, width, height, space, i }">
-            <div
-              class="flyweight-item demo"
-              :class="{ [`flyweight-item-${i & 3}`]: true}"
-            >
-              {{ data.name }}
-            </div>
-          </template>
-          <template #end>
-            <div>end</div>
-          </template>
-        </Flyweight>
-      </Card>
-    </template>
-  </Card>
-</template>
-
-<script setup>
-  //...
-  /* 引入依赖 */
-  import { Flyweight, Card } from "@soei/flyweight";
-  let flys = ref([]);
-  flys.value = Array.from({ length: 200 }, (_, i) => ({ name: i }));
-  let view = reactive({
-    picker: "name",
-    id: 10,
-  });
-  //...
-</script>
-```
-
-[![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
-
-## 新增 `Stream` 组件池
-
-```html
-<template>
-  <Stream
-    class="form"
-    :T="[
-      /* slot|name|type=>name 插槽名称 */
-      { type: 'name', label: '输入框' },
-      { type: 'state', label: '选择任务', data: [{label, value}, ...] },
-      { type: 'state', label: '选择事件', data: [{label, value}, ...] },
-    ]"
-  >
-    <template #state="{ type, label, index, data }">
-      <div class="form_item">
-        <el-select size="mini" v-model="search[type]" :placeholder="label">
-          <el-option
-            v-for="item in data"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
-      </div>
-    </template>
-    <template #default="{ type, label, index }">
-      <div class="form_item">
-        <el-input
-          size="mini"
-          v-model="search[type]"
-          :placeholder="label"
-        ></el-input>
-      </div>
-    </template>
-  </Stream>
-</template>
-<script setup>
-  // 导入
-  import { Stream } from "@soei/flyweight";
-</script>
-```
-
-## `安装`
-
-```bash
-# 安装
-npm i @soei/flyweight
-```
-
-## `Vue2` 引用
-
-```javascript
-// Vue2引用, 安装和Vue3相同
-import Flyweight from @soei/flyweight/vue2
-
-// 样式和vue相同
-import "@soei/flyweight/style.css";
-```
-
-## `使用 <s-flyweight ...> `
-
-```html
-<!-- scroll-x 横向滚动, 无[scroll-x]属性这是上下滚动 -->
-<s-flyweight scroll-x></s-flyweight>
-
-<!-- hover-scroll 鼠标移入显示滚动条样式 -->
-<s-flyweight hover-scroll class="your-class"></s-flyweight>
-<s-card hover-scroll class="your-class"></s-card>
-<style lang="scss">
-  .your-class {
-    /* 设置滚动条颜色 */
-    --scrollbar-color: red;
-    /* 设置滚动条宽度 */
-    --scrollbar-width: 10px;
-  }
-</style>
-
-<!-- 设置高度 -->
-<s-flyweight height="100% - 10px"></s-flyweight>
-
-<!-- 设置宽度 -->
-<s-flyweight width="100% - 10px"></s-flyweight>
-<s-flyweight :width="`100% - 10px`"></s-flyweight>
-```
-
-## `使用 <s-card ...> `
+### `示例`
 
 ```html
 <!-- auto-scroll 默认显示滚动条样式 -->
@@ -477,138 +407,200 @@ import "@soei/flyweight/style.css";
   };
 </script>
 
-<!-- 设置标题 -->
 <s-card
-  title="标题"
-  class="flyweight"
+title="标题"
+class="flyweight"
 
-  // ** 布局 **
-  flex row center column
+// ** 布局 **
+flex row center column
 
-  // ** 边距 **
-  offset="20, 0, 10, 0"
+// ** 边距 **
+offset="20, 0, 10, 0"
 
-  // ** 是否显示关闭按钮 **
-  :close="true"
-  @close="close"
+// ** 是否显示关闭按钮 **
+:close="true"
+@close="close"
 
-  // ** 插槽 **
-  [#content, #inner, #default]
->
-</s-card>
+// ** 插槽 **
+[#content, #inner, #default]
+
+> </s-card>
+
 ```
 
-````
+## # <`Flyweight` />
 
-`Vue3` 引入方式
+[返回目录](#-目录)
+
+- `#mix` 插槽
+- `--flyweight-line-offset`: 30px;
+- `--flyweight-min-width`: 400px
 
 ```html
-<script>
-  import { Flyweight } from "@soei/flyweight";
-</script>
-<!-- 非 <style scoped>  scoped-->
-<style>
-  @import "@soei/flyweight/dist/style.css";
-</style>
-````
-
-```javascript
-// main.js
-import "@soei/flyweight/dist/style.css";
-import flyweight from "@soei/flyweight";
-Vue.use(flyweight);
-// use.vue
-<s-flyweight ...></s-flyweight>
-<s-card ...></s-card>
+<Flyweight ... :flys="list" ...>
+  <template #title="{ width }">
+    <!-- 标题栏固定显示 -->
+    <Card
+      height="30px"
+      :width="width"
+      style="position: sticky; top: 0; z-index: 1000"
+    >
+      <div>Title</div>
+      <div>Source</div>
+      <div>Date</div>
+    </Card>
+  </template>
+  <template #mix="{ length, end, ... }">
+    <Stream type="span" :columns="{ type: length == 0 ? 0 : end ? 1 : '-1' }">
+      <template #0>
+        <Card height="100% - 10px" width="100%" center nothing vcenter>
+          空空如也~
+        </Card>
+      </template>
+      <template #1> ~ 这是底线 ~ </template>
+      <template #-1>...</template>
+    </Stream>
+  </template>
+</Flyweight>
 ```
 
-## `引用`
-
-```javascript
-import { Flyweight, Card } from "@soei/flyweight";
-```
-
-- #### Card 组件
+Or
 
 ```html
-<s-card
-  title="标题"
-  class="flyweight"
-
-  // ** 布局 **
-  flex row center column
-
-  // ** 边距 **
-  offset="20, 0, 10, 0"
-
-  // ** 是否显示关闭按钮 **
-  :close="true"
-  @close="close"
-
-  // ** 插槽 **
-  [#content, #inner, #default]
->
-</s-card>
+<s-flyweight
+  ...
+  h="容器高"
+  w="容器宽"
+  width="内容宽"
+  height="内容高"
+></s-flyweight>
 ```
 
-- #### `v-model:space` 中字段
+Or
 
-  ```javascript
-  {
-    // --- 新增 ---
-    // 总行数
-    showrow,
-    // 总列数
-    showcolumn,
+```html
+<div style="height:100px;width:300px;">
+  <!-- 确认父容器 宽 高 存在, 依赖父容器 `宽`, `高` 计算 -->
+  <s-flyweight ...></s-flyweight>
+</div>
+<template>
+  <Card class="flyweight-test" flex column simply>
+    <template #title>
+      <div>Flyweight Test</div>
+    </template>
+    <template #inner>
+      <Card class="applist" background="#f7f7f7" border="0.1px" height="100%">
+        <Flyweight
+          :flys="flys"
+          hover-scroll
+          scroll-x
+          auto
+          :view="view"
+          :width="100"
+          padding
+          height="100% - 10px"
+          :offset="[10, 10]"
+        >
+          <template #default="{ data, x, y, width, height, space, i }">
+            <div
+              class="flyweight-item demo"
+              :class="{ [`flyweight-item-${i & 3}`]: true}"
+            >
+              {{ data.name }}
+            </div>
+          </template>
+          <template #end>
+            <div>end</div>
+          </template>
+        </Flyweight>
+      </Card>
+    </template>
+  </Card>
+</template>
+```
 
-    // --- 原有 ---
-    row, // 数据填充行数
-    column, // 数据填前列数
+```html
+<!-- scroll-x 横向滚动, 无[scroll-x]属性这是上下滚动 -->
+<s-flyweight scroll-x></s-flyweight>
+
+<!-- hover-scroll 鼠标移入显示滚动条样式 -->
+<s-flyweight hover-scroll class="your-class"></s-flyweight>
+<s-card hover-scroll class="your-class"></s-card>
+<style lang="scss">
+  .your-class {
+    /* 设置滚动条颜色 */
+    --scrollbar-color: red;
+    /* 设置滚动条宽度 */
+    --scrollbar-width: 10px;
   }
-  ```
+</style>
 
-- #### `v-model:space`, 计算空间显示 `行` 与 `列`
+<!-- 设置高度 -->
+<s-flyweight height="100% - 10px"></s-flyweight>
 
-  被通知对象 `notice`: {`row`, `column`}
+<!-- 设置宽度 -->
+<s-flyweight width="100% - 10px"></s-flyweight>
+<s-flyweight :width="`100% - 10px`"></s-flyweight>
+```
 
-  ```html
-  <!-- eg.
-    当有5个元素, 
-    当: :width="100% / 3", column = 3列, row = 2, 
-    当: :width="100% / 5", column = 5列, row = 1,
-    当: :width="100% / 7", column = 7列, row = 1
-    ...
-  -->
-  <!-- VUE3 -->
-  <template>
-    <s-flyweight v-model:space="notice"></s-flyweight>
-  </template>
-  <script setup>
-    let notice = ref({ row: 0, column: 0 });
-    watch(
-      () => notice.value,
-      (val) => {
-        console.log(val);
-      },
-    );
-  </script>
+### `v-model:space` 字段
 
-  <!-- VUE2 -->
-  <template>
-    <s-flyweight :space.sync="notice"></s-flyweight>
-  </template>
-  <script>
-    export default {
-      data() {
-        return {
-          notice: { row: 0, column: 0 },
-        };
-      },
-    };
-  </script>
-  ```
+```javascript
+{
+  // --- 新增 ---
+  // 总行数
+  showrow,
+  // 总列数
+  showcolumn,
 
-- #### `:auto`, 默认值: `false`
+  // --- 原有 ---
+  row, // 数据填充行数
+  column, // 数据填前列数
+}
+```
+
+### `v-model:space`, 计算空间显示 `行` 与 `列`
+
+- 被通知对象 `notice`: {`row`, `column`}
+
+```html
+<!-- eg.
+  当有5个元素, 
+  当: :width="100% / 3", column = 3列, row = 2, 
+  当: :width="100% / 5", column = 5列, row = 1,
+  当: :width="100% / 7", column = 7列, row = 1
+  ...
+-->
+<!-- VUE3 -->
+<template>
+  <s-flyweight v-model:space="notice"></s-flyweight>
+</template>
+<script setup>
+  let notice = ref({ row: 0, column: 0 });
+  watch(
+    () => notice.value,
+    (val) => {
+      console.log(val);
+    },
+  );
+</script>
+
+<!-- VUE2 -->
+<template>
+  <s-flyweight :space.sync="notice"></s-flyweight>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        notice: { row: 0, column: 0 },
+      };
+    },
+  };
+</script>
+```
+
+### `:auto` 默认值: `false`
 
 当 `auto` 为 `true` 时, `:width` 赋值会被视为 `最小值`, 剩余空间自动填充
 
@@ -616,79 +608,32 @@ import { Flyweight, Card } from "@soei/flyweight";
 <s-flyweight :auto="true" :width="100"></s-flyweight>
 ```
 
-- #### `flys` 初始化赋值,不改变时,获取 length 问题
+### `width`
 
-- #### `width`
-  ```html
-  <!-- 添加`百分比`计算, 计算顺序, 左 => 右 -->
-  <s-flyweight width="100% / 2 - 10px"></s-flyweight>
-  <s-flyweight width="calc(100% - 100px)"></s-flyweight>
-  <s-flyweight width="100% - 100px"></s-flyweight>
-  <s-flyweight width="100px - 10px"></s-flyweight>
-  <s-flyweight width="100px"></s-flyweight>
-  ```
-- #### slot `end` 的呈现逻辑
-
-  ```html
-  <!-- onend为滑动到底时, 回调函数 -->
-  <s-flyweight :flys="..." @onend="...">
-    <template #default="{ data, index }"> 呈现内容 {{data.*}} </template>
-    <template #end> ...显示在最下面的相关信息 </template>
-  </s-flyweight>
-  ```
-
-- #### `:top`
-
-  ```html
-  <s-flyweight :top="滚动高度"></s-flyweight>
-  ```
-
-  `Vue3` 引入方式
-
-  ```html
-  <script>
-    import { Flyweight } from "@soei/flyweight";
-  </script>
-  <!-- 非 <style scoped>  scoped-->
-  <style>
-    @import "@soei/flyweight/dist/style.css";
-  </style>
-  ```
-
-  `或` 源码引入
-
-  ```javascript
-  import Flyweight from "@soei/flyweight/src/Flyweight.vue";
-  ```
-
-  `或`
-
-  ```javascript
-  // main.js
-  import "@soei/flyweight/dist/style.css";
-  import flyweight from "@soei/flyweight";
-  Vue.use(flyweight);
-  // use.vue
-  <s-flyweight ...></s-flyweight>
-  ```
-
-## `安装`
-
-```
-npm i @soei/flyweight
-
+```html
+<!-- 添加`百分比`计算, 计算顺序, 左 => 右 -->
+<s-flyweight width="100% / 2 - 10px"></s-flyweight>
+<s-flyweight width="calc(100% - 100px)"></s-flyweight>
+<s-flyweight width="100% - 100px"></s-flyweight>
+<s-flyweight width="100px - 10px"></s-flyweight>
+<s-flyweight width="100px"></s-flyweight>
 ```
 
-## `引用`
+### slot `end` 的呈现逻辑
 
-```javascript
-// 引入方式 vue2
-import Flyweight from "@soei/flyweight/src/Flyweight.vue";
-// 引入方式 Vue3
-import { Flyweight } from "@soei/flyweight";
+```html
+<!-- onend为滑动到底时, 回调函数 -->
+<s-flyweight :flys="..." @onend="...">
+  <template #default="{ data, index }"> 呈现内容 {{data.*}} </template>
+  <template #end> ...显示在最下面的相关信息 </template>
+</s-flyweight>
 ```
 
-## `使用`
+### `:top`
+
+```html
+<s-flyweight :top="滚动高度"></s-flyweight>
+```
 
 ```html
 <Flyweight
@@ -704,11 +649,7 @@ import { Flyweight } from "@soei/flyweight";
 </Flyweight>
 ```
 
-```html
-<Flyweight [attrs]></Flyweight>
-```
-
-## `index` 和 `view` 只生效一个
+### `index` 和 `view` 只生效一个
 
 ### _`index`_ 定位索引
 

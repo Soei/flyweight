@@ -10,9 +10,13 @@
 
 ## # 版本: `0.5.12`
 
-### # 新增 Confirm, Boom
+### # 新增 Confirm, Boom, Input
 
 ```html
+<!-- vue3 -->
+<s-input v-model="value" />
+<!-- vue2 -->
+<s-input :value.sync="value" />
 <Boom
   class="simply"
   m="0 0 0 10px"

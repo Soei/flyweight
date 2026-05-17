@@ -8,37 +8,44 @@
 
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## # 版本: `0.5.8`
+## # 版本: `0.5.12`
 
-### # `Card` 新增 `mix` 默认样式
+### # 新增 Confirm, Boom
 
 ```html
-<!-- 默认样式变量 -->
-<!--
-  bg|bgc    => background-color
-  c|color   => color
-  fs        => font-size
-  lh        => line-height
-  mw|maxw   => max-width
-  mh|maxh   => max-height
-  m         => margin
-  p         => padding
- -->
-<Card color="red" bg="green"> </Card>
-<!-- 转换为行内样式 -->
-<div class="card" style="color:red;background-color:green">...</div>
+<Boom
+  class="simply"
+  m="0 0 0 10px"
+  animation
+  @click="search"
+>搜索</Boom>
 
-<!-- 自定义 -->
-<Card color="red" mix="color=>background-color"> </Card>
+<s-confirm
+  visible="click"
+  :min="[150]"
+  z="10000"
+  @submit-click="submit(item, $event)"
+>
+  <template #reference>
+    目标对象
+  </template>
+  <template #content>
+    <card nothing fs="15">
+      确认删除?
+    </card>
+  </template>
+</s-confirm>
 ```
 
 ## # **目录**
 
-- [`Input`](#-input-)
-- [`Tips`](#-tips-)
-- [`Stream`](#-stream-)
-- [`Card`](#-card-)
 - [`Flyweight`](#-flyweight-)
+- [`Card`](#-card-)
+- [`Stream`](#-stream-)
+- [`Tips`](#-tips-)
+- [`Input`](#-input-)
+- [`Boom`](#-boom-)
+- [`Confirm`](#-confirm-)
 
 ## # `安装`
 
@@ -278,11 +285,40 @@ import "@soei/flyweight/vue2/style.css";
 </script>
 ```
 
+## # <`Boom` />
+
+[返回目录](#-目录)
+
+```html
+<!-- `Boom` -->
+```
+
+## # <`Confirm` />
+
+[返回目录](#-目录)
+
+```html
+<!-- `Confirm` -->
+<!--
+┌───────────────────────┐
+│ .s-confirm-title      │
+│   └─ #title           │
+│-----------------------│
+│  #content             │
+│-----------------------│
+│  #bottom              │
+│  └─ #boom             │
+│   └─ {subumit}{cancel}│
+│                       │
+└───────────────────────┘
+-->
+```
+
 ## # <`Card` />
 
 [返回目录](#-目录)
 
-````html
+```html
 <!-- `Card` 新增 `#subtitle` 插槽 与 `#icons` 同级 -->
 <!--
 ┌───────────────────────┐
@@ -296,7 +332,11 @@ import "@soei/flyweight/vue2/style.css";
 │                       │
 └───────────────────────┘
 -->
-``` ### 其它使用 ```html
+```
+
+### 其它使用
+
+```html
 <!-- 版本 0.4.0 -->
 
 <!--
@@ -356,7 +396,7 @@ import "@soei/flyweight/vue2/style.css";
   <template #title>-</template>
   <template #content>-</template>
 </Card>
-````
+```
 
 ### `版本` 0.3.12 优化 和 `部分代码`优化
 

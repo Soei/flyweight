@@ -1,62 +1,63 @@
-import { runer as m, each as k, merge as M, picker as b, isEmpty as ft, isSimplyType as et, isString as Rt, isArray as X, format as At } from "@soei/util";
-import { runer as d, isNil as A, each as it, isString as Bt } from "@soei/tools";
-import Mt from "@soei/picker";
-let Et = /(\d+|[+\-\*/]|%)/g, st = {
+import { runer as p, each as x, merge as E, picker as y, isEmpty as vt, isSimplyType as lt, isString as Mt, isArray as O, format as xt, array2Json as Ht } from "@soei/util";
+import { runer as d, each as q, isNil as F, isString as Ft, isFunction as Ot } from "@soei/tools";
+import Pt from "@soei/picker";
+let jt = /(\d+|[+\-\*/]|%)/g, at = {
   "+": (e, t) => e + t,
   "-": (e, t) => e - t,
   "*": (e, t) => e * t,
   "/": (e, t) => e / t,
   "%": (e, t, i) => parseFloat(e) / 100 * i
-}, nt = (e, t) => {
+}, ot = (e, t) => {
   let i;
-  if (i = m("match", e, Et)) {
-    let s = i.length, n, r = 0, a, l = [];
+  if (i = p("match", e, jt)) {
+    let s = i.length, r, n = 0, l, o = [];
     for (; s--; )
-      r = i.shift(), r in st ? (n && l.push(n), r === "%" && (l.length = 2), a = r) : +r && l.push(+r), l.length == 2 && (l.push(t), n = st[a].apply(null, l), l.length = 0);
-    +n || (n = +l.pop()), e = n >> 0;
+      n = i.shift(), n in at ? (r && o.push(r), n === "%" && (o.length = 2), l = n) : +n && o.push(+n), o.length == 2 && (o.push(t), r = at[l].apply(null, o), o.length = 0);
+    +r || (r = +o.pop()), e = r >> 0;
   }
   return e;
-}, rt = {}, v = (e, t) => (e + "").replace(
+}, v = (e, t) => (e + "").replace(
   /\w+\((.*)\)/g,
   "$1"
 ).replace(
-  rt[t] || (rt[t] = new RegExp("(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)", "g")),
+  /((?:[\s]+|^)\d+(?:\.\d{1,})?(?!(?:\.)*\d|%|\w))/g,
+  // decimalMap[decimal] || (decimalMap[decimal] = new RegExp('(?=\\s+|^)(\\d+)(?:\\.\\d{1,})?(?!(?:\\.)*\\d|%|\\w)', 'g')),
   "$1px"
 );
-function x(e, t, i, s, n, r, a, l) {
-  var h = typeof e == "function" ? e.options : e;
-  t && (h.render = t, h.staticRenderFns = i, h._compiled = !0), s && (h.functional = !0), r && (h._scopeId = "data-v-" + r);
-  var _;
-  if (a ? (_ = function(o) {
-    o = o || // cached call
+function S(e, t, i, s, r, n, l, o) {
+  var a = typeof e == "function" ? e.options : e;
+  t && (a.render = t, a.staticRenderFns = i, a._compiled = !0), s && (a.functional = !0), n && (a._scopeId = "data-v-" + n);
+  var u;
+  if (l ? (u = function(_) {
+    _ = _ || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
-    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !o && typeof __VUE_SSR_CONTEXT__ < "u" && (o = __VUE_SSR_CONTEXT__), n && n.call(this, o), o && o._registeredComponents && o._registeredComponents.add(a);
-  }, h._ssrRegister = _) : n && (_ = l ? function() {
-    n.call(
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !_ && typeof __VUE_SSR_CONTEXT__ < "u" && (_ = __VUE_SSR_CONTEXT__), r && r.call(this, _), _ && _._registeredComponents && _._registeredComponents.add(l);
+  }, a._ssrRegister = u) : r && (u = o ? function() {
+    r.call(
       this,
-      (h.functional ? this.parent : this).$root.$options.shadowRoot
+      (a.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : n), _)
-    if (h.functional) {
-      h._injectStyles = _;
-      var c = h.render;
-      h.render = function(u, p) {
-        return _.call(p), c(u, p);
+  } : r), u)
+    if (a.functional) {
+      a._injectStyles = u;
+      var h = a.render;
+      a.render = function(c, m) {
+        return u.call(m), h(c, m);
       };
     } else {
-      var f = h.beforeCreate;
-      h.beforeCreate = f ? [].concat(f, _) : [_];
+      var f = a.beforeCreate;
+      a.beforeCreate = f ? [].concat(f, u) : [u];
     }
   return {
     exports: e,
-    options: h
+    options: a
   };
 }
-let Lt = /^(?!--).*(height|width|top|left|bottom|right|size|radius|padding|margin|border)$/i;
-function U(e, t) {
+let Ut = /^(?!--).*(height|width|top|left|bottom|right|size|radius|padding|margin|border)$/i;
+function G(e, t) {
   return t && (e = e.replace(/[a-z]/g, "")), e.toLowerCase();
 }
-let pt = {
+let wt = {
   close: {
     handler(e) {
       this.change(e);
@@ -75,13 +76,13 @@ let pt = {
       if (!e)
         return;
       let t = {};
-      M(t, this.$data, this.$props, this.$attrs, "mix"), this._style = b(t, e, (i, s, n, r) => (this.$nextTick(() => {
-        m("removeAttribute", this.$el, i.replace(/\..*/, ""));
-      }), Lt.test(r) ? v(s) : s));
+      E(t, this.$data, this.$props, this.$attrs, "mix"), this._style = y(t, e, (i, s, r, n) => (this.$nextTick(() => {
+        p("removeAttribute", this.$el, i.replace(/\..*/, ""));
+      }), Ut.test(n) ? v(s) : s));
     },
     immediate: !0
   }
-}, Ft = [
+}, It = [
   "BackGround",
   "BordeR",
   "Height",
@@ -90,17 +91,17 @@ let pt = {
   "Right",
   "Bottom",
   "Left"
-], mt = {};
-k(
-  Ft,
+], $t = {};
+x(
+  It,
   (e, t, i) => {
-    e = U(t), mt["--" + U(t, !0)] = e, i[e] = function() {
+    e = G(t), $t["--" + G(t, !0)] = e, i[e] = function() {
       this.trigger++;
     };
   },
-  pt
+  wt
 );
-const Ht = {
+const Vt = {
   name: "Card",
   // inheritAttrs: false,
   props: {
@@ -138,7 +139,7 @@ const Ht = {
     },
     mix: {
       type: String,
-      default: "m=>margin,p|padding=>padding,bg|bgc=>background,c|color=>color,fs=>font-size,lh=>line-height,mw|maxw=>max-width,mh|maxh=>max-height,br=>border-radius"
+      default: "m=>margin,p|padding=>padding,bg|bgc=>background,c|color=>color,fs=>font-size,lh=>line-height,mw|maxw=>max-width,mh|maxh=>max-height,br=>border-radius,overflow"
     }
   },
   data() {
@@ -166,41 +167,41 @@ const Ht = {
       return this.show || this.title;
     },
     tips() {
-      return m("tips", this.close || {}) || "关闭[" + this.sub + "]";
+      return p("tips", this.close || {}) || "关闭[" + this.sub + "]";
     }
   },
-  watch: pt,
+  watch: wt,
   methods: {
     exec: v,
-    isEmpty: ft,
-    picker: b,
-    runer: m,
-    isSimplyType: et,
+    isEmpty: vt,
+    picker: y,
+    runer: p,
+    isSimplyType: lt,
     tr() {
       let e = {};
-      return this.margin(this.offset), this.css(mt, e), M(e, this._style, this.$attrs.style, !0, "mix"), e;
+      return this.margin(this.offset), this.css($t, e), E(e, this._style, this.$attrs.style, !0, "mix"), e;
     },
-    tolower: U,
+    tolower: G,
     css(e, t) {
-      k(e, (i, s) => {
-        let n = s in this ? this[s] : this.default[s];
-        !n || this.default[s] == n || (t[i] = v(n));
+      x(e, (i, s) => {
+        let r = s in this ? this[s] : this.default[s];
+        !r || this.default[s] == r || (t[i] = v(r));
       });
     },
     change(e) {
-      et(e) || (this.closecss = b(
+      lt(e) || (this.closecss = y(
         e,
         "color=>--s-card-close-color,size=>--s-close-width,bold=>--s-close-height,*"
       ));
     },
     margin(e) {
-      b(
-        Rt(e) ? e.split(/\s*(?:,|\s+)\s*/) : e,
+      y(
+        Mt(e) ? e.split(/\s*(?:,|\s+)\s*/) : e,
         "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
         !0,
-        (t, i, s, n) => {
-          let r = v(i);
-          !r || this.default[n] == r || (this[n] = r);
+        (t, i, s, r) => {
+          let n = v(i);
+          !n || this.default[r] == n || (this[r] = n);
         }
       );
     }
@@ -209,7 +210,7 @@ const Ht = {
     this.change(this.close);
   }
 };
-var Wt = function() {
+var Dt = function() {
   var t = this, i = t._self._c;
   return i("div", { key: t.trigger, class: {
     card: t.$attrs.use === void 0
@@ -226,21 +227,21 @@ var Wt = function() {
       return [i("div", { staticClass: "card-content" }, [t._t("inner")], 2)];
     })];
   })], 2);
-}, Ot = [], Pt = /* @__PURE__ */ x(
-  Ht,
-  Wt,
-  Ot,
+}, Xt = [], qt = /* @__PURE__ */ S(
+  Vt,
+  Dt,
+  Xt,
   !1,
   null,
-  "a61c4003",
+  "0cc1c50c",
   null,
   null
 );
-const w = Pt.exports;
-const jt = {
+const C = qt.exports;
+const Gt = {
   name: "Boom",
   emits: ["click"],
-  components: { Card: w },
+  components: { Card: C },
   data: function() {
     return {
       mix: "m=>margin,c|color=>--s-button-color,fs=>font-size,lh=>line-height,miw|minw=>min-width,mih|minh=>min-height,mw|maxw=>max-width,mh|maxh=>max-height,h=>height,w=>width,p=>padding,br=>--s-button-border-radius,bg=>--s-button-background-color,bg=>--s-button-shadow-color"
@@ -254,15 +255,15 @@ const jt = {
   },
   methods: {
     init() {
-      k("disabled visible tips".split(/\s+/g), (e, t) => {
-        m("removeAttribute", this.$el, t);
+      x("disabled visible tips".split(/\s+/g), (e, t) => {
+        p("removeAttribute", this.$el, t);
       });
     }
   }
 };
-var It = function() {
+var Yt = function() {
   var t = this, i = t._self._c;
-  return i("Card", { staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "", inline: "" } }, [i("button", { attrs: { disabled: t.$attrs.disabled, center: "", vc: "" }, on: { click: function(s) {
+  return i("Card", t._b({ staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "", inline: "" } }, "Card", t.$attrs, !1), [i("button", { attrs: { disabled: t.$attrs.disabled, center: "", vc: "" }, on: { click: function(s) {
     return t.$emit("click", s);
   } } }, [t._t("inner", function() {
     return [i("span", [t._t("default", function() {
@@ -271,25 +272,25 @@ var It = function() {
   })], 2), t._t("tips", function() {
     return [t.$attrs.tips ? i("tips", t._b({}, "tips", t.$attrs.tips, !1)) : t._e()];
   })], 2);
-}, Dt = [], Vt = /* @__PURE__ */ x(
-  jt,
-  It,
-  Dt,
+}, Jt = [], Kt = /* @__PURE__ */ S(
+  Gt,
+  Yt,
+  Jt,
   !1,
   null,
-  "6b761d34",
+  "5d1351d8",
   null,
   null
 );
-const G = Vt.exports, lt = /(?:\,|\|{2})/, ot = "px", at = "";
-let gt = document.documentElement, ht, ct = ["s-left", "s-top", "s-right", "s-bottom"], Ut = { left: 0, top: 1, right: 2, bottom: 3 };
-const Y = [];
-var Xt = Mt(
+const K = Kt.exports, ht = /(?:\,|\|{2})/, Y = "px", ct = "";
+let J = document.documentElement, ut, _t = ["s-left", "s-top", "s-right", "s-bottom"], Qt = { left: 0, top: 1, right: 2, bottom: 3 };
+const W = [];
+var Zt = Pt(
   window,
   "Reflect.defineProperty|Object.defineProperty=>Proxy"
 ).Proxy;
-let q = {}, yt = null;
-Xt(q, "delay", {
+let Q = {}, St = null;
+Zt(Q, "delay", {
   /**
    * 获取延迟时间值
    * @returns {number} 返回当前实例的延迟时间属性值
@@ -298,13 +299,13 @@ Xt(q, "delay", {
     return this._delay;
   },
   set(e) {
-    yt = Gt(() => {
-      d(Y);
+    St = te(() => {
+      d(W);
     }, e), this._delay = e;
   }
 });
-q.delay = 60;
-function Gt(e, t) {
+Q.delay = 60;
+function te(e, t) {
   let i = 0;
   return function() {
     const s = Date.now();
@@ -312,103 +313,169 @@ function Gt(e, t) {
   };
 }
 const H = () => {
-  yt();
+  St();
 };
-function Yt(e) {
-  Y.push(e);
+function ee(e) {
+  Ct(e), W.push(e);
 }
-const E = new ResizeObserver(H);
-E.observe(gt);
-function ut(e, t, i) {
+function Ct(e) {
+  let t = q(W, function(i, s) {
+    if (e == s)
+      return i;
+  });
+  t === void 0 || W.splice(t, 1);
+}
+const L = new ResizeObserver(H);
+L.observe(J);
+function ft(e, t, i) {
   return Math.max(t, Math.min(e, i));
 }
-function vt(e) {
-  e.onresize || (Y.push([vt, null, e]), e.onresize = !0);
-  var t = gt, i = t.clientHeight, s = t.clientWidth, n = A(e.offset) ? 7 : e.offset, r = e.target, a = e.room, l = e.index, h = e.position, _ = e.edge || 7, c = e.arrow || 0, f = e.space || (e.space = []), o = r.getBoundingClientRect(), u = a.offsetHeight, p = a.offsetWidth, T = "3,0,2,1".split(lt), B, y = o.left, g = o.top, $ = Math.max(g, _), S = (o.height == ht ? o.bottom - g : o.height) >> 0, z = (o.width == ht ? o.right - y : o.width) >> 0, N = s - p - n, R = i - u - n, C = y < 0 || y + z / 2 > s, K = g < 0 || g + S > i, W = [
+const dt = [], B = (e) => {
+  if (e)
+    dt.push(e);
+  else
+    return dt.pop();
+}, pt = {};
+var ie = {
+  CENTER: "center",
+  rWidth: /top|bottom/,
+  // 计算方向
+  aLT: ["left", "top"],
+  // 获取计算属性
+  aWH: ["offsetWidth", "offsetHeight"],
+  // 获取配置方向所需
+  rPosition: /(?:(center)|(left|top|right|bottom))/g,
+  css: function(e, t, i, s, r) {
+    r = this.aWH[s], e[this.aLT[s]] = (t[r] - i[r]) / 2 + Y;
+  },
+  trigger: function(e, t, i, s) {
+    var r = this.CENTER;
+    e || (e = r), i || (i = {}), s || (s = {});
+    for (var n, l, o = this.rWidth, a, u = e.match(this.rPosition), h = 0, f = u.length; h < f; h++)
+      a = u[h], a != r ? s[a] = 0 : (l = u[(h + 1) % f], n = +!o.test(l), this.css(s, i, t, n), l == a && this.css(s, i, t, +!n));
+    return s;
+  }
+};
+function kt(e) {
+  e.onresize || (W.push([kt, null, e]), e.onresize = !0);
+  var t = J, i = t.clientHeight, s = t.clientWidth, r = F(e.offset) ? 7 : e.offset, n = e.target, l = e.room, o = e.index, a = e.position, u = e.edge || 7, h = e.arrow || 0, f = e.css, _ = e.space || (e.space = []), c = n.getBoundingClientRect(), m = l.offsetHeight, T = l.offsetWidth;
+  if (/\s+|center/.test(a)) {
+    ie.trigger(a, l, J, f);
+    return;
+  }
+  var R = "3,0,2,1".split(ht), N, g = c.left, w = c.top, k = Math.max(w, u), b = (c.height == ut ? c.bottom - w : c.height) >> 0, A = (c.width == ut ? c.right - g : c.width) >> 0, z = s - T - r, $ = i - m - r, et = g < 0 || g + A / 2 > s, it = w < 0 || w + b > i;
+  if (a == "center")
+    return;
+  var P = [
     /* left: 0 */
-    K ? -1 : y - p,
+    it ? -1 : g - T,
     /* top: 1 */
-    C ? -1 : $ - u,
+    et ? -1 : k - m,
     /* right: 2 */
-    K ? -1 : N - o.right,
+    it ? -1 : z - c.right,
     /* bottom: 3 */
-    C ? -1 : R - o.bottom
+    et ? -1 : $ - c.bottom
   ];
-  h && (it(
-    h.split(lt),
-    function(zt, F, D, Nt) {
-      Nt.push(D[F]);
+  a && (q(
+    a.split(ht),
+    function(Bt, M, D, Wt) {
+      Wt.push(D[M]);
     },
-    Ut,
-    B = []
-  ), T.unshift.apply(T, B)), l = it(
-    T,
-    function(zt, F, D) {
-      if (D[F] > 0)
-        return F;
+    Qt,
+    N = []
+  ), R.unshift.apply(R, N)), o = q(
+    R,
+    function(Bt, M, D) {
+      if (D[M] > 0)
+        return M;
     },
-    W
+    P
   );
-  let L = e.css;
-  var O = 0, P = 0, Q = 0, Z = 0;
-  if (l != null) {
-    var j = l == 0 || l == 2;
-    O = Math.max(
-      n,
-      j ? l == 2 ? o.right + n : W[0] - n : Math.min(
+  var j = 0, U = 0, st = 0, rt = 0;
+  if (o != null) {
+    var I = o == 0 || o == 2;
+    j = Math.max(
+      r,
+      I ? o == 2 ? c.right + r : P[0] - r : Math.min(
         // tLeft,
         /* 显示区域的宽度 */
-        N,
+        z,
         /* 目标对象的 left */
-        y - c
+        g - h
       )
-    ), P = Math.max(
-      n,
+    ), U = Math.max(
+      r,
       /* 打底最小 */
-      j ? Math.min(
+      I ? Math.min(
+        k,
         $,
-        R,
         Math.max(
           /* 交集的偏移量 与 tLeft */
-          $ - (u - S) / 2,
-          n
+          k - (m - b) / 2,
+          r
         )
-      ) : l == 3 ? g + S + c + n : W[1] - n
-    ), j ? Z = Math.max($ - P + (S - c) / 2 - c, c) : Q = Math.max(
+      ) : o == 3 ? w + b + h + r : P[1] - r
+    ), I ? rt = Math.max(k - U + (b - h) / 2 - h, h) : st = Math.max(
       /*  */
       Math.min(
         /* 相对位置差 + 目标宽 和 箭头差的一半 */
-        y - O + (z - c) / 2 - c,
+        g - j + (A - h) / 2 - h,
         /* 目标宽 - 两倍的箭头 */
-        p - 4 * c
+        T - 4 * h
         /* 半径 */
       ),
-      c
-    ), L.left = ut(O, 0, N) + ot, L.top = ut(P, 0, R) + ot, L["--tips-arrow-top"] = Z || at, L["--tips-arrow-left"] = Q || at;
+      h
+    ), f.left = ft(j, 0, z) + Y, f.top = ft(U, 0, $) + Y, f["--tips-arrow-top"] = (b > m ? 0 : rt) || ct, f["--tips-arrow-left"] = st || ct;
   }
-  let tt = a.classList, Tt = ct[l], I = f[0];
-  (A(I) || I != l) && d([
+  let nt = l.classList, Lt = _t[o], V = _[0];
+  (F(V) || V != o) && d([
     [
       /* 移除旧值 */
-      ["remove", tt, ct[I]],
+      ["remove", nt, _t[V]],
       /* 添加新值 */
-      ["add", tt, Tt]
+      ["add", nt, Lt]
     ],
     () => {
-      f.shift(), f.push(l), e.index = l;
+      _.shift(), _.push(o), e.index = o;
     }
   ]);
 }
-const V = "data-tips-scroll", _t = 3, qt = {
+const X = "data-tips-scroll", mt = -1e4, gt = 3, yt = {
+  proxy: function(e) {
+    e && this.$nextTick(this.__2next), this.$emit("update:visible", e);
+  },
+  visible: {
+    handler: function(e) {
+      this.$nextTick(() => {
+        this.__trigger(e);
+      });
+    },
+    immediate: !0
+  },
+  target: {
+    handler(e) {
+      let t = y(
+        [e],
+        xt(
+          "0.?.$el|0.$el|0=>el",
+          y(this.$attrs, "ref-name|trigger-name=>name").name || "+"
+        ),
+        !0
+      ).el;
+      t && (this._event_mark = !1, this._target__ = t, this.__trigger(this.visible));
+    }
+  }
+}, se = {
   name: "Tips",
   components: {
-    Card: w
+    Card: C
   },
   emit: ["update:visible"],
   props: {
     /* 目标对象 */
     target: {
-      type: [HTMLElement, String]
+      type: [String, HTMLElement, Object, Number],
+      default: mt
     },
     /* 是否显示 */
     visible: {
@@ -451,22 +518,10 @@ const V = "data-tips-scroll", _t = 3, qt = {
     },
     delay: {
       type: [String, Number],
-      default: _t
+      default: gt
     }
   },
-  watch: {
-    proxy: function(e) {
-      e && this.$nextTick(this.__2next), this.$emit("update:visible", e);
-    },
-    visible: {
-      handler: function(e) {
-        this.$nextTick(() => {
-          this.__trigger(e);
-        });
-      },
-      immediate: !0
-    }
-  },
+  watch: yt,
   data() {
     return {
       css: {
@@ -474,12 +529,16 @@ const V = "data-tips-scroll", _t = 3, qt = {
       },
       proxy: !1,
       _event_mark: !1,
-      _el__: null,
       _event__: null,
       _timeout__: null,
       _target__: null,
       _arrow__: 0
     };
+  },
+  computed: {
+    isSimply: function() {
+      return this.target === "";
+    }
   },
   methods: {
     __parent(e) {
@@ -501,10 +560,10 @@ const V = "data-tips-scroll", _t = 3, qt = {
       if (e.nodeName == "#comment")
         return;
       let t = this.$set ? Object.assign({}, this.css) : this.css;
-      M(t, this.__css(), !0), vt({
+      E(t, this.__css(), !0), kt({
         onresize: !1,
         /* 监控的目标 */
-        target: this._target__ || (this._target__ = e.parentNode),
+        target: this._target__,
         /* 显示的元素 */
         room: e,
         /* 显示位置 */
@@ -512,12 +571,12 @@ const V = "data-tips-scroll", _t = 3, qt = {
         /* CSS样式集合 */
         css: t,
         /* 偏移量 */
-        offset: A(this.offset) ? void 0 : +this.offset >> 0,
+        offset: F(this.offset) ? void 0 : +this.offset >> 0,
         arrow: this._arrow__
       }), t.opacity = 1, this.css = t;
     },
     __toggle_append(e, t) {
-      if (e.nodeName == "#comment" || this.static || !A(this.target))
+      if (e.nodeName == "#comment" || this.static || this.isSimply)
         return;
       let i = this.before;
       d([
@@ -532,27 +591,27 @@ const V = "data-tips-scroll", _t = 3, qt = {
     __2listener() {
       this.static || /* 监听滚动, 动态添加监测 */
       this.__parent((e, t, i) => {
-        t ? d(e.addEventListener, e, "scroll", H) : (d(E.observe, E, e), (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) && (i = this.__attr(e, V), i || (d(e.addEventListener, e, "scroll", H), this.__attr(e, V, "true"))));
+        t ? d(e.addEventListener, e, "scroll", H) : (d(L.observe, L, e), (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) && (i = this.__attr(e, X), i || (d(e.addEventListener, e, "scroll", H), this.__attr(e, X, "true"))));
       });
     },
     __css() {
       let e = {};
-      return A(this.target) ? this._arrow__ = e["--arrow-size"] = Math.sqrt(
+      return this._arrow__ = e["--arrow-size"] = Math.sqrt(
         2 * Math.pow(
-          Math.min(10, b(this.$attrs, "b|border=>b").b || 3) * 2 + 2,
+          Math.min(10, y(this.$attrs, "b|border=>b").b || 3) * 2 + 2,
           2
         )
-      ) / 2 >> 0 : (this.position + "", this.offset + ""), e;
+      ) / 2 >> 0, e;
     },
     __2next() {
-      A(this.static) || (this.init(), q.delay = +this.delay, Yt(this.__2listener), this.__2listener(), this.__toggle_append(this.$el));
+      F(this.static) || (this.init(), Q.delay = +this.delay, ee(this.__2listener), this.__2listener(), this.__toggle_append(this.$el));
     },
     __debounce(e) {
       clearTimeout(this._timeout__), this._timeout__ = setTimeout(
         () => {
           d(e, this, arguments);
         },
-        this.delay === _t ? 600 : this.delay
+        this.delay === gt ? 600 : this.delay
       );
     },
     /* 显示 */
@@ -573,51 +632,70 @@ const V = "data-tips-scroll", _t = 3, qt = {
     },
     /* 触发事件 */
     __trigger(e) {
-      if (Bt(e)) {
-        if (this._event_mark)
+      if (Ft(e)) {
+        if (this._event_mark || !this._target__)
           return;
-        this._event_mark = !0, this._el__ = d("parentNode", this.$el), this._event__ = {
+        this._event_mark = !0, this._event__ = {
           hover: [
             /* 鼠标进入 */
             ["mouseenter", this.__visible],
             /* 鼠标离开 */
             ["mouseleave", this.__hide]
           ],
-          click: [["click"], ["click", this.__hide, window]]
+          click: [
+            [
+              "click",
+              (t) => {
+                this.$attrs.clear === void 0 || d([B() || []]), this.__toggle(t), B(["__toggle", this, t]);
+              }
+            ],
+            [
+              "click",
+              () => {
+                let t = B();
+                if (t && t[1].$attrs.modal !== void 0) {
+                  B(t);
+                  return;
+                }
+                d([t || []]);
+              },
+              window
+            ]
+          ]
         }[e], this._try("addEventListener");
       } else
         e === 0 ? this.__toggle({}) : this.proxy = e;
     },
     _try(e) {
-      let t = this._el__, i = this._event__;
+      let t = this._target__, i = this._event__;
       if (!i)
         return;
-      X(i) || (i = [i]);
+      O(i) || (i = [i]);
       let s = [];
-      k(i, (n, r) => {
-        s.push([
+      x(i, (r, n) => {
+        let l = 0;
+        n[2] === window && ++l && pt.__tipsmark_ || (l && (pt.__tipsmark_ = !0), s.push([
           e,
-          r[2] || t,
-          r[0],
-          r[1] || this.__toggle
-        ]);
+          n[2] || t,
+          n[0],
+          n[1] || this.__toggle
+        ]));
       }), d(s);
     }
   },
   mounted() {
-    A(this.target) || this.__trigger(this.visible);
+    yt.target.handler.call(this, this.target), (mt === this.target || this.isSimply) && (this._target__ = d("parentNode", this.$el));
   },
   unmounted() {
-    this._try("removeEventListener"), this.__toggle_append(this.$el, !0), this.__parent(function(e, t) {
-      d(e.removeEventListener, e, "scroll", H), d(e.removeAttribute, e, V, void 0), t || d(E.unobserve, E, e);
+    this._try("removeEventListener"), this.__toggle_append(this.$el, !0), Ct(this.__2listener), this.__parent(function(e, t) {
+      d(e.removeEventListener, e, "scroll", H), d(e.removeAttribute, e, X, void 0), t || d(L.unobserve, L, e);
     });
   }
 };
-var Jt = function() {
+var re = function() {
   var t = this, i = t._self._c;
   return t.proxy ? i("Card", t._b({ staticClass: "tips", class: {
-    "tips-fly": t.before,
-    ["tips-" + t.position]: t.target !== void 0
+    "tips-fly": t.before
   }, style: t.static ? null : t.css, attrs: { static: t.static ? "" : null, mix: "c|color=>--tips-color,bg|background=>--tips-background-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>--tips-border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height" }, on: { click: function(s) {
     s.stopPropagation();
   } } }, "Card", t.$attrs, !1), [t._t("default", function() {
@@ -627,23 +705,23 @@ var Jt = function() {
       return [t._v(t._s(t.content))];
     })];
   })], 2) : t._e();
-}, Kt = [], Qt = /* @__PURE__ */ x(
-  qt,
-  Jt,
-  Kt,
+}, ne = [], le = /* @__PURE__ */ S(
+  se,
+  re,
+  ne,
   !1,
   null,
-  "c7bcf13a",
+  "9bf62634",
   null,
   null
 );
-const J = Qt.exports;
-const Zt = {
+const Z = le.exports;
+const ae = {
   name: "Confirm",
   components: {
-    Card: w,
-    Tips: J,
-    Boom: G
+    Card: C,
+    Tips: Z,
+    Boom: K
   },
   inheritAttrs: !1,
   emits: ["submit-click", "cancel-click"],
@@ -661,10 +739,12 @@ const Zt = {
       default: ""
     },
     cancelAttrs: {
-      type: Object
+      type: Object,
+      default: () => ({})
     },
     submitAttrs: {
-      type: Object
+      type: Object,
+      default: () => ({})
     },
     cancel: {
       type: String,
@@ -684,24 +764,25 @@ const Zt = {
   mounted() {
     this.init();
   },
-  updated() {
-    this.init();
-  },
+  // updated() {
+  //   this.init();
+  // },
   methods: {
     init() {
       this.proxy = this.visible;
     },
     emitcancel(e) {
-      this.proxy = !1, this.$emit("cancel-click", e);
+      this.close(), this.$emit("cancel-click", e);
+    },
+    close() {
+      p([B() || []]), this.proxy = !1;
     },
     emitsubmit(e) {
-      this.$emit("submit-click", () => {
-        this.proxy = !1;
-      });
+      this.$emit("submit-click", this.close);
     }
   }
 };
-var te = function() {
+var oe = function() {
   var t = this, i = t._self._c;
   return i("span", [t._t("default", function() {
     return [t._t("reference")];
@@ -714,80 +795,90 @@ var te = function() {
       return [t._v(t._s(t.content))];
     }), t._t("bottom", function() {
       return [i("Card", { staticClass: "s-confirm-booms", attrs: { flex: "", space: "" } }, [i("span"), i("span", { attrs: { flex: "" } }, [t._t("boom", function() {
-        return [i("Boom", t._b({ attrs: { cancel: "" }, on: { click: function(s) {
-          return s.stopPropagation(), t.emitcancel.apply(null, arguments);
-        } } }, "Boom", t.cancelAttrs, !1), [t._v(" " + t._s(t.cancel) + " ")]), i("Boom", t._b({ staticClass: "simply", attrs: { submit: "" }, on: { click: function(s) {
-          return s.stopPropagation(), t.emitsubmit.apply(null, arguments);
-        } } }, "Boom", t.submitAttrs, !1), [t._v(" " + t._s(t.submit) + " ")])];
+        return [t._t("cancel", function() {
+          return [i("Boom", t._b({ attrs: { cancel: "" }, on: { click: function(s) {
+            return s.stopPropagation(), t.emitcancel.apply(null, arguments);
+          } } }, "Boom", t.cancelAttrs, !1), [t._v(" " + t._s(t.cancelAttrs.text || t.cancel) + " ")])];
+        }, null, { click: t.emitcancel, text: t.cancel }), t._t("submit", function() {
+          return [i("Boom", t._b({ staticClass: "simply", attrs: { submit: "" }, on: { click: function(s) {
+            return s.stopPropagation(), t.emitsubmit.apply(null, arguments);
+          } } }, "Boom", t.submitAttrs, !1), [t._v(" " + t._s(t.submitAttrs.text || t.submit) + " ")])];
+        }, null, {
+          click: t.close,
+          text: t.submit
+        })];
+      }, null, {
+        close: t.close,
+        submit: t.submit
       })], 2)])];
     })];
   }, proxy: !0 }], null, !0) })], 1)], 2);
-}, ee = [], ie = /* @__PURE__ */ x(
-  Zt,
-  te,
-  ee,
-  !1,
-  null,
-  "e758afa6",
-  null,
-  null
-);
-const bt = ie.exports;
-const se = {
-  name: "Div",
-  components: {
-    Card: w
-  }
-};
-var ne = function() {
-  var t = this, i = t._self._c;
-  return i("Card", { staticClass: "s-div", scopedSlots: t._u([t._l(t.$slots, function(s, n) {
-    return { key: n, fn: function(r) {
-      return [t._t(n, null, null, r)];
-    } };
-  })], null, !0) });
-}, re = [], le = /* @__PURE__ */ x(
-  se,
-  ne,
-  re,
-  !1,
-  null,
-  "7c3f454d",
-  null,
-  null
-);
-const xt = le.exports;
-const oe = {
-  name: "Flex",
-  components: {
-    Card: w
-  }
-};
-var ae = function() {
-  var t = this, i = t._self._c;
-  return i("Card", { staticClass: "s-flex", attrs: { flex: "" }, scopedSlots: t._u([t._l(t.$slots, function(s, n) {
-    return { key: n, fn: function(r) {
-      return [t._t(n, null, null, r)];
-    } };
-  })], null, !0) });
-}, he = [], ce = /* @__PURE__ */ x(
-  oe,
+}, he = [], ce = /* @__PURE__ */ S(
   ae,
+  oe,
   he,
   !1,
   null,
-  "960b1c91",
+  "44a33905",
   null,
   null
 );
-const wt = ce.exports;
-let dt = (e) => e == null || e == null, ue = (...e) => {
+const Tt = ce.exports;
+const ue = {
+  name: "Div",
+  components: {
+    Card: C
+  }
+};
+var _e = function() {
+  var t = this, i = t._self._c;
+  return i("Card", t._b({ staticClass: "s-div", attrs: { height: "auto" }, scopedSlots: t._u([t._l(t.$slots, function(s, r) {
+    return { key: r, fn: function(n) {
+      return [t._t(r, null, null, n)];
+    } };
+  })], null, !0) }, "Card", t.$attrs, !1));
+}, fe = [], de = /* @__PURE__ */ S(
+  ue,
+  _e,
+  fe,
+  !1,
+  null,
+  "a7a3e455",
+  null,
+  null
+);
+const Rt = de.exports;
+const pe = {
+  name: "Flex",
+  components: {
+    Card: C
+  }
+};
+var me = function() {
+  var t = this, i = t._self._c;
+  return i("Card", t._b({ staticClass: "s-flex", attrs: { flex: "", height: "auto" }, scopedSlots: t._u([t._l(t.$slots, function(s, r) {
+    return { key: r, fn: function(n) {
+      return [t._t(r, null, null, n)];
+    } };
+  })], null, !0) }, "Card", t.$attrs, !1));
+}, ge = [], ye = /* @__PURE__ */ S(
+  pe,
+  me,
+  ge,
+  !1,
+  null,
+  "e24d1dff",
+  null,
+  null
+);
+const zt = ye.exports;
+let bt = (e) => e == null || e == null, be = (...e) => {
   console.info("::::FLYWEIGHT", ...e);
 };
-const _e = {
+const ve = {
   name: "Flyweight",
   components: {
-    Card: w
+    Card: C
   },
   props: {
     flys: {
@@ -879,7 +970,7 @@ const _e = {
     },
     style() {
       var e = this.w, t = this.h, i = this.Size, s = {};
-      return M(
+      return E(
         s,
         {
           "--width": v(this.realW),
@@ -948,17 +1039,17 @@ const _e = {
         this.rebuild(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (e) {
-      ue(e);
+      be(e);
     }
-    this.scrollx = m("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
+    this.scrollx = p("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
   },
   methods: {
     exec: v,
     trigger(e, t) {
-      X(e) || (e = e && t ? [[e, t]] : []), e.length && this.lazyrun(() => {
-        k(e, (i, s) => {
-          this.$emit(s[0], dt(s[1]) ? !0 : s[1]);
+      O(e) || (e = e && t ? [[e, t]] : []), e.length && this.lazyrun(() => {
+        x(e, (i, s) => {
+          this.$emit(s[0], bt(s[1]) ? !0 : s[1]);
         });
       });
     },
@@ -967,21 +1058,21 @@ const _e = {
         return e && this.task.push(e), !0;
     },
     setview(e) {
-      m(
+      p(
         [
           this.cheackflys,
           (t) => {
             t = t || {};
-            let i = t.index || k(
+            let i = t.index || x(
               this.flys,
-              (s, n, r, a) => {
-                if (n[r] == a)
+              (s, r, n, l) => {
+                if (r[n] == l)
                   return s;
               },
               t.picker,
               t.id
             );
-            dt(i) || this.setindex(i);
+            bt(i) || this.setindex(i);
           }
         ],
         this,
@@ -989,15 +1080,15 @@ const _e = {
       );
     },
     setindex(e) {
-      m(
+      p(
         [
           this.cheackflys,
           ({ index: t }) => {
             this.selectIndex = t, this.$nextTick(() => {
               if (t < 0)
                 return;
-              let i = t / this.column >> 0, s = this.expand, n = this.flyweight[this.direction] / s >> 0;
-              i > n && i < n + this.row - 2 || (this.flyweight[this.direction] = i * s - s / 2, this.scroll());
+              let i = t / this.column >> 0, s = this.expand, r = this.flyweight[this.direction] / s >> 0;
+              i > r && i < r + this.row - 2 || (this.flyweight[this.direction] = i * s - s / 2, this.scroll());
             });
           }
         ],
@@ -1007,11 +1098,11 @@ const _e = {
     },
     lazyrun(e, t) {
       clearTimeout(this.time), this.time = setTimeout(() => {
-        m(e);
+        p(e);
       }, t || this.lazy);
     },
     run(e) {
-      let t = [], i = m(this.direction, e.target), s = {
+      let t = [], i = p(this.direction, e.target), s = {
         // ...this
         offset: i,
         top: i,
@@ -1020,25 +1111,25 @@ const _e = {
         /* 显示区域第一行的索引 */
         index: i / this.expand >> 0
       };
-      M(s, this.space), e.from || (!this.line || (this.__top = i), t.push(["onscroll", s]));
-      let n = !1;
-      this.end = !1, this.__index = s.index, k(
+      E(s, this.space), e.from || (!this.line || (this.__top = i), t.push(["onscroll", s]));
+      let r = !1;
+      this.end = !1, this.__index = s.index, x(
         this.flyweights,
-        (r, a, l, h, _, c, f, o, u) => {
-          if (l = r / _ >> 0, o = l + h * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(l < c % h) + /* 计算轮数, row的倍数 */
-          (c / h >> 0)), u = o * _ + r % _, u >= this.count) {
-            n || (this.end = !0, t.push(["onend"]), n = !0);
+        (n, l, o, a, u, h, f, _, c) => {
+          if (o = n / u >> 0, _ = o + a * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
+          (+(o < h % a) + /* 计算轮数, row的倍数 */
+          (h / a >> 0)), c = _ * u + n % u, c >= this.count) {
+            r || (this.end = !0, t.push(["onend"]), r = !0);
             return;
           }
-          a.index = o, a.i = u, a.data = this.flys[u];
-          let p = [
+          l.index = _, l.i = c, l.data = this.flys[c];
+          let m = [
             /* top */
-            o * this.expand + a.x,
+            _ * this.expand + l.x,
             /* left */
-            a.space
+            l.space
           ];
-          f && p.reverse(), a.top = p[0], a.left = p[1];
+          f && m.reverse(), l.top = m[0], l.left = m[1];
         },
         null,
         this.row,
@@ -1056,50 +1147,50 @@ const _e = {
       if (!e)
         return t.length = e;
       this.count = e;
-      let i = this.scrollx, s = this.flyweight, n = b(s, this.BoxRule);
+      let i = this.scrollx, s = this.flyweight, r = y(s, this.BoxRule);
       this.$nextTick(() => {
-        let r = /true/.test(this.auto), [a, l] = this.offset, h = n.width, _ = n.height, c = (nt(this.width, h) || h) + a, f = nt(this.height, _) + l, o = [h / c >> 0 || 1, _ / f >> 0 || 1];
-        i && o.reverse();
-        let [u, p] = o, T = this.padding, B, y = 0, g, $;
-        i ? (g = c, c -= a, $ = (C) => (
+        let n = /true/.test(this.auto), [l, o] = this.offset, a = r.width, u = r.height, h = (ot(this.width, a) || a) + l, f = ot(this.height, u) + o, _ = [a / h >> 0 || 1, u / f >> 0 || 1];
+        i && _.reverse();
+        let [c, m] = _, T = this.padding, R, N = 0, g, w;
+        i ? (g = h, h -= l, w = ($) => (
           /* 计算top偏移量 */
-          C * (f - l) + (C + 1) * l
-        )) : (r ? (c = (h - a * (u + 2 * T - 1)) / u, B = !T * a, y = T * a) : (B = 0, y = h < c ? 0 : (h % c + a * u) / (u + 1) >> 0, c -= a), $ = (C) => C * (c + B) + (C + 1) * y, g = f), this.row = p + 2, this.column = u, this.realH = f - l, this.realW = c, this.expand = g, this.Size = Math.ceil(e / u) * g;
-        let S = Math.min(e, u * this.row), z = S - 1, N;
-        for (; S-- > 0; )
-          N = z - S, this.$set(t, N, {
-            x: a,
-            y: l,
-            width: c,
-            height: f - l,
-            space: $(N % u),
+          $ * (f - o) + ($ + 1) * o
+        )) : (n ? (h = (a - l * (c + 2 * T - 1)) / c, R = !T * l, N = T * l) : (R = 0, N = a < h ? 0 : (a % h + l * c) / (c + 1) >> 0, h -= l), w = ($) => $ * (h + R) + ($ + 1) * N, g = f), this.row = m + 2, this.column = c, this.realH = f - o, this.realW = h, this.expand = g, this.Size = Math.ceil(e / c) * g;
+        let k = Math.min(e, c * this.row), b = k - 1, A;
+        for (; k-- > 0; )
+          A = b - k, this.$set(t, A, {
+            x: l,
+            y: o,
+            width: h,
+            height: f - o,
+            space: w(A % c),
             data: {}
           });
-        t.length = z + 1;
-        let R = [];
-        _ / g > z / u && R.push(["onend"]), this.$nextTick(() => {
+        t.length = b + 1;
+        let z = [];
+        u / g > b / c && z.push(["onend"]), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
-        }), R.push([
+        }), z.push([
           "update:space",
           {
-            row: (z / u >> 0) + 1,
-            column: u,
+            row: (b / c >> 0) + 1,
+            column: c,
             showrow: this.row,
             showcolumn: this.column
           }
-        ]), this.trigger(R);
+        ]), this.trigger(z);
       });
     }
   }
 };
-var de = function() {
+var xe = function() {
   var t = this, i = t._self._c;
   return i("div", { ref: "flyweight", staticClass: "flyweight", class: {
     //   'flyweight-active': actice,
     "flyweight-empty": t.Size === 0,
     line: t.line && t.__top !== 0
-  }, style: t.style, on: { scroll: t.scroll } }, [t._t("title", null, null, t.bridge), i("div", { staticClass: "flyweight-all" }, t._l(t.flyweights, function(s, n) {
-    return i("div", { key: n, style: {
+  }, style: t.style, on: { scroll: t.scroll } }, [t._t("title", null, null, t.bridge), i("div", { staticClass: "flyweight-all" }, t._l(t.flyweights, function(s, r) {
+    return i("div", { key: r, style: {
       top: s.top + "px",
       left: s.left + "px"
     } }, [t._t("default", null, null, s)], 2);
@@ -1108,118 +1199,17 @@ var de = function() {
       return [i("Card", { attrs: { height: "100% - 10px", width: "100%", center: "", nothing: "", vcenter: "" } }, [t._v(" 空~ ")])];
     })];
   }, null, t.bridge)], 2);
-}, fe = [], pe = /* @__PURE__ */ x(
-  _e,
-  de,
-  fe,
+}, we = [], $e = /* @__PURE__ */ S(
+  ve,
+  xe,
+  we,
   !1,
   null,
   "906493ea",
   null,
   null
 );
-const $t = pe.exports;
-const me = {
-  inheritAttrs: !1,
-  name: "Input",
-  components: { Card: w },
-  emits: ["update:modelValue", "update:value", "change", "focus"],
-  data: function() {
-    return {
-      id: At("input-{1000-9999}-{1000-9999}"),
-      inputAttrs: {},
-      trigger: "modelValue",
-      attrs: {},
-      left: null,
-      right: null,
-      rm: null
-    };
-  },
-  computed: {
-    _value() {
-      return this.$attrs[this.trigger] || "";
-    },
-    limit() {
-      return this.$attrs.maxlength - this._value.length >> 0;
-    }
-  },
-  mounted() {
-    b(this.$attrs, "value|modelValue=>value", (e, t) => {
-      this.trigger = e, this.__emit(t);
-    }), k(["left", "right", "rm"], (e, t, i) => {
-      i = m([
-        ["$el", this.$refs[t]],
-        [t, this.$refs]
-      ]), this[t] = m("offsetWidth", i) || null;
-    }), this.$watch("$attrs." + this.trigger, {
-      immediate: !0,
-      handler(e) {
-        this.$nextTick(() => {
-          this.$refs.input.value = e || "";
-        });
-      }
-    }), this.attrs = b(
-      this.$attrs,
-      "slow,static,fast,hide-limit|limit-hide=>hide-limit,maxlength,style,disabled,tips-hide|hide-tips=>tips-hide,transparent,br,radius,half" + this.mix
-    ), this.inputAttrs = b(this.$attrs, "maxlength,type,disabled,readonly");
-  },
-  props: {
-    placeholder: {
-      type: String,
-      default: "请输入内容"
-    },
-    tips: {
-      type: String,
-      default: ""
-    },
-    mix: {
-      type: String,
-      default: ""
-    }
-  },
-  methods: {
-    close() {
-      this.$nextTick(() => {
-        this.__emit("");
-      });
-    },
-    __change(e) {
-      this.$emit("change", e.target.value);
-    },
-    __input(e) {
-      this.__emit(e.target.value);
-    },
-    __emit(e) {
-      this.$emit("update:" + this.trigger, e);
-    }
-  }
-};
-var ge = function() {
-  var t = this, i = t._self._c;
-  return i("Card", t._b({ staticClass: "s-wrap", class: t.$attrs.class, style: { "--text-left": t.left, "--text-right": t.right, "--text-close": t.rm }, attrs: { use: "" } }, "Card", t.attrs, !1), [i("input", t._b({ ref: "input", staticClass: "s-wrap-input", attrs: { id: t.id, placeholder: "", autocomplete: "off" }, on: { focus: function(s) {
-    return t.$emit("focus", s);
-  }, change: t.__change, input: t.__input } }, "input", t.inputAttrs, !1)), i("label", { staticClass: "s-wrap-label", attrs: { for: t.id } }, [t._t("default", function() {
-    return [i("span", { staticClass: "placeholder", attrs: { flex: "" } }, [t._t("placeholder", function() {
-      return [t._t("icon", null, { type: "placeholder" }), t._v(" " + t._s(t.placeholder) + " ")];
-    })], 2), i("span", { staticClass: "s-wrap-tips", attrs: { flex: "" } }, [t._t("tips", function() {
-      return [t._t("icon", null, { type: "tips" }), t._v(" " + t._s(t.tips || t.placeholder) + " ")];
-    }, { limit: t.limit })], 2)];
-  })], 2), i("Card", { ref: "right", staticClass: "s-wrap-right", attrs: { nothing: "", width: "auto", bg: "transparent", vc: "" } }, [t._t("right", function() {
-    return [t._t("limit", function() {
-      return [t.$attrs.maxlength ? i("span", { staticClass: "s-wrap-limit" }, [t._v(t._s(t.limit))]) : t._e()];
-    }, { limit: t.limit }), i("span", { ref: "rm", staticClass: "s-wrap-close", on: { click: t.close } }, [t._v("×")])];
-  })], 2), i("Card", { ref: "left", staticClass: "s-wrap-left", attrs: { nothing: "", width: "auto", bg: "transparent", vc: "", center: "" } }, [t._t("icon")], 2)], 1);
-}, ye = [], ve = /* @__PURE__ */ x(
-  me,
-  ge,
-  ye,
-  !1,
-  null,
-  "781b977b",
-  null,
-  null
-);
-const St = ve.exports, be = {
+const Nt = $e.exports, Se = {
   name: "Stream",
   computed: {
     component() {
@@ -1227,7 +1217,10 @@ const St = ve.exports, be = {
     },
     column() {
       let { columns: e, T: t } = this, i = e || t;
-      return ft(i) ? [] : X(i) ? i : [i];
+      return vt(i) ? [] : O(i) ? i : [i];
+    },
+    tag() {
+      return this.is || this.$attrs.type;
     }
   },
   data() {
@@ -1241,9 +1234,8 @@ const St = ve.exports, be = {
       type: String,
       default: "slot"
     },
-    type: {
-      type: String,
-      default: "div"
+    is: {
+      type: String
     },
     columns: {
       type: [Object, Array],
@@ -1255,12 +1247,15 @@ const St = ve.exports, be = {
     }
   },
   mounted() {
-    b(
+    y(
       this.$refs,
       "component._.provides|component=>component",
       (e, t, i, s) => {
-        for (let n in t)
-          /^\$/.test(n) && M(this.Ref, t[n]);
+        if (p("nodeType", t) === 1)
+          this.Ref = t;
+        else
+          for (let r in t)
+            /^\$/.test(r) && E(this.Ref, t[r]);
       }
     );
   },
@@ -1271,39 +1266,195 @@ const St = ve.exports, be = {
     }
   }
 };
-var xe = function() {
+var Ce = function() {
   var t = this, i = t._self._c;
-  return i(t.type, t._b({ ref: "component", tag: "component" }, "component", t.$attrs, !1), [t._l(t.column, function(s) {
+  return i(t.tag, t._b({ ref: "component", tag: "component" }, "component", t.$attrs, !1), [t._l(t.column, function(s) {
     return t._t(t.__trigger(s), null, null, s);
   })], 2);
-}, we = [], $e = /* @__PURE__ */ x(
-  be,
-  xe,
-  we,
+}, ke = [], Te = /* @__PURE__ */ S(
+  Se,
+  Ce,
+  ke,
   !1,
   null,
   null,
   null,
   null
 );
-const Ct = $e.exports, Se = {}, kt = [];
-kt.push(G, w, bt, xt, wt, $t, St, Ct, J);
-const ze = { Boom: G, Card: w, Confirm: bt, Div: xt, Flex: wt, Flyweight: $t, Input: St, Stream: Ct, Tips: J };
-Se.install = function(e, t = {}) {
-  kt.forEach((i) => {
-    e.component(i.name, i), e.component("S" + i.name, i), e.component(i.name + "S", i);
+const tt = Te.exports;
+let Re = "slow,static,fast,hide-limit|limit-hide=>hide-limit,maxlength,style,disabled,tips-hide|hide-tips=>tips-hide,transparent,br,radius,half,auto,";
+const ze = {
+  inheritAttrs: !1,
+  name: "Input",
+  global: !1,
+  components: { Card: C, Stream: tt },
+  emits: ["update:modelValue", "update:value", "update:state", "change", "focus"],
+  data: function() {
+    return {
+      id: xt("input-{1000-9999}-{1000-9999}"),
+      inputAttrs: {},
+      trigger: "modelValue",
+      attrs: {},
+      left: null,
+      right: null,
+      rm: null,
+      completed: null,
+      error: "",
+      RULE: []
+    };
+  },
+  computed: {
+    _value() {
+      return this.$attrs[this.trigger] || "";
+    },
+    limit() {
+      return this.$attrs.maxlength - this._value.length >> 0;
+    }
+  },
+  mounted() {
+    y(this.$attrs, "value|modelValue=>value", (e, t) => {
+      this.trigger = e, this.__emit(t);
+    }), this.$watch("$attrs." + this.trigger, {
+      immediate: !0,
+      handler(e) {
+        this.$nextTick(() => {
+          p([
+            ["Ref", this.$refs.input],
+            ["input", this.$refs],
+            [0, [{ value: e }]]
+          ]).value = e || "";
+        });
+      }
+    }), x(["left", "right", "rm"], (e, t, i) => {
+      i = p([
+        ["$el", this.$refs[t] || ""],
+        [t, this.$refs]
+      ]), this[t] = p("offsetWidth", i || "") || null;
+    }), this.attrs = y(this.$attrs, Re + this.mix), x(
+      this.$attrs,
+      (e, t, i) => {
+        Ot(t) && (this.inputAttrs[e] = t), e in i && this.$watch(
+          "$attrs." + e,
+          (s) => {
+            this.inputAttrs[e] = s;
+          },
+          { immediate: !0 }
+        );
+      },
+      Ht("maxlength,type,disabled,readonly")
+    ), this.$nextTick(() => {
+      this.completed = "";
+    }), this.storage();
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: "请输入内容"
+    },
+    tips: {
+      type: String,
+      default: ""
+    },
+    mix: {
+      type: String,
+      default: ""
+    },
+    rule: {
+      type: [Array, Object],
+      default: () => []
+    }
+  },
+  watch: {
+    error(e) {
+      this.$emit("update:state", !!e);
+    }
+  },
+  methods: {
+    storage() {
+      let e = this.rule;
+      O(e) || (e = [e]), x(e, (t, i) => {
+        this.RULE.push([this.__trigger, this, i]);
+      });
+    },
+    /* 
+    { required: true, message: '必填' },
+    { min: 3, max: 20, message: '3~20字符' },
+    { pattern: /^[a-zA-Z0-9_]+$/, message: '只能字母数字下划线' }
+    */
+    __trigger(e, t, i, s) {
+      if (!(!e.required && e.trigger && t !== e.trigger))
+        return e.pattern instanceof RegExp && !e.pattern.test(i) && (s = !0), e.min && e < e.min && (s = !0), e.max && e > e.max && (s = !0), e.required && !i && (s = !0), this.error = s ? e.message : void 0;
+    },
+    close() {
+      this.$nextTick(() => {
+        this.__emit("");
+      });
+    },
+    __change(e) {
+      p(this.RULE, null, "change", e.target.value), this.$emit("change", e.target.value);
+    },
+    __blur(e) {
+      p(this.RULE, null, "blur", e.target.value), this.__emit(e.target.value);
+    },
+    __input(e) {
+      p(this.RULE, null, "input", e.target.value), this.__emit(e.target.value);
+    },
+    __emit(e) {
+      this.$emit("update:" + this.trigger, e);
+    }
+  }
+};
+var Ne = function() {
+  var t = this, i = t._self._c;
+  return i("Card", t._b({ staticClass: "s-wrap", class: {
+    [t.$attrs.class || ""]: !0,
+    error: t.error
+  }, style: { "--text-left": t.left, "--text-right": t.right, "--text-close": t.rm }, attrs: { "s-completed": t.completed, use: "" } }, "Card", t.attrs, !1), [i(t.$attrs.type === "textarea" ? "textarea" : "input", t._b({ ref: "input", tag: "Stream", staticClass: "s-wrap-input", attrs: { id: t.id, placeholder: "", autocomplete: "off", type: t.$attrs.type }, on: { focus: function(s) {
+    return t.$emit("focus", s);
+  }, change: t.__change, input: t.__input, blur: t.__blur } }, "Stream", t.inputAttrs, !1)), i("label", { staticClass: "s-wrap-label", attrs: { for: t.id } }, [t._t("default", function() {
+    return [i("span", { staticClass: "placeholder", attrs: { flex: "" } }, [t._t("placeholder", function() {
+      return [t._t("icon", null, { type: "placeholder" }), t._v(" " + t._s(t.placeholder) + " ")];
+    })], 2), i("span", { staticClass: "s-wrap-tips", attrs: { flex: "" } }, [t._t("tips", function() {
+      return [t._t("icon", null, { type: "tips" }), t._v(" " + t._s(t.error || t.tips || t.placeholder) + " ")];
+    }, { limit: t.limit })], 2)];
+  })], 2), i("Card", { ref: "right", staticClass: "s-wrap-right", attrs: { nothing: "", width: "auto", bg: "transparent", vc: "" } }, [t._t("right", function() {
+    return [t._t("limit", function() {
+      return [t.$attrs.maxlength ? i("span", { staticClass: "s-wrap-limit" }, [t._v(t._s(t.limit))]) : t._e()];
+    }, { limit: t.limit }), i("span", { ref: "rm", staticClass: "s-wrap-close", on: { click: t.close } }, [t._v("×")])];
+  })], 2), i("Card", { ref: "left", staticClass: "s-wrap-left", attrs: { nothing: "", width: "auto", bg: "transparent", vc: "", center: "" } }, [t._t("left", function() {
+    return [t._t("icon")];
+  })], 2), i("Card", { staticClass: "input-error", attrs: { nothing: "", height: "auto" } }, [t._t("error", function() {
+    return [t._v(t._s(t.error))];
+  })], 2)], 1);
+}, Ae = [], Ee = /* @__PURE__ */ S(
+  ze,
+  Ne,
+  Ae,
+  !1,
+  null,
+  "aa614f9b",
+  null,
+  null
+);
+const At = Ee.exports, Le = {}, Et = [];
+Et.push(K, C, Tt, Rt, zt, Nt, At, tt, Z);
+const He = { Boom: K, Card: C, Confirm: Tt, Div: Rt, Flex: zt, Flyweight: Nt, Input: At, Stream: tt, Tips: Z };
+Le.install = function(e, t = {}) {
+  Et.forEach((i) => {
+    let { global: s, name: r } = i;
+    s === !1 || e.component(r, i), e.component("S" + r, i);
   });
 };
 export {
-  G as Boom,
-  w as Card,
-  bt as Confirm,
-  xt as Div,
-  wt as Flex,
-  $t as Flyweight,
-  St as Input,
-  Ct as Stream,
-  J as Tips,
-  ze as components,
-  Se as default
+  K as Boom,
+  C as Card,
+  Tt as Confirm,
+  Rt as Div,
+  zt as Flex,
+  Nt as Flyweight,
+  At as Input,
+  tt as Stream,
+  Z as Tips,
+  He as components,
+  Le as default
 };

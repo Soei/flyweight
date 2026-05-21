@@ -1,18 +1,19 @@
 {
   "name": "@soei/flyweight",
   "private": false,
-  "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight, Card, Stream, Tips组件",
-  "version": "0.5.14",
+  "description": "Vue组件, 列表de享元模式~减少DOM节点 flyweight, Card, Stream, Tips, Input, Boom, Confirm,等组件",
+  "version": "0.5.15",
   "type": "module",
-  "main": "Flyweight.cjs",
-  "module": "Flyweight.js",
+  "main": "index.cjs",
+  "module": "index.js",
+  "types": "./index.d.ts",
   "files": [
     "README.md",
     "LICENSE",
     "vue2/*",
-    "Flyweight.cjs",
-    "Flyweight.js",
-    "style.css"
+    "index.cjs",
+    "index.js",
+    "style.css",
   ],
   "homepage": "https://soei.github.io/demo/flyweight",
   "scripts": {

@@ -40,9 +40,9 @@ function C(e, t, i, s, r, n, l, a) {
   } : r), h)
     if (o.functional) {
       o._injectStyles = h;
-      var u = o.render;
-      o.render = function(c, p) {
-        return h.call(p), u(c, p);
+      var c = o.render;
+      o.render = function(u, p) {
+        return h.call(p), c(u, p);
       };
     } else {
       var f = o.beforeCreate;
@@ -263,7 +263,7 @@ const Jt = {
 };
 var Kt = function() {
   var t = this, i = t._self._c;
-  return i("Card", t._b({ staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "", inline: "" } }, "Card", t.$attrs, !1), [i("button", { attrs: { disabled: t.$attrs.disabled, center: "", vc: "" }, on: { click: function(s) {
+  return i("Card", t._b({ staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "", "inline-block": "" } }, "Card", t.$attrs, !1), [i("button", { attrs: { disabled: t.$attrs.disabled, center: "", vc: "" }, on: { click: function(s) {
     return t.$emit("click", s);
   } } }, [t._t("inner", function() {
     return [i("span", [t._t("default", function() {
@@ -278,11 +278,11 @@ var Kt = function() {
   Qt,
   !1,
   null,
-  "5d1351d8",
+  "30c6130b",
   null,
   null
 );
-const K = Zt.exports, ut = /(?:\,|\|{2})/, Y = "px", ct = "";
+const K = Zt.exports, ct = /(?:\,|\|{2})/, Y = "px", ut = "";
 let J = document.documentElement, ht, _t = ["s-left", "s-top", "s-right", "s-bottom"], te = { left: 0, top: 1, right: 2, bottom: 3 };
 const W = [];
 var ee = It(
@@ -351,30 +351,30 @@ var se = {
   trigger: function(e, t, i, s) {
     var r = this.CENTER;
     e || (e = r), i || (i = {}), s || (s = {});
-    for (var n, l, a = this.rWidth, o, h = e.match(this.rPosition), u = 0, f = h.length; u < f; u++)
-      o = h[u], o != r ? s[o] = 0 : (l = h[(u + 1) % f], n = +!a.test(l), this.css(s, i, t, n), l == o && this.css(s, i, t, +!n));
+    for (var n, l, a = this.rWidth, o, h = e.match(this.rPosition), c = 0, f = h.length; c < f; c++)
+      o = h[c], o != r ? s[o] = 0 : (l = h[(c + 1) % f], n = +!a.test(l), this.css(s, i, t, n), l == o && this.css(s, i, t, +!n));
     return s;
   }
 };
 function Rt(e) {
   e.onresize || (W.push([Rt, null, e]), e.onresize = !0);
-  var t = J, i = t.clientHeight, s = t.clientWidth, r = F(e.offset) ? 7 : e.offset, n = e.target, l = e.room, a = e.index, o = e.position, h = e.edge || 7, u = e.arrow || 0, f = e.css, _ = e.space || (e.space = []), c = n.getBoundingClientRect(), p = l.offsetHeight, $ = l.offsetWidth;
+  var t = J, i = t.clientHeight, s = t.clientWidth, r = F(e.offset) ? 7 : e.offset, n = e.target, l = e.room, a = e.index, o = e.position, h = e.edge || 7, c = e.arrow || 0, f = e.css, _ = e.space || (e.space = []), u = n.getBoundingClientRect(), p = l.offsetHeight, $ = l.offsetWidth;
   if (/\s+|center/.test(o)) {
     se.trigger(o, l, J, f);
     return;
   }
-  var R = "3,0,2,1".split(ut), z, g = c.left, w = c.top, T = Math.max(w, h), v = (c.height == ht ? c.bottom - w : c.height) >> 0, A = (c.width == ht ? c.right - g : c.width) >> 0, N = s - $ - r, S = i - p - r, et = g < 0 || g + A / 2 > s, it = w < 0 || w + v > i, P = [
+  var R = "3,0,2,1".split(ct), z, g = u.left, w = u.top, T = Math.max(w, h), v = (u.height == ht ? u.bottom - w : u.height) >> 0, A = (u.width == ht ? u.right - g : u.width) >> 0, N = s - $ - r, S = i - p - r, et = g < 0 || g + A / 2 > s, it = w < 0 || w + v > i, P = [
     /* left: 0 */
     it ? -1 : g - $,
     /* top: 1 */
     et ? -1 : T - p,
     /* right: 2 */
-    it ? -1 : N - c.right,
+    it ? -1 : N - u.right,
     /* bottom: 3 */
-    et ? -1 : S - c.bottom
+    et ? -1 : S - u.bottom
   ];
   o && (q(
-    o.split(ut),
+    o.split(ct),
     function(Mt, M, D, Ht) {
       Ht.push(D[M]);
     },
@@ -393,12 +393,12 @@ function Rt(e) {
     var U = a == 0 || a == 2;
     j = Math.max(
       r,
-      U ? a == 2 ? c.right + r : P[0] - r : Math.min(
+      U ? a == 2 ? u.right + r : P[0] - r : Math.min(
         // tLeft,
         /* 显示区域的宽度 */
         N,
         /* 目标对象的 left */
-        g - u
+        g - c
       )
     ), I = Math.max(
       r,
@@ -411,18 +411,18 @@ function Rt(e) {
           T - (p - v) / 2,
           r
         )
-      ) : a == 3 ? w + v + u + r : P[1] - r
-    ), U ? rt = Math.max(T - I + (v - u) / 2 - u, u) : st = Math.max(
+      ) : a == 3 ? w + v + c + r : P[1] - r
+    ), U ? rt = Math.max(T - I + (v - c) / 2 - c, c) : st = Math.max(
       /*  */
       Math.min(
         /* 相对位置差 + 目标宽 和 箭头差的一半 */
-        g - j + (A - u) / 2 - u,
+        g - j + (A - c) / 2 - c,
         /* 目标宽 - 两倍的箭头 */
-        $ - 4 * u
+        $ - 4 * c
         /* 半径 */
       ),
-      u
-    ), f.left = dt(j, 0, N) + Y, f.top = dt(I, 0, S) + Y, f["--tips-arrow-top"] = (v > p ? 0 : rt) || ct, f["--tips-arrow-left"] = st || ct;
+      c
+    ), f.left = dt(j, 0, N) + Y, f.top = dt(I, 0, S) + Y, f["--tips-arrow-top"] = (v > p ? 0 : rt) || ut, f["--tips-arrow-left"] = st || ut;
   }
   let nt = l.classList, Wt = _t[a], V = _[0];
   (F(V) || V != a) && d([
@@ -695,7 +695,7 @@ var ne = function() {
   var t = this, i = t._self._c;
   return t.proxy ? i("Card", t._b({ staticClass: "tips", class: {
     "tips-fly": t.before
-  }, style: t.static ? null : t.css, attrs: { static: t.static ? "" : null, mix: "c|color=>--tips-color,bg|background=>--tips-background-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>--tips-border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height" }, on: { click: function(s) {
+  }, style: t.static ? null : t.css, attrs: { static: t.static ? "" : null, mix: "c|color=>--tips-color,bg|background=>--tips-background-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height" }, on: { click: function(s) {
     s.stopPropagation();
   } } }, "Card", t.$attrs, !1), [t._t("default", function() {
     return [t._t("title", function() {
@@ -710,7 +710,7 @@ var ne = function() {
   le,
   !1,
   null,
-  "ab20c245",
+  "1c9d6ca2",
   null,
   null
 );
@@ -781,44 +781,46 @@ const oe = {
     }
   }
 };
-var ue = function() {
+var ce = function() {
   var t = this, i = t._self._c;
-  return i("span", [t._t("default", function() {
+  return i("span", { staticClass: "s-confirm-warp" }, [t._t("default", function() {
     return [t._t("reference")];
-  }), i("Tips", t._b({ ref: "stips", staticClass: "s-confirm", attrs: { visible: t.proxy, min: ["auto"], arrow: /^(false|null)$/.test(t.$attrs.arrow) ? void 0 : "" } }, "Tips", t.$attrs, !1), [i("Card", { scopedSlots: t._u([{ key: "title", fn: function() {
-    return [i("Card", { staticClass: "s-confirm-title" }, [t._t("title", function() {
-      return [t._v(t._s(t.title))];
-    })], 2)];
-  }, proxy: !0 }, { key: "content", fn: function() {
-    return [t._t("content", function() {
-      return [t._v(t._s(t.content))];
-    }), t._t("bottom", function() {
-      return [i("Card", { staticClass: "s-confirm-booms", attrs: { flex: "", space: "" } }, [i("span"), i("span", { attrs: { flex: "" } }, [t._t("boom", function() {
-        return [t._t("cancel", function() {
-          return [i("Boom", t._b({ attrs: { cancel: "" }, on: { click: function(s) {
-            return s.stopPropagation(), t.emitcancel.apply(null, arguments);
-          } } }, "Boom", t.cancelAttrs, !1), [t._v(" " + t._s(t.cancelAttrs.text || t.cancel) + " ")])];
-        }, null, { click: t.emitcancel, text: t.cancel }), t._t("submit", function() {
-          return [i("Boom", t._b({ staticClass: "simply", attrs: { submit: "" }, on: { click: function(s) {
-            return s.stopPropagation(), t.emitsubmit.apply(null, arguments);
-          } } }, "Boom", t.submitAttrs, !1), [t._v(" " + t._s(t.submitAttrs.text || t.submit) + " ")])];
+  }), i("Tips", t._b({ ref: "stips", staticClass: "s-confirm", attrs: { visible: t.proxy, height: "auto", min: ["auto"], arrow: /^(false|null)$/.test(t.$attrs.arrow) ? void 0 : "" } }, "Tips", t.$attrs, !1), [t._t("el", function() {
+    return [i("Card", { scopedSlots: t._u([{ key: "title", fn: function() {
+      return [i("Card", { staticClass: "s-confirm-title" }, [t._t("title", function() {
+        return [t._v(t._s(t.title))];
+      })], 2)];
+    }, proxy: !0 }, { key: "content", fn: function() {
+      return [t._t("content", function() {
+        return [t._v(t._s(t.content))];
+      }), t._t("bottom", function() {
+        return [i("Card", { staticClass: "s-confirm-booms", attrs: { flex: "", space: "" } }, [i("span"), i("span", { attrs: { flex: "" } }, [t._t("boom", function() {
+          return [t._t("cancel", function() {
+            return [i("Boom", t._b({ attrs: { cancel: "" }, on: { click: function(s) {
+              return s.stopPropagation(), t.emitcancel.apply(null, arguments);
+            } } }, "Boom", t.cancelAttrs, !1), [t._v(" " + t._s(t.cancelAttrs.text || t.cancel) + " ")])];
+          }, null, { click: t.emitcancel, text: t.cancel }), t._t("submit", function() {
+            return [i("Boom", t._b({ staticClass: "simply", attrs: { submit: "" }, on: { click: function(s) {
+              return s.stopPropagation(), t.emitsubmit.apply(null, arguments);
+            } } }, "Boom", t.submitAttrs, !1), [t._v(" " + t._s(t.submitAttrs.text || t.submit) + " ")])];
+          }, null, {
+            click: t.close,
+            text: t.submit
+          })];
         }, null, {
-          click: t.close,
-          text: t.submit
-        })];
-      }, null, {
-        close: t.close,
-        submit: t.submit
-      })], 2)])];
-    })];
-  }, proxy: !0 }], null, !0) })], 1)], 2);
-}, ce = [], he = /* @__PURE__ */ C(
+          close: t.close,
+          submit: t.submit
+        })], 2)])];
+      })];
+    }, proxy: !0 }], null, !0) })];
+  })], 2)], 2);
+}, ue = [], he = /* @__PURE__ */ C(
   oe,
-  ue,
   ce,
+  ue,
   !1,
   null,
-  "44a33905",
+  "135fee27",
   null,
   null
 );
@@ -1114,14 +1116,14 @@ const xe = {
       let r = !1;
       this.end = !1, this.__index = s.index, y(
         this.flyweights,
-        (n, l, a, o, h, u, f, _, c) => {
+        (n, l, a, o, h, c, f, _, u) => {
           if (a = n / h >> 0, _ = a + o * /* 偏移量, 如果超出顶部 + 1轮,排列到列队后, 否则保持在当前*/
-          (+(a < u % o) + /* 计算轮数, row的倍数 */
-          (u / o >> 0)), c = _ * h + n % h, c >= this.count) {
+          (+(a < c % o) + /* 计算轮数, row的倍数 */
+          (c / o >> 0)), u = _ * h + n % h, u >= this.count) {
             r || (this.end = !0, t.push(["onend"]), r = !0);
             return;
           }
-          l.index = _, l.i = c, l.data = this.flys[c];
+          l.index = _, l.i = u, l.data = this.flys[u];
           let p = [
             /* top */
             _ * this.expand + l.x,
@@ -1148,32 +1150,32 @@ const xe = {
       this.count = e;
       let i = this.scrollx, s = this.flyweight, r = b(s, this.BoxRule);
       this.$nextTick(() => {
-        let n = /true/.test(this.auto), [l, a] = this.offset, o = r.width, h = r.height, u = (ot(this.width, o) || o) + l, f = ot(this.height, h) + a, _ = [o / u >> 0 || 1, h / f >> 0 || 1];
+        let n = /true/.test(this.auto), [l, a] = this.offset, o = r.width, h = r.height, c = (ot(this.width, o) || o) + l, f = ot(this.height, h) + a, _ = [o / c >> 0 || 1, h / f >> 0 || 1];
         i && _.reverse();
-        let [c, p] = _, $ = this.padding, R, z = 0, g, w;
-        i ? (g = u, u -= l, w = (S) => (
+        let [u, p] = _, $ = this.padding, R, z = 0, g, w;
+        i ? (g = c, c -= l, w = (S) => (
           /* 计算top偏移量 */
           S * (f - a) + (S + 1) * a
-        )) : (n ? (u = (o - l * (c + 2 * $ - 1)) / c, R = !$ * l, z = $ * l) : (R = 0, z = o < u ? 0 : (o % u + l * c) / (c + 1) >> 0, u -= l), w = (S) => S * (u + R) + (S + 1) * z, g = f), this.row = p + 2, this.column = c, this.realH = f - a, this.realW = u, this.expand = g, this.Size = Math.ceil(e / c) * g;
-        let T = Math.min(e, c * this.row), v = T - 1, A;
+        )) : (n ? (c = (o - l * (u + 2 * $ - 1)) / u, R = !$ * l, z = $ * l) : (R = 0, z = o < c ? 0 : (o % c + l * u) / (u + 1) >> 0, c -= l), w = (S) => S * (c + R) + (S + 1) * z, g = f), this.row = p + 2, this.column = u, this.realH = f - a, this.realW = c, this.expand = g, this.Size = Math.ceil(e / u) * g;
+        let T = Math.min(e, u * this.row), v = T - 1, A;
         for (; T-- > 0; )
           A = v - T, this.$set(t, A, {
             x: l,
             y: a,
-            width: u,
+            width: c,
             height: f - a,
-            space: w(A % c),
+            space: w(A % u),
             data: {}
           });
         t.length = v + 1;
         let N = [];
-        h / g > v / c && N.push(["onend"]), this.$nextTick(() => {
+        h / g > v / u && N.push(["onend"]), this.$nextTick(() => {
           this.setindex(this.selectIndex || 0), this.scroll();
         }), N.push([
           "update:space",
           {
-            row: (v / c >> 0) + 1,
-            column: c,
+            row: (v / u >> 0) + 1,
+            column: u,
             showrow: this.row,
             showcolumn: this.column
           }
@@ -1396,12 +1398,12 @@ const Ae = {
       y(O(e) ? e : [e], (i, s, r) => {
         y(xt, (n, l) => {
           n in s && (r = [
-            function(a, o, h, u, f, _, c) {
+            function(a, o, h, c, f, _, u) {
               let p = a.trigger;
               if (!a.required && p && this !== p)
                 return;
-              let $ = o(h, c, _);
-              return f.error = $ ? u : Ne;
+              let $ = o(h, u, _);
+              return f.error = $ ? c : Ne;
             },
             this,
             s,

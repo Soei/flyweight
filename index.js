@@ -263,7 +263,7 @@ function we(t, e, s, i, r, n) {
     center: "",
     space: "",
     vc: "",
-    inline: ""
+    "inline-block": ""
   }), {
     default: m(() => [
       g("button", {
@@ -287,7 +287,7 @@ function we(t, e, s, i, r, n) {
     _: 3
   }, 16, ["mix"]);
 }
-const mt = /* @__PURE__ */ R(be, [["render", we], ["__scopeId", "data-v-6c149412"]]), Ct = /(?:\,|\|{2})/, ct = "px", Nt = "";
+const mt = /* @__PURE__ */ R(be, [["render", we], ["__scopeId", "data-v-984a282f"]]), Ct = /(?:\,|\|{2})/, ct = "px", Nt = "";
 let ft = document.documentElement, zt, At = ["s-left", "s-top", "s-right", "s-bottom"], ve = { left: 0, top: 1, right: 2, bottom: 3 };
 const X = [];
 var xe = he(
@@ -706,7 +706,7 @@ function Ne(t, e, s, i, r, n) {
     static: s.static ? "" : null,
     onClick: e[0] || (e[0] = ht(() => {
     }, ["stop"])),
-    mix: "c|color=>--tips-color,bg|background=>--tips-background-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>--tips-border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height"
+    mix: "c|color=>--tips-color,bg|background=>--tips-background-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height"
   }), {
     default: m(() => [
       a(t.$slots, "default", {}, () => [
@@ -721,7 +721,7 @@ function Ne(t, e, s, i, r, n) {
     _: 3
   }, 16, ["class", "style", "static"])) : pt("", !0);
 }
-const gt = /* @__PURE__ */ R(Te, [["render", Ne], ["__scopeId", "data-v-761033e9"]]);
+const gt = /* @__PURE__ */ R(Te, [["render", Ne], ["__scopeId", "data-v-fe07cf05"]]);
 const ze = {
   name: "Confirm",
   components: {
@@ -787,10 +787,10 @@ const ze = {
       this.$emit("submit-click", this.close);
     }
   }
-}, Ae = { flex: "" };
-function Be(t, e, s, i, r, n) {
+}, Ae = { class: "s-confirm-warp" }, Be = { flex: "" };
+function Ee(t, e, s, i, r, n) {
   const l = N("Card"), o = N("Boom"), h = N("Tips");
-  return y(), j("span", null, [
+  return y(), j("span", Ae, [
     a(t.$slots, "default", {}, () => [
       a(t.$slots, "reference", {}, void 0, !0)
     ], !0),
@@ -798,86 +798,89 @@ function Be(t, e, s, i, r, n) {
       ref: "stips",
       class: "s-confirm",
       visible: t.proxy,
+      height: "auto",
       min: ["auto"]
     }, t.$attrs, {
       arrow: /^(false|null)$/.test(t.$attrs.arrow) ? void 0 : ""
     }), {
       default: m(() => [
-        x(l, null, {
-          title: m(() => [
-            x(l, { class: "s-confirm-title" }, {
-              default: m(() => [
-                a(t.$slots, "title", {}, () => [
-                  k(T(s.title), 1)
-                ], !0)
-              ]),
-              _: 3
-            })
-          ]),
-          content: m(() => [
-            a(t.$slots, "content", {}, () => [
-              k(T(s.content), 1)
-            ], !0),
-            a(t.$slots, "bottom", {}, () => [
-              x(l, {
-                class: "s-confirm-booms",
-                flex: "",
-                space: ""
-              }, {
+        a(t.$slots, "el", {}, () => [
+          x(l, null, {
+            title: m(() => [
+              x(l, { class: "s-confirm-title" }, {
                 default: m(() => [
-                  e[0] || (e[0] = g("span", null, null, -1)),
-                  g("span", Ae, [
-                    a(t.$slots, "boom", B(I({
-                      close: n.close,
-                      submit: s.submit
-                    })), () => [
-                      a(t.$slots, "cancel", B(I({ click: n.emitcancel, text: s.cancel })), () => [
-                        x(o, b({ cancel: "" }, s.cancelAttrs, {
-                          onClick: ht(n.emitcancel, ["stop"])
-                        }), {
-                          default: m(() => [
-                            k(T(s.cancelAttrs.text || s.cancel), 1)
-                          ]),
-                          _: 1
-                        }, 16, ["onClick"])
-                      ], !0),
-                      a(t.$slots, "submit", B(I({
-                        click: n.close,
-                        text: s.submit
-                      })), () => [
-                        x(o, b({
-                          class: "simply",
-                          onClick: ht(n.emitsubmit, ["stop"]),
-                          submit: ""
-                        }, s.submitAttrs), {
-                          default: m(() => [
-                            k(T(s.submitAttrs.text || s.submit), 1)
-                          ]),
-                          _: 1
-                        }, 16, ["onClick"])
-                      ], !0)
-                    ], !0)
-                  ])
+                  a(t.$slots, "title", {}, () => [
+                    k(T(s.title), 1)
+                  ], !0)
                 ]),
                 _: 3
               })
-            ], !0)
-          ]),
-          _: 3
-        })
+            ]),
+            content: m(() => [
+              a(t.$slots, "content", {}, () => [
+                k(T(s.content), 1)
+              ], !0),
+              a(t.$slots, "bottom", {}, () => [
+                x(l, {
+                  class: "s-confirm-booms",
+                  flex: "",
+                  space: ""
+                }, {
+                  default: m(() => [
+                    e[0] || (e[0] = g("span", null, null, -1)),
+                    g("span", Be, [
+                      a(t.$slots, "boom", B(I({
+                        close: n.close,
+                        submit: s.submit
+                      })), () => [
+                        a(t.$slots, "cancel", B(I({ click: n.emitcancel, text: s.cancel })), () => [
+                          x(o, b({ cancel: "" }, s.cancelAttrs, {
+                            onClick: ht(n.emitcancel, ["stop"])
+                          }), {
+                            default: m(() => [
+                              k(T(s.cancelAttrs.text || s.cancel), 1)
+                            ]),
+                            _: 1
+                          }, 16, ["onClick"])
+                        ], !0),
+                        a(t.$slots, "submit", B(I({
+                          click: n.close,
+                          text: s.submit
+                        })), () => [
+                          x(o, b({
+                            class: "simply",
+                            onClick: ht(n.emitsubmit, ["stop"]),
+                            submit: ""
+                          }, s.submitAttrs), {
+                            default: m(() => [
+                              k(T(s.submitAttrs.text || s.submit), 1)
+                            ]),
+                            _: 1
+                          }, 16, ["onClick"])
+                        ], !0)
+                      ], !0)
+                    ])
+                  ]),
+                  _: 3
+                })
+              ], !0)
+            ]),
+            _: 3
+          })
+        ], !0)
       ]),
       _: 3
     }, 16, ["visible", "arrow"])
   ]);
 }
-const Yt = /* @__PURE__ */ R(ze, [["render", Be], ["__scopeId", "data-v-0fe1089c"]]);
-const Ee = {
+const Yt = /* @__PURE__ */ R(ze, [["render", Ee], ["__scopeId", "data-v-09f1a82f"]]);
+const Le = {
   name: "Div",
   components: {
     Card: W
   }
 };
-function Le(t, e, s, i, r, n) {
+function Me(t, e, s, i, r, n) {
   const l = N("Card");
   return y(), F(l, b({ class: "s-div" }, t.$attrs, { height: "auto" }), Ft({ _: 2 }, [
     tt(t.$slots, (o, h) => ({
@@ -888,14 +891,14 @@ function Le(t, e, s, i, r, n) {
     }))
   ]), 1040);
 }
-const Jt = /* @__PURE__ */ R(Ee, [["render", Le], ["__scopeId", "data-v-5a663869"]]);
-const Me = {
+const Jt = /* @__PURE__ */ R(Le, [["render", Me], ["__scopeId", "data-v-5a663869"]]);
+const Re = {
   name: "Flex",
   components: {
     Card: W
   }
 };
-function Re(t, e, s, i, r, n) {
+function We(t, e, s, i, r, n) {
   const l = N("Card");
   return y(), F(l, b({
     class: "s-flex",
@@ -909,11 +912,11 @@ function Re(t, e, s, i, r, n) {
     }))
   ]), 1040);
 }
-const Kt = /* @__PURE__ */ R(Me, [["render", Re], ["__scopeId", "data-v-80afacb2"]]);
-let It = (t) => t == null || t == null, We = (...t) => {
+const Kt = /* @__PURE__ */ R(Re, [["render", We], ["__scopeId", "data-v-80afacb2"]]);
+let It = (t) => t == null || t == null, He = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
-const He = {
+const Ie = {
   name: "Flyweight",
   components: {
     Card: W
@@ -1077,7 +1080,7 @@ const He = {
         this.rebuild(), this.$emit("resize");
       }).observe(this.flyweight);
     } catch (t) {
-      We(t);
+      He(t);
     }
     this.scrollx = _("hasAttribute", this.flyweight, "scroll-x"), this.BoxRule = /* this.scrollx ? 'clientHeight=>width,clientWidth=>height' : */
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
@@ -1220,8 +1223,8 @@ const He = {
       });
     }
   }
-}, Ie = { class: "flyweight-all" };
-function Pe(t, e, s, i, r, n) {
+}, Pe = { class: "flyweight-all" };
+function Oe(t, e, s, i, r, n) {
   const l = N("Card");
   return y(), j("div", {
     ref: "flyweight",
@@ -1234,7 +1237,7 @@ function Pe(t, e, s, i, r, n) {
     onScroll: e[0] || (e[0] = (...o) => n.scroll && n.scroll(...o))
   }, [
     a(t.$slots, "title", B(I(n.bridge)), void 0, !0),
-    g("div", Ie, [
+    g("div", Pe, [
       (y(!0), j(Vt, null, tt(r.flyweights, (o, h) => (y(), j("div", {
         key: h,
         style: K({
@@ -1263,7 +1266,7 @@ function Pe(t, e, s, i, r, n) {
     ], !0)
   ], 38);
 }
-const Qt = /* @__PURE__ */ R(He, [["render", Pe], ["__scopeId", "data-v-1c021354"]]), Oe = {
+const Qt = /* @__PURE__ */ R(Ie, [["render", Oe], ["__scopeId", "data-v-1c021354"]]), je = {
   name: "Stream",
   computed: {
     component() {
@@ -1320,7 +1323,7 @@ const Qt = /* @__PURE__ */ R(He, [["render", Pe], ["__scopeId", "data-v-1c021354
     }
   }
 };
-function je(t, e, s, i, r, n) {
+function Fe(t, e, s, i, r, n) {
   return y(), F(le(n.tag), b({ ref: "component" }, t.$attrs), {
     default: m(() => [
       (y(!0), j(Vt, null, tt(n.column, (l) => a(t.$slots, n.__trigger(l), b({
@@ -1330,16 +1333,16 @@ function je(t, e, s, i, r, n) {
     _: 3
   }, 16);
 }
-const yt = /* @__PURE__ */ R(Oe, [["render", je]]);
-let Fe;
+const yt = /* @__PURE__ */ R(je, [["render", Fe]]);
+let Ve;
 const Pt = {
   min: (t, e, s) => s ? t > e : e.length < t,
   max: (t, e, s) => s ? t < e : e.length > t,
   pattern: (t, e) => !t.test(e),
   required: (t, e) => !e
 };
-let Ve = "slow,static,fast,hide-limit|limit-hide=>hide-limit,maxlength,style,disabled,tips-hide|hide-tips=>tips-hide,transparent,br,radius,half,auto,";
-const De = {
+let De = "slow,static,fast,hide-limit|limit-hide=>hide-limit,maxlength,style,disabled,tips-hide|hide-tips=>tips-hide,transparent,br,radius,half,auto,";
+const Ue = {
   inheritAttrs: !1,
   name: "Input",
   global: !1,
@@ -1394,7 +1397,7 @@ const De = {
         ["$el", this.$refs[e] || ""],
         [e, this.$refs]
       ]), this[e] = _("offsetWidth", s || "") || null;
-    }), this.attrs = C(this.$attrs, Ve + this.mix), S(
+    }), this.attrs = C(this.$attrs, De + this.mix), S(
       this.$attrs,
       (t, e, s) => {
         ae(e) && (this.inputAttrs[t] = e), t in s && this.$watch(
@@ -1451,7 +1454,7 @@ const De = {
               if (!o.required && w && this !== w)
                 return;
               let E = h(f, d, $);
-              return p.error = E ? u : Fe;
+              return p.error = E ? u : Ve;
             },
             this,
             i,
@@ -1485,17 +1488,17 @@ const De = {
       this.$emit("update:" + this.trigger, t);
     }
   }
-}, Ue = ["for"], qe = {
+}, qe = ["for"], Ge = {
   class: "placeholder",
   flex: ""
-}, Ge = {
+}, Xe = {
   class: "s-wrap-tips",
   flex: ""
-}, Xe = {
+}, Ye = {
   key: 0,
   class: "s-wrap-limit"
 };
-function Ye(t, e, s, i, r, n) {
+function Je(t, e, s, i, r, n) {
   const l = N("Stream"), o = N("Card");
   return y(), F(o, b({
     class: "s-wrap",
@@ -1528,20 +1531,20 @@ function Ye(t, e, s, i, r, n) {
         for: t.id
       }, [
         a(t.$slots, "default", {}, () => [
-          g("span", qe, [
+          g("span", Ge, [
             a(t.$slots, "placeholder", {}, () => [
               a(t.$slots, "icon", { type: "placeholder" }, void 0, !0),
               k(" " + T(s.placeholder), 1)
             ], !0)
           ]),
-          g("span", Ge, [
+          g("span", Xe, [
             a(t.$slots, "tips", { limit: n.limit }, () => [
               a(t.$slots, "icon", { type: "tips" }, void 0, !0),
               k(" " + T(t.error || s.tips || s.placeholder), 1)
             ], !0)
           ])
         ], !0)
-      ], 8, Ue),
+      ], 8, qe),
       x(o, {
         ref: "right",
         class: "s-wrap-right",
@@ -1553,7 +1556,7 @@ function Ye(t, e, s, i, r, n) {
         default: m(() => [
           a(t.$slots, "right", {}, () => [
             a(t.$slots, "limit", { limit: n.limit }, () => [
-              t.$attrs.maxlength ? (y(), j("span", Xe, T(n.limit), 1)) : pt("", !0)
+              t.$attrs.maxlength ? (y(), j("span", Ye, T(n.limit), 1)) : pt("", !0)
             ], !0),
             g("span", {
               ref: "rm",
@@ -1596,10 +1599,10 @@ function Ye(t, e, s, i, r, n) {
     _: 3
   }, 16, ["s-completed", "class", "style"]);
 }
-const Zt = /* @__PURE__ */ R(De, [["render", Ye], ["__scopeId", "data-v-acf70ba2"]]), Je = {}, te = [];
+const Zt = /* @__PURE__ */ R(Ue, [["render", Je], ["__scopeId", "data-v-acf70ba2"]]), Ke = {}, te = [];
 te.push(mt, W, Yt, Jt, Kt, Qt, Zt, yt, gt);
-const es = { Boom: mt, Card: W, Confirm: Yt, Div: Jt, Flex: Kt, Flyweight: Qt, Input: Zt, Stream: yt, Tips: gt };
-Je.install = function(t, e = {}) {
+const ss = { Boom: mt, Card: W, Confirm: Yt, Div: Jt, Flex: Kt, Flyweight: Qt, Input: Zt, Stream: yt, Tips: gt };
+Ke.install = function(t, e = {}) {
   te.forEach((s) => {
     let { global: i, name: r } = s;
     i === !1 || t.component(r, s), t.component("S" + r, s);
@@ -1615,6 +1618,6 @@ export {
   Zt as Input,
   yt as Stream,
   gt as Tips,
-  es as components,
-  Je as default
+  ss as components,
+  Ke as default
 };

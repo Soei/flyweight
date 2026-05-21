@@ -13,7 +13,6 @@
     "vue2/*",
     "index.cjs",
     "index.js",
-    "style.css",
   ],
   "homepage": "https://soei.github.io/demo/flyweight",
   "scripts": {

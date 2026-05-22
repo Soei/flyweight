@@ -1,4 +1,4 @@
-import { runer as p, each as b, merge as B, picker as v, isEmpty as $t, isSimplyType as lt, isString as Ot, isArray as P, format as St, array2Json as Pt } from "@soei/util";
+import { runer as p, each as b, merge as B, picker as v, isEmpty as wt, isSimplyType as lt, isString as Ot, isArray as P, format as St, array2Json as Pt } from "@soei/util";
 import { runer as f, each as G, isNil as O, isString as jt, isFunction as It } from "@soei/tools";
 import Ut from "@soei/picker";
 let Vt = /(\d+|[+\-\*/]|%)/g, at = {
@@ -16,7 +16,7 @@ let Vt = /(\d+|[+\-\*/]|%)/g, at = {
     +r || (r = +u.pop()), e = r >> 0;
   }
   return e;
-}, w = (e, t) => (e + "").replace(
+}, $ = (e, t) => (e + "").replace(
   /\w+\((.*)\)/g,
   "$1"
 ).replace(
@@ -78,7 +78,7 @@ let Ct = {
       let t = {};
       B(t, this.$data, this.$props, this.$attrs, "mix"), this._style = v(t, e, (i, s, r, n) => (this.$nextTick(() => {
         p("removeAttribute", this.$el, i.replace(/\..*/, ""));
-      }), Dt.test(n) ? w(s) : s));
+      }), Dt.test(n) ? $(s) : s));
     },
     immediate: !0
   }
@@ -172,8 +172,8 @@ const qt = {
   },
   watch: Ct,
   methods: {
-    exec: w,
-    isEmpty: $t,
+    exec: $,
+    isEmpty: wt,
     picker: v,
     runer: p,
     isSimplyType: lt,
@@ -185,7 +185,7 @@ const qt = {
     css(e, t) {
       b(e, (i, s) => {
         let r = s in this ? this[s] : this.default[s];
-        !r || this.default[s] == r || (t[i] = w(r));
+        !r || this.default[s] == r || (t[i] = $(r));
       });
     },
     change(e) {
@@ -200,7 +200,7 @@ const qt = {
         "0=>top,1|0=>right,2|0=>bottom,3|1|0=>left",
         !0,
         (t, i, s, r) => {
-          let n = w(i);
+          let n = $(i);
           !n || this.default[r] == n || (this[r] = n);
         }
       );
@@ -363,7 +363,7 @@ function Nt(e) {
     gt.trigger(u, n, F, c);
     return;
   }
-  var T = "3,0,2,1".split(ut), N, y = h.left, $ = h.top, R = Math.max($, a), x = (h.height == ct ? h.bottom - $ : h.height) >> 0, z = (h.width == ct ? h.right - y : h.width) >> 0, A = s - m - g, k = i - _ - g, et = y < 0 || y + z / 2 > s, it = $ < 0 || $ + x > i, j = [
+  var T = "3,0,2,1".split(ut), N, y = h.left, w = h.top, R = Math.max(w, a), x = (h.height == ct ? h.bottom - w : h.height) >> 0, z = (h.width == ct ? h.right - y : h.width) >> 0, A = s - m - g, k = i - _ - g, et = y < 0 || y + z / 2 > s, it = w < 0 || w + x > i, j = [
     /* left: 0 */
     it ? -1 : y - m,
     /* top: 1 */
@@ -411,7 +411,7 @@ function Nt(e) {
           R - (_ - x) / 2,
           g
         )
-      ) : l == 3 ? $ + x + o + g : j[1] - g,
+      ) : l == 3 ? w + x + o + g : j[1] - g,
       a,
       k
     ), V ? rt = Math.max(
@@ -647,7 +647,7 @@ const q = "data-tips-scroll", yt = -1e4, bt = 3, vt = {
         let t = {
           click: (i) => {
             let s = L();
-            this.$attrs.clear === void 0 || f([s]), this.__toggle(i), console.log(this);
+            this.$attrs.clear === void 0 || s && f([s]), this.__toggle(i);
             let r = f(3, s || "");
             r != this._mark && (r && L(s), L(["__toggle", this, i, this._mark]));
           },
@@ -669,11 +669,11 @@ const q = "data-tips-scroll", yt = -1e4, bt = 3, vt = {
           ],
           click: [
             ["click", t.click],
-            ["click", t.close, window]
+            ["click", t.close, document.documentElement]
           ],
           enter: [
             ["mouseenter", t.click],
-            ["click", t.close, window]
+            ["click", t.close, document.documentElement]
           ]
         }[e], this._try("addEventListener");
       } else
@@ -724,7 +724,7 @@ var ne = function() {
   le,
   !1,
   null,
-  "e4eaf955",
+  "5b6be334",
   null,
   null
 );
@@ -988,15 +988,15 @@ const xe = {
       return B(
         s,
         {
-          "--width": w(this.realW),
-          "--height": w(this.realH),
-          "--flyweight-content": w(i)
+          "--width": $(this.realW),
+          "--height": $(this.realH),
+          "--flyweight-content": $(i)
         },
         t && {
-          "--flyweight-h": w(t)
+          "--flyweight-h": $(t)
         },
         e && {
-          "--flyweight-w": w(e)
+          "--flyweight-w": $(e)
         },
         "mix"
       ), s;
@@ -1060,7 +1060,7 @@ const xe = {
     "clientHeight=>height,clientWidth=>width", this.direction = this.scrollx ? "scrollLeft" : "scrollTop";
   },
   methods: {
-    exec: w,
+    exec: $,
     trigger(e, t) {
       P(e) || (e = e && t ? [[e, t]] : []), e.length && this.lazyrun(() => {
         b(e, (i, s) => {
@@ -1166,11 +1166,11 @@ const xe = {
       this.$nextTick(() => {
         let n = /true/.test(this.auto), [l, u] = this.offset, a = r.width, o = r.height, c = (ot(this.width, a) || a) + l, d = ot(this.height, o) + u, h = [a / c >> 0 || 1, o / d >> 0 || 1];
         i && h.reverse();
-        let [_, m] = h, g = this.padding, T, N = 0, y, $;
-        i ? (y = c, c -= l, $ = (k) => (
+        let [_, m] = h, g = this.padding, T, N = 0, y, w;
+        i ? (y = c, c -= l, w = (k) => (
           /* 计算top偏移量 */
           k * (d - u) + (k + 1) * u
-        )) : (n ? (c = (a - l * (_ + 2 * g - 1)) / _, T = !g * l, N = g * l) : (T = 0, N = a < c ? 0 : (a % c + l * _) / (_ + 1) >> 0, c -= l), $ = (k) => k * (c + T) + (k + 1) * N, y = d), this.row = m + 2, this.column = _, this.realH = d - u, this.realW = c, this.expand = y, this.Size = Math.ceil(e / _) * y;
+        )) : (n ? (c = (a - l * (_ + 2 * g - 1)) / _, T = !g * l, N = g * l) : (T = 0, N = a < c ? 0 : (a % c + l * _) / (_ + 1) >> 0, c -= l), w = (k) => k * (c + T) + (k + 1) * N, y = d), this.row = m + 2, this.column = _, this.realH = d - u, this.realW = c, this.expand = y, this.Size = Math.ceil(e / _) * y;
         let R = Math.min(e, _ * this.row), x = R - 1, z;
         for (; R-- > 0; )
           z = x - R, this.$set(t, z, {
@@ -1178,7 +1178,7 @@ const xe = {
             y: u,
             width: c,
             height: d - u,
-            space: $(z % _),
+            space: w(z % _),
             data: {}
           });
         t.length = x + 1;
@@ -1198,7 +1198,7 @@ const xe = {
     }
   }
 };
-var we = function() {
+var $e = function() {
   var t = this, i = t._self._c;
   return i("div", { ref: "flyweight", staticClass: "flyweight", class: {
     //   'flyweight-active': actice,
@@ -1214,10 +1214,10 @@ var we = function() {
       return [i("Card", { attrs: { height: "100% - 10px", width: "100%", center: "", nothing: "", vcenter: "" } }, [t._v(" 空~ ")])];
     })];
   }, null, t.bridge)], 2);
-}, $e = [], Se = /* @__PURE__ */ S(
+}, we = [], Se = /* @__PURE__ */ S(
   xe,
-  we,
   $e,
+  we,
   !1,
   null,
   "906493ea",
@@ -1232,7 +1232,7 @@ const Lt = Se.exports, Ce = {
     },
     column() {
       let { columns: e, T: t } = this, i = e || t;
-      return $t(i) ? [] : P(i) ? i : [i];
+      return wt(i) ? [] : P(i) ? i : [i];
     },
     tag() {
       return this.is || this.$attrs.type;
@@ -1298,7 +1298,7 @@ var ke = function() {
 );
 const tt = Re.exports;
 let Ne;
-const wt = {
+const $t = {
   min: (e, t, i) => i ? e > t : t.length < e,
   max: (e, t, i) => i ? e < t : t.length > e,
   pattern: (e, t) => !e.test(t),
@@ -1410,7 +1410,7 @@ const Ae = {
     storage() {
       let e = this.rules, t = [];
       b(P(e) ? e : [e], (i, s, r) => {
-        b(wt, (n, l) => {
+        b($t, (n, l) => {
           n in s && (r = [
             function(u, a, o, c, d, h, _) {
               let m = u.trigger;
@@ -1421,7 +1421,7 @@ const Ae = {
             },
             this,
             s,
-            wt[n],
+            $t[n],
             s[n],
             s.message,
             this,

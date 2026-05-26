@@ -488,8 +488,8 @@ const F = document.documentElement, W = (e) => (_(["stopPropagation", "preventDe
         ),
         !0
       ).el;
-      if (_(["currentTarget", "nodeType"], t)) {
-        let i;
+      if (_(["currentTarget", "nodeType"], t || "")) {
+        let i = t;
         t instanceof Event && (i = t.currentTarget, W(t)), this._event_mark = !1, this._target__ = i, i.mark || (this.__trigger("click"), i.mark = !0, _([
           [
             "dispatchEvent",
@@ -769,7 +769,7 @@ var ue = function() {
   ce,
   !1,
   null,
-  "8a123f28",
+  "7f0c6f6c",
   null,
   null
 );

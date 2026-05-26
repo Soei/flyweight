@@ -493,8 +493,8 @@ const Q = document.documentElement, Y = (t) => (c(["stopPropagation", "preventDe
         ),
         !0
       ).el;
-      if (c(["currentTarget", "nodeType"], e)) {
-        let s;
+      if (c(["currentTarget", "nodeType"], e || "")) {
+        let s = e;
         e instanceof Event && (s = e.currentTarget, Y(e)), this._event_mark = !1, this._target__ = s, s.mark || (this.__trigger("click"), s.mark = !0, c([
           [
             "dispatchEvent",
@@ -778,7 +778,7 @@ function Ee(t, e, s, r, n, i) {
     }))
   ]), 1040, ["class", "style", "static", "onClick"])) : bt("", !0);
 }
-const vt = /* @__PURE__ */ W(Ae, [["render", Ee], ["__scopeId", "data-v-b5939ab2"]]), Be = {
+const vt = /* @__PURE__ */ W(Ae, [["render", Ee], ["__scopeId", "data-v-b0882f6d"]]), Be = {
   name: "Stream",
   computed: {
     component() {

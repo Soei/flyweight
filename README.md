@@ -8,35 +8,36 @@
 
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## # 版本: `0.5.12`
+## # 版本: `0.5.26`
 
-### # 新增 Confirm, Boom, Input
+### # 优化 \<s-tips/> , \<s-confirm/>
 
 ```html
-<!-- vue3 -->
-<s-input v-model="value" />
-<!-- vue2 -->
-<s-input :value.sync="value" />
-<Boom
-  class="simply"
-  m="0 0 0 10px"
-  animation
-  @click="search"
->搜索</Boom>
-
+<!-- 
+ type: 使用s-card模式插槽查看 s-card  
+ card模式
+ submit-click 事件失效
+ -->
+<s-confirm type="card" visible="click|modal|hover|enter">
+  <template #reference> 目标对象 </template>
+  <template #content>
+    <card nothing fs="15"> 确认删除? </card>
+  </template>
+</s-confirm>
+<!-- targte: 新增参数 事件源 -->
+<s-confirm type="card" target="Event">
+  <template #content>
+    <card nothing fs="15"> 确认删除? </card>
+  </template>
+</s-confirm>
+<!-- modal -->
 <s-confirm
-  visible="click"
-  :min="[150]"
-  z="10000"
+  visible="click|modal|hover|enter"
   @submit-click="submit(item, $event)"
 >
-  <template #reference>
-    目标对象
-  </template>
+  <template #reference> 目标对象 </template>
   <template #content>
-    <card nothing fs="15">
-      确认删除?
-    </card>
+    <card nothing fs="15"> 确认删除? </card>
   </template>
 </s-confirm>
 ```

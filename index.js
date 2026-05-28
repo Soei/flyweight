@@ -487,7 +487,7 @@ const dt = document.documentElement, q = (t) => (c(["stopPropagation", "preventD
   },
   proxy_before: {
     handler(t) {
-      console.log("before", t), this.$nextTick(() => {
+      this.$nextTick(() => {
         this.__toggle_append(this.$el);
       });
     },
@@ -594,6 +594,7 @@ const dt = document.documentElement, q = (t) => (c(["stopPropagation", "preventD
       proxy: !1,
       arrow: 0,
       proxy_before: !1,
+      completed: void 0,
       sign: yt("s-tips-{100-999}-{100-999}-{100-999}")
     };
   },
@@ -718,7 +719,7 @@ const dt = document.documentElement, q = (t) => (c(["stopPropagation", "preventD
       let e = gt(t), { task: s, sign: r, host: n, modal: i } = Pt(-1);
       c(i) !== void 0 && (s = null);
       let l = r == this.sign;
-      this.$attrs.clear === void 0 || e || (s && c([s]), P()), l || this.__Task(
+      this.$attrs.clear === void 0 || (s && c([s]), P()), l || this.__Task(
         t,
         /* esc */
         () => this.$attrs.modal !== void 0 ? !0 : void 0
@@ -737,16 +738,16 @@ const dt = document.documentElement, q = (t) => (c(["stopPropagation", "preventD
         this._event_mark = !0, (this._event__ = {
           hover: [
             /* 鼠标进入 */
-            ["mouseenter", this.__visible]
+            ["mouseenter", this.__visible],
             /* 鼠标离开 */
-            // ["mouseleave", this.__hide],
+            ["mouseleave", this.__hide]
           ],
           click: [["click", this.__click]],
           modal: [
             [
               "click",
               (s) => {
-                this.__toggle(s), this.__Task(s, () => !0);
+                this.__close(s), this.__toggle(s), this.__Task(s, () => !0);
               }
             ]
           ],
@@ -754,7 +755,7 @@ const dt = document.documentElement, q = (t) => (c(["stopPropagation", "preventD
             ["mouseenter", this.__click]
             // ["click", this.__close, ROOM],
           ]
-        }[t]).push(["click", this.__close, dt]), this._try("addEventListener");
+        }[t]).push(["click", this.__close, dt, !0]), this._try("addEventListener");
       } else
         /^\d+$/.test(t) ? this.__toggle({}) : this.proxy = t;
     },
@@ -791,10 +792,11 @@ function Be(t, e, s, r, n, i) {
     class: ["tips", {
       "tips-fly": i.isModal
     }],
+    "s-tips-completed": n.completed,
     style: s.static ? null : n.css,
     static: s.static ? "" : null,
     onClick: i.__close,
-    mix: "c|color=>--tips-color,bg|background=>--tips-background-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height"
+    mix: "bg|c|color=>--tips-background-color,c|color=>--tips-color,cc=>--tips-content-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height,m=>margin"
   }), it({ _: 2 }, [
     X(t.$slots, (o, a) => ({
       name: a,
@@ -802,9 +804,9 @@ function Be(t, e, s, r, n, i) {
         h(t.$slots, a, C(R(u)), void 0, !0)
       ])
     }))
-  ]), 1040, ["class", "style", "static", "onClick"])) : bt("", !0);
+  ]), 1040, ["class", "s-tips-completed", "style", "static", "onClick"])) : bt("", !0);
 }
-const vt = /* @__PURE__ */ M(Ee, [["render", Be], ["__scopeId", "data-v-789844b4"]]), Le = {
+const vt = /* @__PURE__ */ M(Ee, [["render", Be], ["__scopeId", "data-v-86a84da5"]]), Le = {
   name: "Stream",
   computed: {
     component() {

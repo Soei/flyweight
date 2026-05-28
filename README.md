@@ -8,38 +8,23 @@
 
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## # 版本: `0.5.26`
+## # 版本: `0.5.27`
 
 ### # 优化 \<s-tips/> , \<s-confirm/>
 
 ```html
+<!-- 对应不同色值 text|notice|success|error|blue|black -->
+<s-tips position="left top" [text|notice|success|error|blue|black] />
 <!-- 
- type: 使用s-card模式插槽查看 s-card  
- card模式
- submit-click 事件失效
+ 视口显示
+ position: left top | left bottom | right top | right bottom | center top | center bottom | center | center left | center right | center 
+ 顺序可随意, 配置好位置即可
+ m => margin: 偏移量
  -->
-<s-confirm type="card" visible="click|modal|hover|enter">
-  <template #reference> 目标对象 </template>
-  <template #content>
-    <card nothing fs="15"> 确认删除? </card>
-  </template>
-</s-confirm>
-<!-- targte: 新增参数 事件源 -->
-<s-confirm type="card" target="Event">
-  <template #content>
-    <card nothing fs="15"> 确认删除? </card>
-  </template>
-</s-confirm>
-<!-- modal -->
-<s-confirm
-  visible="click|modal|hover|enter"
-  @submit-click="submit(item, $event)"
->
-  <template #reference> 目标对象 </template>
-  <template #content>
-    <card nothing fs="15"> 确认删除? </card>
-  </template>
-</s-confirm>
+
+<s-tips height="30" m="10 0 0 10" position="left top" success arrow>
+  position="left bottom"
+</s-tips>
 ```
 
 ## # **目录**
@@ -317,6 +302,33 @@ import "@soei/flyweight/vue2/style.css";
 │                       │
 └───────────────────────┘
 -->
+<!-- 
+ type: 使用s-card模式插槽查看 s-card  
+ card模式
+ submit-click 事件失效
+ -->
+<s-confirm type="card" visible="click|modal|hover|enter">
+  <template #reference> 目标对象 </template>
+  <template #content>
+    <card nothing fs="15"> 确认删除? </card>
+  </template>
+</s-confirm>
+<!-- targte: 新增参数 事件源 -->
+<s-confirm type="card" target="Event">
+  <template #content>
+    <card nothing fs="15"> 确认删除? </card>
+  </template>
+</s-confirm>
+<!-- modal -->
+<s-confirm
+  visible="click|modal|hover|enter"
+  @submit-click="submit(item, $event)"
+>
+  <template #reference> 目标对象 </template>
+  <template #content>
+    <card nothing fs="15"> 确认删除? </card>
+  </template>
+</s-confirm>
 ```
 
 ## # <`Card` />

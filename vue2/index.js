@@ -1,5 +1,5 @@
-import { runer as m, each as v, merge as L, picker as b, isEmpty as tt, isSimplyType as ht, isString as Pt, format as et, isArray as j, array2Json as jt } from "@soei/util";
-import { runer as _, isArray as It, each as K, isNil as P, isString as Dt, isFunction as Ut } from "@soei/tools";
+import { runer as m, each as v, merge as L, picker as b, isEmpty as it, isSimplyType as ht, isString as Pt, format as st, isArray as j, array2Json as jt } from "@soei/util";
+import { runer as _, isArray as It, each as Z, isNil as P, isString as Dt, isFunction as Ut } from "@soei/tools";
 import Vt from "@soei/picker";
 let Xt = /(\d+|[+\-\*/]|%)/g, _t = {
   "+": (e, t) => e + t,
@@ -54,7 +54,7 @@ function S(e, t, i, s, r, n, l, u) {
   };
 }
 let qt = /^(?!--).*(height|width|top|left|bottom|right|size|radius|padding|margin|border)$/i;
-function Q(e, t) {
+function tt(e, t) {
   return t && (e = e.replace(/[a-z]/g, "")), e.toLowerCase();
 }
 let Ct = {
@@ -95,7 +95,7 @@ let Ct = {
 v(
   Gt,
   (e, t, i) => {
-    e = Q(t), Tt["--" + Q(t, !0)] = e, i[e] = function() {
+    e = tt(t), Tt["--" + tt(t, !0)] = e, i[e] = function() {
       this.trigger++;
     };
   },
@@ -167,13 +167,13 @@ const Yt = {
       return this.show || this.title;
     },
     tips() {
-      return m("tips", this.close || {}) || "关闭[" + this.sub + "]";
+      return m("tips", this.close || {}) || "关闭" + (this.sub ? "[" + this.sub + "]" : "");
     }
   },
   watch: Ct,
   methods: {
     exec: $,
-    isEmpty: tt,
+    isEmpty: it,
     picker: b,
     runer: m,
     isSimplyType: ht,
@@ -181,7 +181,7 @@ const Yt = {
       let e = {};
       return this.margin(this.offset), this.css(Tt, e), L(e, this._style, this.$attrs.style, !0, "mix"), e;
     },
-    tolower: Q,
+    tolower: tt,
     css(e, t) {
       v(e, (i, s) => {
         let r = s in this ? this[s] : this.default[s];
@@ -219,9 +219,9 @@ var Jt = function() {
       return [i("div", { staticClass: "card-title", attrs: { space: "" } }, [t._t("subtitle", function() {
         return [i("span", [t._v(t._s(t.sub))])];
       }), t._t("icons", function() {
-        return [i("div", { staticClass: "card-ico-items", attrs: { vcenter: "" } }, [t._t("icon", null, null, { el: t.$el, picker: t.picker, runer: t.runer }), i("div", { staticClass: "card-close", class: { hide: t.isSimplyType(t.close) ? !t.close : !1 }, style: t.closecss, attrs: { title: t.tips }, on: { click: function(s) {
+        return [i("div", { staticClass: "card-ico-items", attrs: { vcenter: "" } }, [t._t("icon", null, null, { el: t.$el, picker: t.picker, runer: t.runer }), i("div", { staticClass: "card-close", class: { hide: t.isSimplyType(t.close) ? !t.close : !1 }, style: t.closecss, on: { click: function(s) {
           return t.$emit("close");
-        } } })], 2)];
+        } } }, [t._t("close")], 2)], 2)];
       })], 2)];
     }), t._t("content", function() {
       return [i("div", { staticClass: "card-content" }, [t._t("inner")], 2)];
@@ -233,64 +233,19 @@ var Jt = function() {
   Kt,
   !1,
   null,
-  "75e5c8a6",
+  "0cb99f28",
   null,
   null
 );
-const k = Qt.exports;
-const Zt = {
-  name: "Boom",
-  emits: ["click"],
-  components: { Card: k },
-  data: function() {
-    return {
-      mix: "m=>margin,c|color=>--s-button-color,fs=>font-size,lh=>line-height,miw|minw=>min-width,mih|minh=>min-height,mw|maxw=>max-width,mh|maxh=>max-height,h=>height,w=>width,p=>padding,br=>--s-button-border-radius,bg=>--s-button-background-color,bg=>--s-button-shadow-color"
-    };
-  },
-  mounted() {
-    this.init();
-  },
-  updated() {
-    this.init();
-  },
-  methods: {
-    init() {
-      v("disabled visible tips".split(/\s+/g), (e, t) => {
-        m("removeAttribute", this.$el, t);
-      });
-    }
-  }
-};
-var te = function() {
-  var t = this, i = t._self._c;
-  return i("Card", t._b({ staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "", "inline-block": "" } }, "Card", t.$attrs, !1), [i("button", { attrs: { disabled: t.$attrs.disabled, center: "", vc: "" }, on: { click: function(s) {
-    return t.$emit("click", s);
-  } } }, [t._t("inner", function() {
-    return [i("span", [t._t("default", function() {
-      return [t._v("提示")];
-    })], 2)];
-  })], 2), t._t("tips", function() {
-    return [t.$attrs.tips ? i("tips", t._b({}, "tips", t.$attrs.tips, !1)) : t._e()];
-  })], 2);
-}, ee = [], ie = /* @__PURE__ */ S(
-  Zt,
-  te,
-  ee,
-  !1,
-  null,
-  "30c6130b",
-  null,
-  null
-);
-const it = ie.exports, dt = /(?:\,|\|{2})/, Z = "px", pt = "";
-let O = document.documentElement, mt, gt = ["s-left", "s-top", "s-right", "s-bottom"], se = { left: 0, top: 1, right: 2, bottom: 3 };
+const k = Qt.exports, dt = /(?:\,|\|{2})/, et = "px", pt = "";
+let O = document.documentElement, mt, gt = ["s-left", "s-top", "s-right", "s-bottom"], Zt = { left: 0, top: 1, right: 2, bottom: 3 };
 const M = [];
-var re = Vt(
+var te = Vt(
   window,
   "Reflect.defineProperty|Object.defineProperty=>Proxy"
 ).Proxy;
-let st = {}, Rt = null;
-re(st, "delay", {
+let rt = {}, Rt = null;
+te(rt, "delay", {
   /**
    * 获取延迟时间值
    * @returns {number} 返回当前实例的延迟时间属性值
@@ -299,13 +254,13 @@ re(st, "delay", {
     return this._delay;
   },
   set(e) {
-    Rt = ne(() => {
+    Rt = ee(() => {
       _(M);
     }, e), this._delay = e;
   }
 });
-st.delay = 60;
-function ne(e, t) {
+rt.delay = 60;
+function ee(e, t) {
   let i = 0;
   return function() {
     const s = Date.now();
@@ -315,17 +270,17 @@ function ne(e, t) {
 const F = () => {
   Rt();
 };
-function le(e) {
+function ie(e) {
   Nt(e), M.push(e);
 }
-function oe(e, t) {
+function se(e, t) {
   if (!_(["getBoundingClientRect"], e))
     return;
   let i = e.getBoundingClientRect(), s = t.x, r = t.y;
   return s > i.left && s < i.left + i.width && r > i.top && r < i.top + i.height;
 }
 function Nt(e) {
-  let t = K(M, function(i, s) {
+  let t = Z(M, function(i, s) {
     if (e == s)
       return i;
   });
@@ -336,11 +291,11 @@ W.observe(O);
 function yt(e, t, i) {
   return Math.max(t, Math.min(e, i));
 }
-const G = [], N = (e) => {
+const J = [], N = (e) => {
   if (It(e))
-    G.push(e);
+    J.push(e);
   else
-    return +e < 0 ? _(e, G) : G.pop();
+    return +e < 0 ? _(e, J) : J.pop();
 };
 _([
   [
@@ -368,7 +323,7 @@ var vt = {
   // 获取配置方向所需
   rPosition: /(?:(center)|(left|top|right|bottom))/g,
   css: function(e, t, i, s, r) {
-    r = this.aWH[s], e[this.aLT[s]] = (t[r] - i[r]) / 2 + Z;
+    r = this.aWH[s], e[this.aLT[s]] = (t[r] - i[r]) / 2 + et;
   },
   trigger: function(e, t, i, s) {
     var r = this.CENTER;
@@ -385,45 +340,45 @@ function zt(e) {
     vt.trigger(u, n, O, h);
     return;
   }
-  var T = "3,0,2,1".split(dt), z, y = c.left, w = c.top, R = Math.max(w, o), x = (c.height == mt ? c.bottom - w : c.height) >> 0, A = (c.width == mt ? c.right - y : c.width) >> 0, E = s - p - g, C = i - f - g, lt = y < 0 || y + A / 2 > s, ot = w < 0 || w + x > i, I = [
+  var T = "3,0,2,1".split(dt), z, y = c.left, w = c.top, R = Math.max(w, o), x = (c.height == mt ? c.bottom - w : c.height) >> 0, A = (c.width == mt ? c.right - y : c.width) >> 0, E = s - p - g, C = i - f - g, ot = y < 0 || y + A / 2 > s, at = w < 0 || w + x > i, D = [
     /* left: 0 */
-    ot ? -1 : y - p,
+    at ? -1 : y - p,
     /* top: 1 */
-    lt ? -1 : R - f,
+    ot ? -1 : R - f,
     /* right: 2 */
-    ot ? -1 : E - c.right,
+    at ? -1 : E - c.right,
     /* bottom: 3 */
-    lt ? -1 : C - c.bottom
+    ot ? -1 : C - c.bottom
   ];
-  u && (K(
+  u && (Z(
     u.split(dt),
-    function(Ot, H, q, Ft) {
-      Ft.push(q[H]);
+    function(Ot, H, Y, Ft) {
+      Ft.push(Y[H]);
     },
-    se,
+    Zt,
     z = []
-  ), T.unshift.apply(T, z)), l = K(
+  ), T.unshift.apply(T, z)), l = Z(
     T,
-    function(Ot, H, q) {
-      if (q[H] - o > 0)
+    function(Ot, H, Y) {
+      if (Y[H] - o > 0)
         return H;
     },
-    I
+    D
   );
-  var D = 0, U = 0, at = 0, ut = 0;
+  var U = 0, V = 0, ut = 0, X = 0;
   if (l == null)
     vt.trigger("center", n, O, h);
   else {
-    var V = l == 0 || l == 2;
-    D = yt(
-      V ? l == 2 ? c.right + g : I[0] - g : (
+    var q = l == 0 || l == 2;
+    U = yt(
+      q ? l == 2 ? c.right + g : D[0] - g : (
         /* 目标对象的 left */
         y - a
       ),
       o,
       E
-    ), U = yt(
-      V ? (
+    ), V = yt(
+      q ? (
         // ? Math.min(
         // iTargetTop,
         // iShowHeight,
@@ -434,29 +389,29 @@ function zt(e) {
         )
       ) : (
         // )
-        l == 3 ? w + x + a + g : I[1] - g
+        l == 3 ? w + x + a + g : D[1] - g
       ),
       o,
       C
-    ), V ? ut = Math.max(
-      R - U + (x - a) / 2 - a,
+    ), q ? X = Math.max(
+      R - V + (x - a) / 2 - a,
       a
-    ) : at = Math.max(
+    ) : ut = Math.max(
       /*  */
       Math.min(
         /* 相对位置差 + 目标宽 和 箭头差的一半 */
-        y - D + (A - a) / 2 - a,
+        y - U + (A - a) / 2 - a,
         /* 目标宽 - 两倍的箭头 */
         p - 4 * a
       ),
       a
-    ), h.left = D + Z, h.top = U + Z, h["--tips-arrow-top"] = (x > f ? 0 : ut) || pt, h["--tips-arrow-left"] = at || pt;
+    ), h.left = U + et, h.top = V + et, h["--tips-arrow-top"] = (x > f, X || pt), h["--tips-arrow-left"] = ut || pt;
   }
-  let ct = n.classList, Ht = gt[l], X = d[0];
-  (P(X) || X != l) && _([
+  let ct = n.classList, Ht = gt[l], G = d[0];
+  (P(G) || G != l) && _([
     [
       /* 移除旧值 */
-      ["remove", ct, gt[X]],
+      ["remove", ct, gt[G]],
       /* 添加新值 */
       ["add", ct, Ht]
     ],
@@ -465,10 +420,10 @@ function zt(e) {
     }
   ]);
 }
-const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDefault"], e), e), xt = (e) => {
+const K = document.documentElement, B = (e) => (_(["stopPropagation", "preventDefault"], e), e), xt = (e) => {
   let t = N(e), i = b(t, "1=>host,3=>sign,4=>modal", !0);
   return i.task = t, i;
-}, J = "data-tips-scroll", ae = -1e4, $t = 3, wt = {
+}, Q = "data-tips-scroll", re = -1e4, $t = 3, wt = {
   proxy: function(e) {
     e && this.$nextTick(this.__2next), this.$emit("update:visible", e);
   },
@@ -492,7 +447,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
     handler(e) {
       let t = b(
         [e],
-        et(
+        st(
           "0.?.$el|0.$el|0=>el",
           b(this.$attrs, "ref-name|trigger-name=>name").name || "+"
         ),
@@ -515,7 +470,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
       }
     }
   }
-}, ue = {
+}, ne = {
   name: "Tips",
   components: {
     Card: k
@@ -525,7 +480,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
     /* 目标对象 */
     target: {
       type: [String, HTMLElement, Object, Number],
-      default: ae
+      default: re
     },
     /* 是否显示 */
     visible: {
@@ -590,7 +545,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
       arrow: 0,
       proxy_before: !1,
       completed: void 0,
-      sign: et("s-tips-{100-999}-{100-999}-{100-999}")
+      sign: st("s-tips-{100-999}-{100-999}-{100-999}")
     };
   },
   computed: {
@@ -644,7 +599,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
       _([
         [
           t ? "removeChild" : i ? "insertBefore" : "appendChild",
-          Y,
+          K,
           e,
           i ? document.body : void 0
         ]
@@ -653,7 +608,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
     __2listener() {
       this.static || /* 监听滚动, 动态添加监测 */
       this.__parent((e, t, i) => {
-        t ? _(e.addEventListener, e, "scroll", F) : (_(W.observe, W, e), (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) && (i = this.__attr(e, J), i || (_(e.addEventListener, e, "scroll", F), this.__attr(e, J, "true"))));
+        t ? _(e.addEventListener, e, "scroll", F) : (_(W.observe, W, e), (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) && (i = this.__attr(e, Q), i || (_(e.addEventListener, e, "scroll", F), this.__attr(e, Q, "true"))));
       });
     },
     __css() {
@@ -666,7 +621,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
       ) / 2 >> 0, e;
     },
     __2next() {
-      P(this.static) || (this.init(), st.delay = +this.delay, le(this.__2listener), this.__2listener(), this.__toggle_append(this.$el));
+      P(this.static) || (this.init(), rt.delay = +this.delay, ie(this.__2listener), this.__2listener(), this.__toggle_append(this.$el));
     },
     __debounce(e) {
       clearTimeout(this._timeout__), this._timeout__ = setTimeout(
@@ -697,7 +652,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
     __close(e) {
       let { task: t, host: i, sign: s, modal: r } = xt(-1);
       if (t !== void 0) {
-        if (oe(i.$el, e))
+        if (se(i.$el, e))
           return B(e);
         if (!i.proxy)
           return N(), s === this.sign ? void 0 : this.__close(e);
@@ -711,7 +666,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
     },
     __click(e) {
       B(e);
-      let t = tt(e), { task: i, sign: s, host: r, modal: n } = xt(-1);
+      let t = it(e), { task: i, sign: s, host: r, modal: n } = xt(-1);
       _(n) !== void 0 && (i = null);
       let l = s == this.sign;
       this.$attrs.clear === void 0 || (i && _([i]), N()), l || this.__Task(
@@ -750,7 +705,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
             ["mouseenter", this.__click]
             // ["click", this.__close, ROOM],
           ]
-        }[e]).push(["click", this.__close, Y, !0]), this._try("addEventListener");
+        }[e]).push(["click", this.__close, K, !0]), this._try("addEventListener");
       } else
         /^\d+$/.test(e) ? this.__toggle({}) : this.proxy = e;
     },
@@ -762,7 +717,7 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
       let s = [];
       v(i, (r, n) => {
         let l = 0;
-        n[2] === Y && ++l && bt.__tipsmark_ || (l && (bt.__tipsmark_ = !0), s.push([
+        n[2] === K && ++l && bt.__tipsmark_ || (l && (bt.__tipsmark_ = !0), s.push([
           e,
           n[2] || t,
           n[0],
@@ -777,30 +732,75 @@ const Y = document.documentElement, B = (e) => (_(["stopPropagation", "preventDe
   },
   unmounted() {
     this._try("removeEventListener"), this.__toggle_append(this.$el, !0), Nt(this.__2listener), this.__parent(function(e, t) {
-      _(e.removeEventListener, e, "scroll", F), _(e.removeAttribute, e, J, void 0), t || _(W.unobserve, W, e);
+      _(e.removeEventListener, e, "scroll", F), _(e.removeAttribute, e, Q, void 0), t || _(W.unobserve, W, e);
     });
   }
 };
-var ce = function() {
+var le = function() {
   var t = this, i = t._self._c;
   return t.proxy ? i("Card", t._b({ staticClass: "tips", class: {
     "tips-fly": t.isModal
-  }, style: t.static ? null : t.css, attrs: { "s-tips-completed": t.completed, static: t.static ? "" : null, mix: "bg|c|color=>--tips-background-color,c|color=>--tips-color,cc=>--tips-content-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height,m=>margin" }, on: { click: t.__close }, scopedSlots: t._u([t._l(t.$slots, function(s, r) {
+  }, style: t.static ? null : t.css, attrs: { "s-tips-completed": t.completed, static: t.static ? "" : null, mix: "bg|c|color=>--tips-background-color,c|color=>--tips-color,cc=>--tips-text-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height,m=>margin" }, on: { click: t.__close }, scopedSlots: t._u([t._l(t.$slots, function(s, r) {
     return { key: r, fn: function(n) {
       return [t._t(r, null, null, n)];
     } };
   })], null, !0) }, "Card", t.$attrs, !1)) : t._e();
+}, oe = [], ae = /* @__PURE__ */ S(
+  ne,
+  le,
+  oe,
+  !1,
+  null,
+  "12b66c26",
+  null,
+  null
+);
+const I = ae.exports;
+const ue = {
+  name: "Boom",
+  emits: ["click"],
+  components: { Card: k, Tips: I },
+  data: function() {
+    return {
+      mix: "m=>margin,c|color=>--s-button-text-color,fs=>font-size,lh=>line-height,miw|minw=>min-width,mih|minh=>min-height,mw|maxw=>max-width,mh|maxh=>max-height,h=>height,w=>width,p=>padding,br=>--s-button-border-radius,bg=>--s-button-color,bg=>--s-button-shadow-color"
+    };
+  },
+  mounted() {
+    this.init();
+  },
+  updated() {
+    this.init();
+  },
+  methods: {
+    init() {
+      v("disabled visible tips".split(/\s+/g), (e, t) => {
+        m("removeAttribute", this.$el, t);
+      });
+    }
+  }
+};
+var ce = function() {
+  var t = this, i = t._self._c;
+  return i("Card", { staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "", "inline-block": "" } }, [i("button", { attrs: { disabled: t.$attrs.disabled, center: "", vc: "" }, on: { click: function(s) {
+    return t.$emit("click", s);
+  } } }, [t._t("inner", function() {
+    return [i("span", [t._t("default", function() {
+      return [t._v("提示")];
+    })], 2)];
+  })], 2), t._t("tips", function() {
+    return [t.$attrs.tips ? i("Tips", t._b({}, "Tips", t.$attrs.tips, !1)) : t._e()];
+  })], 2);
 }, he = [], _e = /* @__PURE__ */ S(
   ue,
   ce,
   he,
   !1,
   null,
-  "e665f444",
+  "4afc78b4",
   null,
   null
 );
-const rt = _e.exports, fe = {
+const nt = _e.exports, fe = {
   name: "Stream",
   computed: {
     component() {
@@ -808,7 +808,7 @@ const rt = _e.exports, fe = {
     },
     column() {
       let { columns: e, T: t } = this, i = e || t;
-      return tt(i) ? [] : j(i) ? i : [i];
+      return it(i) ? [] : j(i) ? i : [i];
     },
     tag() {
       return this.is || this.$attrs.type;
@@ -872,13 +872,13 @@ var de = function() {
   null,
   null
 );
-const nt = me.exports;
+const lt = me.exports;
 const ge = {
   name: "Confirm",
   components: {
     Card: k,
-    Tips: rt,
-    Boom: it
+    Tips: I,
+    Boom: nt
   },
   inheritAttrs: !1,
   emits: ["submit-click", "cancel-click"],
@@ -1000,7 +1000,7 @@ var ye = function() {
   be,
   !1,
   null,
-  "73ba28e8",
+  "b2e0bc90",
   null,
   null
 );
@@ -1403,7 +1403,7 @@ const Me = {
   inheritAttrs: !1,
   name: "Input",
   global: !1,
-  components: { Card: k, Stream: nt },
+  components: { Card: k, Stream: lt },
   emits: [
     "update:modelValue",
     "update:value",
@@ -1414,7 +1414,7 @@ const Me = {
   ],
   data: function() {
     return {
-      id: et("input-{1000-9999}-{1000-9999}"),
+      id: st("input-{1000-9999}-{1000-9999}"),
       inputAttrs: {},
       trigger: "modelValue",
       attrs: {},
@@ -1579,8 +1579,8 @@ var He = function() {
   null
 );
 const Wt = Fe.exports, Pe = {}, Mt = [];
-Mt.push(it, k, At, Et, Bt, Lt, Wt, nt, rt);
-const Ue = { Boom: it, Card: k, Confirm: At, Div: Et, Flex: Bt, Flyweight: Lt, Input: Wt, Stream: nt, Tips: rt };
+Mt.push(nt, k, At, Et, Bt, Lt, Wt, lt, I);
+const Ue = { Boom: nt, Card: k, Confirm: At, Div: Et, Flex: Bt, Flyweight: Lt, Input: Wt, Stream: lt, Tips: I };
 Pe.install = function(e, t = {}) {
   Mt.forEach((i) => {
     let { global: s, name: r } = i;
@@ -1588,15 +1588,15 @@ Pe.install = function(e, t = {}) {
   });
 };
 export {
-  it as Boom,
+  nt as Boom,
   k as Card,
   At as Confirm,
   Et as Div,
   Bt as Flex,
   Lt as Flyweight,
   Wt as Input,
-  nt as Stream,
-  rt as Tips,
+  lt as Stream,
+  I as Tips,
   Ue as components,
   Pe as default
 };

@@ -992,7 +992,10 @@ function We(t, e, s, i, n, r) {
             column: ""
           }, {
             title: m(() => [
-              k(l, { class: "s-confirm-title" }, {
+              k(l, {
+                class: "s-confirm-title",
+                height: "auto"
+              }, {
                 default: m(() => [
                   a(t.$slots, "title", {}, () => [
                     L(B(s.title), 1)
@@ -1009,7 +1012,8 @@ function We(t, e, s, i, n, r) {
                 k(l, {
                   class: "s-confirm-booms",
                   flex: "",
-                  space: ""
+                  space: "",
+                  height: "auto"
                 }, {
                   default: m(() => [
                     e[1] || (e[1] = b("span", null, null, -1)),
@@ -1075,7 +1079,7 @@ function We(t, e, s, i, n, r) {
     }, 16, ["columns", "visible", "arrow"])
   ]);
 }
-const Qt = /* @__PURE__ */ R(Re, [["render", We], ["__scopeId", "data-v-87fd701f"]]);
+const Qt = /* @__PURE__ */ R(Re, [["render", We], ["__scopeId", "data-v-ec9d97ab"]]);
 const He = {
   name: "Div",
   components: {

@@ -974,14 +974,14 @@ var ye = function() {
   }), i("Tips", t._b({ tag: "Stream", staticClass: "s-confirm", attrs: { columns: { type: t.type }, visible: t.proxy, min: ["auto"], height: "auto", arrow: /^(false|null)$/.test(t.$attrs.arrow) ? void 0 : "" }, scopedSlots: t._u([{ key: "default", fn: function() {
     return [t._t("el", function() {
       return [i("Card", { attrs: { flex: "", column: "" }, scopedSlots: t._u([{ key: "title", fn: function() {
-        return [i("Card", { staticClass: "s-confirm-title" }, [t._t("title", function() {
+        return [i("Card", { staticClass: "s-confirm-title", attrs: { height: "auto" } }, [t._t("title", function() {
           return [t._v(t._s(t.title))];
         })], 2)];
       }, proxy: !0 }, { key: "content", fn: function() {
         return [t._t("content", function() {
           return [t._v(t._s(t.content))];
         }), t._t("bottom", function() {
-          return [i("Card", { staticClass: "s-confirm-booms", attrs: { flex: "", space: "" } }, [i("span"), i("span", { attrs: { flex: "" } }, [t._t("boom", function() {
+          return [i("Card", { staticClass: "s-confirm-booms", attrs: { flex: "", space: "", height: "auto" } }, [i("span"), i("span", { attrs: { flex: "" } }, [t._t("boom", function() {
             return [t._t("cancel", function() {
               return [i("Boom", t._b({ attrs: { cancel: "" }, on: { click: function(s) {
                 return s.stopPropagation(), t.emitcancel.apply(null, arguments);
@@ -1016,7 +1016,7 @@ var ye = function() {
   be,
   !1,
   null,
-  "97bebd56",
+  "1d997c31",
   null,
   null
 );

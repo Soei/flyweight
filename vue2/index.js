@@ -271,7 +271,7 @@ const F = () => {
   Nt();
 };
 function yt(e) {
-  zt(e), W.push(e);
+  At(e), W.push(e);
 }
 function se(e, t) {
   if (!h(["getBoundingClientRect"], e))
@@ -279,7 +279,7 @@ function se(e, t) {
   let i = e.getBoundingClientRect(), s = t.x, r = t.y;
   return s > i.left && s < i.left + i.width && r > i.top && r < i.top + i.height;
 }
-function zt(e) {
+function At(e) {
   let t = Z(W, function(i, s) {
     if (e == s)
       return i;
@@ -333,14 +333,14 @@ var xt = {
     return s;
   }
 };
-function At(e) {
-  e.onresize || (W.push([At, null, e]), e.onresize = !0);
+function zt(e) {
+  e.onresize || (W.push([zt, null, e]), e.onresize = !0);
   var t = O, i = t.clientHeight, s = t.clientWidth, r = e.target, n = e.room, l = e.index, u = e.position, o = e.edge || 7, a = e.arrow || 0, _ = e.css, d = e.space || (e.space = []), c = r.getBoundingClientRect(), f = n.offsetHeight, p = n.offsetWidth, g = P(e.offset) ? 7 : e.offset;
   if (/\s+|center/.test(u)) {
     xt.trigger(u, n, O, _);
     return;
   }
-  var T = "3,0,2,1".split(dt), z, y = c.left, w = c.top, R = Math.max(w, o), x = (c.height == mt ? c.bottom - w : c.height) >> 0, A = (c.width == mt ? c.right - y : c.width) >> 0, E = s - p - g, C = i - f - g, ot = y < 0 || y + A / 2 > s, at = w < 0 || w + x > i, U = [
+  var T = "3,0,2,1".split(dt), A, y = c.left, w = c.top, R = Math.max(w, o), x = (c.height == mt ? c.bottom - w : c.height) >> 0, z = (c.width == mt ? c.right - y : c.width) >> 0, E = s - p - g, C = i - f - g, ot = y < 0 || y + z / 2 > s, at = w < 0 || w + x > i, U = [
     /* left: 0 */
     at ? -1 : y - p,
     /* top: 1 */
@@ -356,8 +356,8 @@ function At(e) {
       Pt.push(Y[H]);
     },
     te,
-    z = []
-  ), T.unshift.apply(T, z)), l = Z(
+    A = []
+  ), T.unshift.apply(T, A)), l = Z(
     T,
     function(Ft, H, Y) {
       if (Y[H] - o > 0)
@@ -400,7 +400,7 @@ function At(e) {
       /*  */
       Math.min(
         /* 相对位置差 + 目标宽 和 箭头差的一半 */
-        y - D + (A - a) / 2 - a,
+        y - D + (z - a) / 2 - a,
         /* 目标宽 - 两倍的箭头 */
         p - 4 * a
       ),
@@ -586,7 +586,7 @@ const K = document.documentElement, L = (e) => (h(["stopPropagation", "preventDe
       if (e.nodeName == "#comment")
         return;
       let t = this.$set ? Object.assign({}, this.css) : this.css;
-      M(t, this.__css(), !0), At({
+      M(t, this.__css(), !0), zt({
         onresize: !1,
         /* 监控的目标 */
         target: this._target__,
@@ -747,7 +747,7 @@ const K = document.documentElement, L = (e) => (h(["stopPropagation", "preventDe
   beforeUnmount() {
   },
   unmounted() {
-    h.apply(null, this._rank__), this._try("removeEventListener"), clearTimeout(this._timer__), zt(this.__2listener), this.__toggle_append(this.$el, !0), this.__parent(function(e, t) {
+    h.apply(null, this._rank__), this._try("removeEventListener"), clearTimeout(this._timer__), At(this.__2listener), this.__toggle_append(this.$el, !0), this.__parent(function(e, t) {
       h(e.removeEventListener, e, "scroll", F), h(e.removeAttribute, e, Q, void 0), t || h(B.unobserve, B, e);
     });
   }
@@ -756,7 +756,7 @@ var le = function() {
   var t = this, i = t._self._c;
   return t.proxy ? i("Card", t._b({ staticClass: "tips", class: {
     "tips-fly": t.isModal
-  }, style: t.static ? null : t.css, attrs: { "s-tips-completed": t.completed, static: t.static ? "" : null, mix: "bg|c|color=>--tips-background-color,c|color=>--tips-color,cc=>--tips-text-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>min-width,minh|min.1=>min-height,maxw|max.0=>max-width,maxh|max.1=>max-height,m=>margin" }, on: { click: t.__close }, scopedSlots: t._u([t._l(t.$slots, function(s, r) {
+  }, style: t.static ? null : t.css, attrs: { "s-tips-completed": t.completed, static: t.static ? "" : null, mix: "bg|c|color=>--tips-background-color,c|color=>--tips-color,cc=>--tips-text-color,b=>--tips-border-width,fs|fontSize=>--tips-font-size,br|borderRadius=>border-radius,z=>z-index,offset=>--tips-offset,minw|min.0=>--w-,minh|min.1=>--h-,maxw|max.0=>--w--,maxh|max.1=>--h--,m=>margin" }, on: { click: t.__close }, scopedSlots: t._u([t._l(t.$slots, function(s, r) {
     return { key: r, fn: function(n) {
       return [t._t(r, null, { t: t.t }, n)];
     } };
@@ -767,7 +767,7 @@ var le = function() {
   oe,
   !1,
   null,
-  "93d8f99e",
+  "be56ab20",
   null,
   null
 );
@@ -919,6 +919,10 @@ const ge = {
       type: Object,
       default: () => ({})
     },
+    titleAttrs: {
+      type: Object,
+      default: () => ({})
+    },
     cancel: {
       type: String,
       default: "取消"
@@ -974,7 +978,7 @@ var ye = function() {
   }), i("Tips", t._b({ tag: "Stream", staticClass: "s-confirm", attrs: { columns: { type: t.type }, visible: t.proxy, min: ["auto"], height: "auto", arrow: /^(false|null)$/.test(t.$attrs.arrow) ? void 0 : "" }, scopedSlots: t._u([{ key: "default", fn: function() {
     return [t._t("el", function() {
       return [i("Card", { attrs: { flex: "", column: "" }, scopedSlots: t._u([{ key: "title", fn: function() {
-        return [i("Card", { staticClass: "s-confirm-title", attrs: { height: "auto" } }, [t._t("title", function() {
+        return [i("Card", t._b({ staticClass: "s-confirm-title", attrs: { height: "auto" } }, "Card", t.titleAttrs, !1), [t._t("title", function() {
           return [t._v(t._s(t.title))];
         })], 2)];
       }, proxy: !0 }, { key: "content", fn: function() {
@@ -1016,7 +1020,7 @@ var ye = function() {
   be,
   !1,
   null,
-  "1d997c31",
+  "13c825c6",
   null,
   null
 );
@@ -1072,7 +1076,7 @@ const Lt = Re.exports;
 let St = (e) => e == null || e == null, Ne = (...e) => {
   console.info("::::FLYWEIGHT", ...e);
 };
-const ze = {
+const Ae = {
   name: "Flyweight",
   components: {
     Card: S
@@ -1348,19 +1352,19 @@ const ze = {
       this.$nextTick(() => {
         let n = /true/.test(this.auto), [l, u] = this.offset, o = r.width, a = r.height, _ = (ft(this.width, o) || o) + l, d = ft(this.height, a) + u, c = [o / _ >> 0 || 1, a / d >> 0 || 1];
         i && c.reverse();
-        let [f, p] = c, g = this.padding, T, z = 0, y, w;
+        let [f, p] = c, g = this.padding, T, A = 0, y, w;
         i ? (y = _, _ -= l, w = (C) => (
           /* 计算top偏移量 */
           C * (d - u) + (C + 1) * u
-        )) : (n ? (_ = (o - l * (f + 2 * g - 1)) / f, T = !g * l, z = g * l) : (T = 0, z = o < _ ? 0 : (o % _ + l * f) / (f + 1) >> 0, _ -= l), w = (C) => C * (_ + T) + (C + 1) * z, y = d), this.row = p + 2, this.column = f, this.realH = d - u, this.realW = _, this.expand = y, this.Size = Math.ceil(e / f) * y;
-        let R = Math.min(e, f * this.row), x = R - 1, A;
+        )) : (n ? (_ = (o - l * (f + 2 * g - 1)) / f, T = !g * l, A = g * l) : (T = 0, A = o < _ ? 0 : (o % _ + l * f) / (f + 1) >> 0, _ -= l), w = (C) => C * (_ + T) + (C + 1) * A, y = d), this.row = p + 2, this.column = f, this.realH = d - u, this.realW = _, this.expand = y, this.Size = Math.ceil(e / f) * y;
+        let R = Math.min(e, f * this.row), x = R - 1, z;
         for (; R-- > 0; )
-          A = x - R, this.$set(t, A, {
+          z = x - R, this.$set(t, z, {
             x: l,
             y: u,
             width: _,
             height: d - u,
-            space: w(A % f),
+            space: w(z % f),
             data: {}
           });
         t.length = x + 1;
@@ -1380,7 +1384,7 @@ const ze = {
     }
   }
 };
-var Ae = function() {
+var ze = function() {
   var t = this, i = t._self._c;
   return i("div", { ref: "flyweight", staticClass: "flyweight", class: {
     //   'flyweight-active': actice,
@@ -1397,8 +1401,8 @@ var Ae = function() {
     })];
   }, null, t.bridge)], 2);
 }, Ee = [], Be = /* @__PURE__ */ k(
-  ze,
   Ae,
+  ze,
   Ee,
   !1,
   null,

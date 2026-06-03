@@ -765,7 +765,7 @@ function Ne(t, e, s, i, n, r) {
     }))
   ]), 1040, ["class", "s-tips-completed", "style", "static", "onClick"])) : wt("", !0);
 }
-const rt = /* @__PURE__ */ R(Ce, [["render", Ne], ["__scopeId", "data-v-9e51b1d6"]]);
+const rt = /* @__PURE__ */ R(Ce, [["render", Ne], ["__scopeId", "data-v-c4ac8692"]]);
 const ze = {
   name: "Boom",
   emits: ["click"],

@@ -21,7 +21,7 @@
  顺序可随意, 配置好位置即可
  m => margin: 偏移量
  -->
-
+ 
 <s-tips height="30" m="10 0 0 10" position="left top" success arrow>
   position="left bottom"
 </s-tips>

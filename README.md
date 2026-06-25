@@ -8,23 +8,23 @@
 
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## # 版本: `0.5.27`
+## # 版本: `0.5.35`
 
-### # 优化 \<s-tips/> , \<s-confirm/>
+### # 优化
 
 ```html
-<!-- 对应不同色值 text|notice|success|error|blue|black -->
-<s-tips position="left top" [text|notice|success|error|blue|black] />
 <!-- 
- 视口显示
- position: left top | left bottom | right top | right bottom | center top | center bottom | center | center left | center right | center 
- 顺序可随意, 配置好位置即可
- m => margin: 偏移量
+ append-to-* : * = _class|#id|[attr]
+ append-to="selector" : selector = 样式选择器
  -->
- 
-<s-tips height="30" m="10 0 0 10" position="left top" success arrow>
-  position="left bottom"
-</s-tips>
+<!-- 添加到 第一个查找的 .card 中去 ⚠️ "_"会被替换为"." -->
+<s-tips append-to-_card />
+<!-- 添加到 ⚠️id 为card的容器中 -->
+<s-tips append-to-#card />
+<!-- 添加到 [⚠️属性名] 为card的容器中 ⚠️只限于名称 -->
+<s-tips append-to-[card] />
+<!-- 添加到 [属性] 为card的容器中 -->
+<s-tips append-to=".card [name=room]" />
 ```
 
 ## # **目录**

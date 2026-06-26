@@ -8,15 +8,23 @@
 
 [![安装](https://img.shields.io/badge/引用-import_{_Flyweight_}_from_"@soei/flyweight"-00bcd4?style=flat-square)](https://npmjs.com/package/@soei/flyweight)
 
-## # 版本: `0.5.35`
+## # 版本: `0.5.37`
 
 ### # 优化
 
 ```html
 <!-- 
- append-to-* : * = _class|#id|[attr]
+ 0.5.35版本就有
+ append-to-html 默认
+ 不能带点(., append-to-div.card[app]=>append-to-div_card[app])
+ append-to-* : * = tag|_class|#id|[attr]
  append-to="selector" : selector = 样式选择器
  -->
+ 
+<!-- 添加到 body 中去-->
+<s-tips append-to-body />
+<!-- 添加到 第一个查找的 div 中去-->
+<s-tips append-to-div />
 <!-- 添加到 第一个查找的 .card 中去 ⚠️ "_"会被替换为"." -->
 <s-tips append-to-_card />
 <!-- 添加到 ⚠️id 为card的容器中 -->

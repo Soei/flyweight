@@ -819,6 +819,11 @@ const he = {
   name: "Boom",
   emits: ["click"],
   components: { Card: k, Tips: W },
+  props: {
+    loading: {
+      type: [Boolean, String]
+    }
+  },
   data: function() {
     return {
       mix: "p,h,w,c|color=>--s-button-text-color,fs=>font-size,lh=>line-height,miw|minw=>min-width,mih|minh=>min-height,mw|maxw=>max-width,mh|maxh=>max-height,br=>--s-button-border-radius,bg=>--s-button-color,bg=>--s-button-shadow-color,offset,m=>--2-m,padding:--d-padding"
@@ -840,7 +845,7 @@ const he = {
 };
 var _e = function() {
   var t = this, i = t._self._c;
-  return i("Card", { staticClass: "s-button", attrs: { use: "", mix: t.mix, center: "", space: "", vc: "" } }, [i("button", { attrs: { disabled: t.$attrs.disabled || t.$attrs.loading != null, center: "", vc: "" }, on: { click: function(s) {
+  return i("Card", { staticClass: "s-button", attrs: { use: "", mix: t.mix, loading: t.loading ? "" : void 0, center: "", space: "", vc: "" } }, [i("button", { attrs: { disabled: t.$attrs.disabled || t.loading, center: "", vc: "" }, on: { click: function(s) {
     return t.$emit("click", s);
   } } }, [t._t("inner", function() {
     return [i("span", [t._t("default", function() {
@@ -855,7 +860,7 @@ var _e = function() {
   fe,
   !1,
   null,
-  "4f03a518",
+  "4498c832",
   null,
   null
 );

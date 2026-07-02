@@ -1,19 +1,19 @@
 import { runer as g, take as Gt, each as S, merge as Y, isEmpty as $t, picker as H, isSimplyType as zt, isString as he, format as wt, isArray as nt, array2Json as ue } from "@soei/util";
-import { openBlock as y, createElementBlock as F, normalizeClass as it, normalizeStyle as X, renderSlot as a, createElementVNode as $, toDisplayString as E, normalizeProps as A, guardReactiveProps as W, resolveComponent as T, createBlock as I, createSlots as lt, renderList as J, withCtx as p, mergeProps as b, createCommentVNode as vt, createTextVNode as B, resolveDynamicComponent as de, Fragment as Yt, createVNode as k, withModifiers as Lt } from "vue";
+import { openBlock as y, createElementBlock as F, normalizeClass as it, normalizeStyle as X, renderSlot as a, createElementVNode as $, toDisplayString as B, normalizeProps as A, guardReactiveProps as W, resolveComponent as T, createBlock as I, createSlots as lt, renderList as J, withCtx as p, mergeProps as b, createCommentVNode as vt, createTextVNode as E, resolveDynamicComponent as de, Fragment as Yt, createVNode as k, withModifiers as Lt } from "vue";
 import { runer as d, isArray as ce, each as gt, isNil as rt, isString as fe, isFunction as _e } from "@soei/tools";
 import pe from "@soei/picker";
-let me = /(\d+|[+\-\*/]|%)/g, Et = {
+let me = /(\d+|[+\-\*/]|%)/g, Bt = {
   "+": (t, e) => t + e,
   "-": (t, e) => t - e,
   "*": (t, e) => t * e,
   "/": (t, e) => t / e,
   "%": (t, e, s) => parseFloat(t) / 100 * s
-}, Bt = (t, e) => {
+}, Et = (t, e) => {
   let s;
   if (s = g("match", t, me)) {
     let i = s.length, r, n = 0, l, o = [];
     for (; i--; )
-      n = s.shift(), n in Et ? (r && o.push(r), n === "%" && (o.length = 2), l = n) : +n && o.push(+n), o.length == 2 && (o.push(e), r = Et[l].apply(null, o), o.length = 0);
+      n = s.shift(), n in Bt ? (r && o.push(r), n === "%" && (o.length = 2), l = n) : +n && o.push(+n), o.length == 2 && (o.push(e), r = Bt[l].apply(null, o), o.length = 0);
     +r || (r = +o.pop()), t = r >> 0;
   }
   return t;
@@ -204,7 +204,7 @@ function xe(t, e, s, i, r, n) {
       a(t.$slots, "title", {}, () => [
         $("div", $e, [
           a(t.$slots, "subtitle", {}, () => [
-            $("span", null, E(n.sub), 1)
+            $("span", null, B(n.sub), 1)
           ], !0),
           a(t.$slots, "icons", {}, () => [
             $("div", we, [
@@ -815,6 +815,11 @@ const Le = {
   name: "Boom",
   emits: ["click"],
   components: { Card: M, Tips: Q },
+  props: {
+    loading: {
+      type: [Boolean, String]
+    }
+  },
   data: function() {
     return {
       mix: "p,h,w,c|color=>--s-button-text-color,fs=>font-size,lh=>line-height,miw|minw=>min-width,mih|minh=>min-height,mw|maxw=>max-width,mh|maxh=>max-height,br=>--s-button-border-radius,bg=>--s-button-color,bg=>--s-button-shadow-color,offset,m=>--2-m,padding:--d-padding"
@@ -833,20 +838,21 @@ const Le = {
       });
     }
   }
-}, Ee = ["disabled"];
-function Be(t, e, s, i, r, n) {
+}, Be = ["disabled"];
+function Ee(t, e, s, i, r, n) {
   const l = T("Tips"), o = T("Card");
   return y(), I(o, {
     class: "s-button",
     use: "",
     mix: t.mix,
+    loading: s.loading ? "" : void 0,
     center: "",
     space: "",
     vc: ""
   }, {
     default: p(() => [
       $("button", {
-        disabled: t.$attrs.disabled || t.$attrs.loading != null,
+        disabled: t.$attrs.disabled || s.loading,
         center: "",
         vc: "",
         onClick: e[0] || (e[0] = (h) => t.$emit("click", h))
@@ -854,19 +860,19 @@ function Be(t, e, s, i, r, n) {
         a(t.$slots, "inner", {}, () => [
           $("span", null, [
             a(t.$slots, "default", {}, () => [
-              e[1] || (e[1] = B("提示", -1))
+              e[1] || (e[1] = E("提示", -1))
             ], !0)
           ])
         ], !0)
-      ], 8, Ee),
+      ], 8, Be),
       a(t.$slots, "tips", {}, () => [
         t.$attrs.tips ? (y(), I(l, A(b({ key: 0 }, t.$attrs.tips)), null, 16)) : vt("", !0)
       ], !0)
     ]),
     _: 3
-  }, 8, ["mix"]);
+  }, 8, ["mix", "loading"]);
 }
-const kt = /* @__PURE__ */ z(Le, [["render", Be], ["__scopeId", "data-v-d8653e0f"]]), Me = {
+const kt = /* @__PURE__ */ z(Le, [["render", Ee], ["__scopeId", "data-v-c7ed4102"]]), Me = {
   name: "Stream",
   computed: {
     component() {
@@ -1044,7 +1050,7 @@ function Oe(t, e, s, i, r, n) {
               }, s.titleAttrs), {
                 default: p(() => [
                   a(t.$slots, "title", {}, () => [
-                    B(E(s.title), 1)
+                    E(B(s.title), 1)
                   ], !0)
                 ]),
                 _: 3
@@ -1052,7 +1058,7 @@ function Oe(t, e, s, i, r, n) {
             ]),
             content: p(() => [
               a(t.$slots, "content", {}, () => [
-                B(E(s.content), 1)
+                E(B(s.content), 1)
               ], !0),
               a(t.$slots, "bottom", {}, () => [
                 k(l, {
@@ -1074,7 +1080,7 @@ function Oe(t, e, s, i, r, n) {
                           }), {
                             default: p(() => [
                               a(t.$slots, "can", { text: s.cancel }, void 0, !0),
-                              B(" " + E(s.cancelAttrs.text || s.cancel), 1)
+                              E(" " + B(s.cancelAttrs.text || s.cancel), 1)
                             ]),
                             _: 3
                           }, 16, ["onClick"])
@@ -1090,7 +1096,7 @@ function Oe(t, e, s, i, r, n) {
                           }, s.submitAttrs), {
                             default: p(() => [
                               a(t.$slots, "sub", { text: s.submit }, void 0, !0),
-                              B(" " + E(s.submitAttrs.text || s.submit), 1)
+                              E(" " + B(s.submitAttrs.text || s.submit), 1)
                             ]),
                             _: 3
                           }, 16, ["onClick"])
@@ -1446,7 +1452,7 @@ const qe = {
       this.count = t;
       let s = this.scrollx, i = this.flyweight, r = H(i, this.BoxRule);
       this.$nextTick(() => {
-        let n = /true/.test(this.auto), [l, o] = this.offset, h = r.width, u = r.height, c = (Bt(this.width, h) || h) + l, m = Bt(this.height, u) + o, _ = [h / c >> 0 || 1, u / m >> 0 || 1];
+        let n = /true/.test(this.auto), [l, o] = this.offset, h = r.width, u = r.height, c = (Et(this.width, h) || h) + l, m = Et(this.height, u) + o, _ = [h / c >> 0 || 1, u / m >> 0 || 1];
         s && _.reverse();
         let [f, v] = _, w = this.padding, O, D = 0, x, L;
         s ? (x = c, c -= l, L = (R) => (
@@ -1514,7 +1520,7 @@ function Ge(t, e, s, i, r, n) {
           vcenter: ""
         }, {
           default: p(() => [...e[1] || (e[1] = [
-            B(" 空~ ", -1)
+            E(" 空~ ", -1)
           ])]),
           _: 1
         })
@@ -1733,13 +1739,13 @@ function ts(t, e, s, i, r, n) {
           $("span", Ke, [
             a(t.$slots, "placeholder", {}, () => [
               a(t.$slots, "icon", { type: "placeholder" }, void 0, !0),
-              B(" " + E(s.placeholder), 1)
+              E(" " + B(s.placeholder), 1)
             ], !0)
           ]),
           $("span", Qe, [
             a(t.$slots, "tips", { limit: n.limit }, () => [
               a(t.$slots, "icon", { type: "tips" }, void 0, !0),
-              B(" " + E(t.error || s.tips || s.placeholder), 1)
+              E(" " + B(t.error || s.tips || s.placeholder), 1)
             ], !0)
           ])
         ], !0)
@@ -1755,7 +1761,7 @@ function ts(t, e, s, i, r, n) {
         default: p(() => [
           a(t.$slots, "right", {}, () => [
             a(t.$slots, "limit", { limit: n.limit }, () => [
-              t.$attrs.maxlength ? (y(), F("span", Ze, E(n.limit), 1)) : vt("", !0)
+              t.$attrs.maxlength ? (y(), F("span", Ze, B(n.limit), 1)) : vt("", !0)
             ], !0),
             $("span", {
               ref: "rm",
@@ -1790,7 +1796,7 @@ function ts(t, e, s, i, r, n) {
       }, {
         default: p(() => [
           a(t.$slots, "error", {}, () => [
-            B(E(t.error), 1)
+            E(B(t.error), 1)
           ], !0)
         ]),
         _: 3

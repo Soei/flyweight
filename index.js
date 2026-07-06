@@ -932,7 +932,7 @@ const kt = /* @__PURE__ */ z(Le, [["render", Ee], ["__scopeId", "data-v-c7ed4102
 function Re(t, e, s, i, r, n) {
   return y(), I(de(n.tag), b({ ref: "component" }, t.$attrs), {
     default: p(() => [
-      (y(!0), F(Yt, null, J(n.column, (l) => a(t.$slots, n.__trigger(l), b({ ref_for: !0 }, l))), 256))
+      (y(!0), F(Yt, null, J(n.column, (l) => a(t.$slots, n.__trigger(l), b({ ref_for: !0 }, l, { _: t.$attrs }))), 256))
     ]),
     _: 3
   }, 16);

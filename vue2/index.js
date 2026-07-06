@@ -924,7 +924,7 @@ const lt = de.exports, pe = {
 var me = function() {
   var t = this, i = t._self._c;
   return i(t.tag, t._b({ ref: "component", tag: "component" }, "component", t.$attrs, !1), [t._l(t.column, function(s) {
-    return t._t(t.__trigger(s), null, null, s);
+    return t._t(t.__trigger(s), null, { _: t.$attrs }, s);
   })], 2);
 }, ge = [], ye = /* @__PURE__ */ $(
   pe,

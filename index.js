@@ -590,7 +590,7 @@ const jt = document.documentElement, G = (t) => (d(["stopPropagation", "preventD
       }), e.opacity = 1, this.css = e;
     },
     __toggle_append(t, e) {
-      if (this.static || this.isSimply)
+      if (this.static || this.isSimply || t.nodeName == "#comment")
         return;
       let s = this.isModal, i = Gt(this.$attrs, "append-to-*|append-to=>*", (l) => {
         d("removeAttribute", t, l);
@@ -810,7 +810,7 @@ function ze(t, e, s, i, r, n) {
     }))
   ]), 1032, ["class", "s-tips-completed", "style", "static", "onClick"])) : vt("", !0);
 }
-const Q = /* @__PURE__ */ z(Ae, [["render", ze], ["__scopeId", "data-v-4f47906d"]]);
+const Q = /* @__PURE__ */ z(Ae, [["render", ze], ["__scopeId", "data-v-fa3dfa4a"]]);
 const Le = {
   name: "Boom",
   emits: ["click"],

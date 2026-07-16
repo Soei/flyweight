@@ -596,7 +596,7 @@ const $t = document.documentElement, B = (e) => (u(["stopPropagation", "preventD
       }), t.opacity = 1, this.css = t;
     },
     __toggle_append(e, t) {
-      if (this.static || this.isSimply)
+      if (this.static || this.isSimply || e.nodeName == "#comment")
         return;
       let i = this.isModal, s = Rt(this.$attrs, "append-to-*|append-to=>*", (n) => {
         u("removeAttribute", e, n);
@@ -810,7 +810,7 @@ var ae = function() {
   ue,
   !1,
   null,
-  "274ae5fc",
+  "4a19ce2e",
   null,
   null
 );

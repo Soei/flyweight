@@ -1,5 +1,5 @@
 import { runer as p, each as b, isEmpty as H, take as F, merge as W, picker as C, isSimplyType as ft, isString as Vt, format as nt, isArray as q, array2Json as Gt } from "@soei/util";
-import { runer as c, bus as Xt, isArray as Yt, each as st, isNil as D, Event as Nt, take as Jt, isString as Kt, isFunction as Qt } from "@soei/tools";
+import { runer as c, bus as Xt, isArray as Yt, each as st, isNil as U, Event as Nt, take as Jt, isString as Kt, isFunction as Qt } from "@soei/tools";
 import Zt from "@soei/picker";
 let te = /(\d+|[+\-\*/]|%)/g, dt = {
   "+": (e, t) => e + t,
@@ -250,7 +250,7 @@ var re = function() {
         return [i("span", { style: t.tcss }, [t._v(t._s(t.sub))])];
       }), t._t("icons", function() {
         return [i("div", { staticClass: "card-ico-items", attrs: { vcenter: "" } }, [t._t("icon", null, null, { el: t.$el, picker: t.picker, runer: t.runer }), i("div", { staticClass: "card-close", class: { hide: t.isSimplyType(t.close) ? !t.close : !1 }, style: t.closecss, on: { click: function(s) {
-          return t.$emit("close");
+          return s.stopPropagation(), s.preventDefault(), t.$emit("close");
         } } }, [t._t("close")], 2)], 2)];
       }, null, { el: t.$el, picker: t.picker, runer: t.runer })], 2)];
     }), t._t("content", function() {
@@ -263,7 +263,7 @@ var re = function() {
   ne,
   !1,
   null,
-  "5963f271",
+  "6ab0796e",
   null,
   null
 );
@@ -301,7 +301,7 @@ let Z = {
   h: T.clientHeight,
   w: T.clientWidth
 };
-const U = () => {
+const D = () => {
   let e = {
     h: T.clientHeight,
     w: T.clientWidth
@@ -324,7 +324,7 @@ function Mt(e) {
   });
   t === void 0 || O.splice(t, 1);
 }
-const B = new ResizeObserver(U);
+const B = new ResizeObserver(D);
 B.observe(T);
 function $t(e, t, i) {
   return Math.max(t, Math.min(e, i));
@@ -379,7 +379,7 @@ function Wt(e) {
     et.trigger(a, l, T, _);
     return;
   }
-  var h = r.getBoundingClientRect(), f = l.offsetHeight, m = l.offsetWidth, g = D(e.offset) ? 7 : e.offset, A = "3,0,2,1".split(gt), z, y = h.left, w = h.top, R = Math.max(w, o), x = (h.height == bt ? h.bottom - w : h.height) >> 0, L = (h.width == bt ? h.right - y : h.width) >> 0, E = s - m - g, S = i - f - g, ut = y < 0 || y + L / 2 > s, ct = w < 0 || w + x > i, V = [
+  var h = r.getBoundingClientRect(), f = l.offsetHeight, m = l.offsetWidth, g = U(e.offset) ? 7 : e.offset, A = "3,0,2,1".split(gt), z, y = h.left, w = h.top, R = Math.max(w, o), x = (h.height == bt ? h.bottom - w : h.height) >> 0, L = (h.width == bt ? h.right - y : h.width) >> 0, E = s - m - g, S = i - f - g, ut = y < 0 || y + L / 2 > s, ct = w < 0 || w + x > i, V = [
     /* left: 0 */
     ct ? -1 : y - m,
     /* top: 1 */
@@ -448,13 +448,13 @@ function Wt(e) {
     let j = et.aLTM;
     _[j[0]] = G, _[j[1]] = X, _["--tips-arrow-top"] = (x > f, Y || yt), _["--tips-arrow-left"] = ht || yt;
   }
-  let _t = l.classList, Dt = vt[n], K = d[0];
-  (D(K) || K != n) && c([
+  let _t = l.classList, Ut = vt[n], K = d[0];
+  (U(K) || K != n) && c([
     [
       /* 移除旧值 */
       ["remove", _t, vt[K]],
       /* 添加新值 */
-      ["add", _t, Dt]
+      ["add", _t, Ut]
     ],
     () => {
       d.shift(), d.push(n), e.index = n;
@@ -632,7 +632,7 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
         /* CSS样式集合 */
         css: t,
         /* 偏移量 */
-        offset: D(this.offset) ? void 0 : +this.offset >> 0,
+        offset: U(this.offset) ? void 0 : +this.offset >> 0,
         arrow: this.arrow,
         edge: this.edge
       }), t.opacity = 1, this.css = t;
@@ -662,7 +662,7 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
     __2listener() {
       this.static || /* 监听滚动, 动态添加监测 */
       this.__parent((e, t, i) => {
-        t ? c(e.addEventListener, e, "scroll", U) : (c(B.observe, B, e), (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) && (i = this.__attr(e, it), i || (c(e.addEventListener, e, "scroll", U), this.__attr(e, it, "true"))));
+        t ? c(e.addEventListener, e, "scroll", D) : (c(B.observe, B, e), (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) && (i = this.__attr(e, it), i || (c(e.addEventListener, e, "scroll", D), this.__attr(e, it, "true"))));
       });
     },
     __css() {
@@ -675,7 +675,7 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
       ) / 2 >> 0, e;
     },
     __2next() {
-      if (D(this.static))
+      if (U(this.static))
         return;
       this.init(), xt(this.init), lt.delay = +this.delay, xt(this.__2listener), this.__toggle_append(this.$el);
       let e = this._rank__ = [[["observe", B]], null, this.$el];
@@ -763,7 +763,9 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
       if (Kt(e)) {
         if (this._event_mark || !this._target__)
           return;
-        this._event_mark = !0, (this._event__ = {
+        this._event_mark = !0;
+        let t = !1;
+        (this._event__ = {
           over: [
             /* 鼠标进入 */
             ["mouseenter", this.__visible],
@@ -772,16 +774,16 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
           hover: [
             /* 鼠标进入 */
             [
-              "mouseenter",
-              (i) => {
-                this.__visible(i), this.__nextTick();
+              "mouseover",
+              (s) => {
+                t !== !0 && (t = !0, this.__visible(s), this.__nextTick());
               }
             ],
             [
               "mouseleave",
-              (i) => {
-                this._t__ = setTimeout(() => {
-                  this.__hide(i);
+              (s) => {
+                t = !1, this._t__ = setTimeout(() => {
+                  this.__hide(s);
                 }, 0.1 * 1e3);
               }
             ],
@@ -802,8 +804,8 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
           modal: [
             [
               "click",
-              (i) => {
-                this.__close(i), this.__toggle(i), this.__Task(i, () => !0);
+              (s) => {
+                this.__close(s), this.__toggle(s), this.__Task(s, () => !0);
               }
             ]
           ],
@@ -838,7 +840,7 @@ const kt = document.documentElement, M = (e) => (c(["stopPropagation", "preventD
   },
   beforeUnmount() {
     c.apply(null, this._rank__), this._try("removeEventListener"), clearTimeout(this._timer__), Mt(this.__2listener), this.__toggle_append(this.$el, !0), this.__parent(function(e, t) {
-      c(e.removeEventListener, e, "scroll", U), c(e.removeAttribute, e, it, void 0), t || c(B.unobserve, B, e);
+      c(e.removeEventListener, e, "scroll", D), c(e.removeAttribute, e, it, void 0), t || c(B.unobserve, B, e);
     });
   }
 };
@@ -857,7 +859,7 @@ var _e = function() {
   fe,
   !1,
   null,
-  "d4a683c4",
+  "0115bcba",
   null,
   null
 );
@@ -1697,17 +1699,17 @@ var Ie = function() {
   })], 2), i("Card", { staticClass: "input-error", attrs: { nothing: "", height: "auto" } }, [t._t("error", function() {
     return [t._v(t._s(t.error))];
   }, { error: t.error })], 2)], 1);
-}, Ue = [], De = /* @__PURE__ */ $(
+}, De = [], Ue = /* @__PURE__ */ $(
   je,
   Ie,
-  Ue,
+  De,
   !1,
   null,
   "26ce91ef",
   null,
   null
 );
-const jt = De.exports, qe = {
+const jt = Ue.exports, qe = {
   name: "Loading",
   components: {
     Tips: P
@@ -1732,11 +1734,11 @@ var Ve = function() {
   null,
   null
 );
-const It = Xe.exports, Ye = {}, Ut = [];
-Ut.push(ot, k, Ft, Ht, Ot, Pt, jt, It, at, P);
+const It = Xe.exports, Ye = {}, Dt = [];
+Dt.push(ot, k, Ft, Ht, Ot, Pt, jt, It, at, P);
 const Ze = { Boom: ot, Card: k, Confirm: Ft, Div: Ht, Flex: Ot, Flyweight: Pt, Input: jt, Loading: It, Stream: at, Tips: P };
 Ye.install = function(e, t = {}) {
-  Ut.forEach((i) => {
+  Dt.forEach((i) => {
     let { global: s, name: r } = i;
     s === !1 || e.component(r, i), e.component("S" + r, i);
   });

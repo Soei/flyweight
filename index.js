@@ -1,6 +1,6 @@
-import { runer as m, each as x, isEmpty as Z, take as Q, merge as K, picker as F, isSimplyType as Et, isString as fe, format as xt, isArray as ot, array2Json as _e } from "@soei/util";
-import { openBlock as y, createElementBlock as q, normalizeClass as nt, normalizeStyle as J, renderSlot as a, createElementVNode as $, toDisplayString as E, normalizeProps as C, guardReactiveProps as R, withModifiers as $t, resolveComponent as k, createBlock as H, createSlots as at, renderList as X, withCtx as p, mergeProps as b, createCommentVNode as kt, createTextVNode as M, KeepAlive as pe, resolveDynamicComponent as me, Fragment as Jt, createVNode as v } from "vue";
-import { runer as c, bus as ge, isArray as ye, each as wt, isNil as lt, Event as Kt, take as be, isString as $e, isFunction as we } from "@soei/tools";
+import { runer as m, each as x, isEmpty as tt, take as Q, merge as K, picker as F, isSimplyType as Et, isString as ce, format as xt, isArray as ot, array2Json as fe } from "@soei/util";
+import { openBlock as y, createElementBlock as q, normalizeClass as nt, normalizeStyle as J, renderSlot as a, createElementVNode as $, toDisplayString as E, normalizeProps as C, guardReactiveProps as R, withModifiers as $t, resolveComponent as k, createBlock as H, createSlots as at, renderList as X, withCtx as p, mergeProps as b, createCommentVNode as kt, createTextVNode as M, KeepAlive as _e, resolveDynamicComponent as pe, Fragment as Jt, createVNode as v } from "vue";
+import { runer as c, bus as me, isArray as ge, each as wt, isNil as lt, take as ye, isString as be, Event as $e, isFunction as we } from "@soei/tools";
 import ve from "@soei/picker";
 let xe = /(\d+|[+\-\*/]|%)/g, Mt = {
   "+": (t, e) => t + e,
@@ -28,11 +28,11 @@ const z = (t, e) => {
     s[i] = r;
   return s;
 };
-let Xt = /^(?:--(\d-|d-).*|(?!--).*(height|width|top|left|bottom|right|size|radius|padding|margin|border))$/i;
+let Kt = /^(?:--(\d-|d-).*|(?!--).*(height|width|top|left|bottom|right|size|radius|padding|margin|border))$/i;
 function ke(t, e, s) {
   return this.$nextTick(() => {
     this.rm(t.replace(/\..*/, ""));
-  }), Xt.test(s) ? T(e) : e;
+  }), Kt.test(s) ? T(e) : e;
 }
 function vt(t, e) {
   return e && (t = t.replace(/[a-z]/g, "")), t.toLowerCase();
@@ -40,7 +40,7 @@ function vt(t, e) {
 function Se(t) {
   m("removeAttribute", this.$el, t);
 }
-let Qt = {
+let Xt = {
   close: {
     handler(t) {
       this.change(t);
@@ -51,7 +51,7 @@ let Qt = {
     deep: !0,
     immediate: !0,
     handler(t) {
-      if (Z(t))
+      if (tt(t))
         return;
       let e = [], s = this.$attrs;
       Q(
@@ -65,7 +65,7 @@ let Qt = {
           null,
           this,
           i
-        ]), Xt.test(n) ? T(r) : r),
+        ]), Kt.test(n) ? T(r) : r),
         this.tcss
       ), this.$nextTick(() => {
         m(e);
@@ -99,15 +99,15 @@ let Qt = {
   "Right",
   "Bottom",
   "Left"
-], Zt = {};
+], Qt = {};
 x(
   Te,
   (t, e, s) => {
-    t = vt(e), Zt["--" + vt(e, !0)] = t, s[t] = function() {
+    t = vt(e), Qt["--" + vt(e, !0)] = t, s[t] = function() {
       this.trigger++;
     };
   },
-  Qt
+  Xt
 );
 const Ce = {
   name: "Card",
@@ -180,18 +180,18 @@ const Ce = {
       return m("tips", this.close || {}) || "关闭" + (this.sub ? "[" + this.sub + "]" : "");
     }
   },
-  watch: Qt,
+  watch: Xt,
   methods: {
     rm: Se,
     set: ke,
     exec: T,
-    isEmpty: Z,
+    isEmpty: tt,
     picker: F,
     runer: m,
     isSimplyType: Et,
     tr() {
       let t = {}, e = this.offset, s = this.$attrs;
-      return this.margin(e), this.css(Zt, t), K(t, this._style, s.style, !0, "mix"), t;
+      return this.margin(e), this.css(Qt, t), K(t, this._style, s.style, !0, "mix"), t;
     },
     tolower: vt,
     css(t, e) {
@@ -207,7 +207,7 @@ const Ce = {
       ));
     },
     margin(t) {
-      t = fe(t) ? t.split(/\s*(?:,|\s+)\s*/) : t, Q(this.$attrs, "l:3,t:0,r:1,b:2", t, (e) => this.rm(e)), !Z(t) && Q(
+      t = ce(t) ? t.split(/\s*(?:,|\s+)\s*/) : t, Q(this.$attrs, "l:3,t:0,r:1,b:2", t, (e) => this.rm(e)), !tt(t) && Q(
         t,
         "0:top,1|0:right,2|0:bottom,3|1|0:left",
         // true,
@@ -271,12 +271,12 @@ function Le(t, e, s, i, r, n) {
 }
 const W = /* @__PURE__ */ z(Ce, [["render", Le], ["__scopeId", "data-v-6bdae450"]]), Ht = /(?:\,|\|{2})/, Wt = "";
 let j = document.documentElement, Ot, It = ["s-left", "s-top", "s-right", "s-bottom"], Be = { left: 0, top: 1, right: 2, bottom: 3 };
-const tt = [];
+const et = [];
 var Ee = ve(
   window,
   "Reflect.defineProperty|Object.defineProperty=>Proxy"
 ).Proxy;
-let St = {}, te = null;
+let St = {}, Zt = null;
 Ee(St, "delay", {
   /**
    * 获取延迟时间值
@@ -286,8 +286,8 @@ Ee(St, "delay", {
     return this._delay;
   },
   set(t) {
-    te = Me(() => {
-      c(tt);
+    Zt = Me(() => {
+      c(et);
     }, t), this._delay = t;
   }
 });
@@ -303,36 +303,36 @@ let mt = {
   h: j.clientHeight,
   w: j.clientWidth
 };
-const rt = () => {
+const Z = () => {
   let t = {
     h: j.clientHeight,
     w: j.clientWidth
   };
-  (t.h !== mt.h || t.w !== mt.w) && ge.emit("resize", t, ee), te(), mt = t;
+  (t.h !== mt.h || t.w !== mt.w) && me.emit("resize", t, te), Zt(), mt = t;
 };
 function Pt(t) {
-  se(t), tt.push(t);
+  ee(t), et.push(t);
 }
-function ee(t, e) {
+function te(t, e) {
   if (!c(["getBoundingClientRect"], t))
     return;
   let s = t.getBoundingClientRect(), i = e.x, r = e.y;
   return i > s.left && i < s.left + s.width && r > s.top && r < s.top + s.height;
 }
-function se(t) {
-  let e = wt(tt, function(s, i) {
+function ee(t) {
+  let e = wt(et, function(s, i) {
     if (t == i)
       return s;
   });
-  e === void 0 || tt.splice(e, 1);
+  e === void 0 || et.splice(e, 1);
 }
-const G = new ResizeObserver(rt);
+const G = new ResizeObserver(Z);
 G.observe(j);
 function jt(t, e, s) {
   return Math.max(e, Math.min(t, s));
 }
 const gt = [], V = (t) => {
-  if (ye(t))
+  if (ge(t))
     gt.push(t);
   else
     return +t < 0 ? c(t, gt) : gt.pop();
@@ -374,8 +374,8 @@ var yt = {
     return i;
   }
 };
-function ie(t) {
-  t.onresize || (tt.push([ie, null, t]), t.onresize = !0);
+function se(t) {
+  t.onresize || (et.push([se, null, t]), t.onresize = !0);
   var e = j, s = e.clientHeight, i = e.clientWidth, r = t.target, n = t.room, l = t.index, o = t.position, h = t.edge || 7, u = t.arrow || 0, d = t.css, g = t.space || (t.space = []);
   if (d["--tips-h--"] = s, /\s+|center/.test(o)) {
     yt.trigger(o, n, j, d);
@@ -396,16 +396,16 @@ function ie(t) {
   ];
   o && (wt(
     o.split(Ht),
-    function(st, it, pt, ce) {
-      ce.push(pt[it]);
+    function(it, rt, pt, de) {
+      de.push(pt[rt]);
     },
     Be,
     O = []
   ), D.unshift.apply(D, O)), l = wt(
     D,
-    function(st, it, pt) {
-      if (pt[it] - h > 0)
-        return it;
+    function(it, rt, pt) {
+      if (pt[rt] - h > 0)
+        return rt;
     },
     ht
   );
@@ -450,23 +450,22 @@ function ie(t) {
       ),
       u
     );
-    let st = yt.aLTM;
-    d[st[0]] = ut, d[st[1]] = dt, d["--tips-arrow-top"] = (B > w, ct || Wt), d["--tips-arrow-left"] = Lt || Wt;
+    let it = yt.aLTM;
+    d[it[0]] = ut, d[it[1]] = dt, d["--tips-arrow-top"] = (B > w, ct || Wt), d["--tips-arrow-left"] = Lt || Wt;
   }
-  let Bt = n.classList, de = It[l], _t = g[0];
+  let Bt = n.classList, ue = It[l], _t = g[0];
   (lt(_t) || _t != l) && c([
     [
       /* 移除旧值 */
       ["remove", Bt, It[_t]],
       /* 添加新值 */
-      ["add", Bt, de]
+      ["add", Bt, ue]
     ],
     () => {
       g.shift(), g.push(l), t.index = l;
     }
   ]);
 }
-new Kt("Tips");
 const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventDefault"], t), t), Vt = (t) => {
   let e = V(t), s = F(e, "1=>host,3=>sign,4=>modal", !0);
   return s.task = e, s;
@@ -506,11 +505,14 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
       ).el;
       if (c(["currentTarget", "nodeType"], e || "")) {
         let s = e;
-        e instanceof Kt && (s = e.currentTarget, Y(e)), this._event_mark = !1, this._target__ = s, s.mark || requestAnimationFrame(() => {
+        e instanceof $e && (s = e.currentTarget, Y(e)), this._event_mark = !1, this._target__ = s, s.mark || requestAnimationFrame(() => {
           this.__trigger(this.visible || "click"), s.mark = !0;
         });
       }
     }
+  },
+  position(t) {
+    Z();
   }
 }, He = {
   name: "Tips",
@@ -626,7 +628,7 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
       if (t.nodeName == "#comment")
         return;
       let e = this.$set ? Object.assign({}, this.css) : this.css;
-      K(e, this.__css(), !0), ie({
+      K(e, this.__css(), !0), se({
         onresize: !1,
         /* 监控的目标 */
         target: this._target__,
@@ -645,7 +647,7 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
     __toggle_append(t, e) {
       if (this.static || this.isSimply || t.nodeName == "#comment")
         return;
-      let s = this.isModal, i = be(this.$attrs, "append-to-*|append-to=>*", (l) => {
+      let s = this.isModal, i = ye(this.$attrs, "append-to-*|append-to=>*", (l) => {
         c("removeAttribute", t, l);
       }), r;
       for (let l in i) {
@@ -667,7 +669,7 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
     __2listener() {
       this.static || /* 监听滚动, 动态添加监测 */
       this.__parent((t, e, s) => {
-        e ? c(t.addEventListener, t, "scroll", rt) : (c(G.observe, G, t), (t.offsetHeight < t.scrollHeight || t.offsetWidth < t.scrollWidth) && (s = this.__attr(t, bt), s || (c(t.addEventListener, t, "scroll", rt), this.__attr(t, bt, "true"))));
+        e ? c(t.addEventListener, t, "scroll", Z) : (c(G.observe, G, t), (t.offsetHeight < t.scrollHeight || t.offsetWidth < t.scrollWidth) && (s = this.__attr(t, bt), s || (c(t.addEventListener, t, "scroll", Z), this.__attr(t, bt, "true"))));
       });
     },
     __css() {
@@ -715,7 +717,7 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
     __close(t) {
       let { task: e, host: s, sign: i, modal: r } = Vt(-1);
       if (e !== void 0) {
-        if (ee(s.$el, t))
+        if (te(s.$el, t))
           return Y(t);
         if (!s.proxy)
           return V(), s._task__ = !1, i === this.sign ? void 0 : this.__close(t);
@@ -729,7 +731,7 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
     },
     __click(t) {
       Y(t);
-      let e = Z(t), { task: s, sign: i, host: r, modal: n } = Vt(-1);
+      let e = tt(t), { task: s, sign: i, host: r, modal: n } = Vt(-1);
       c(n) !== void 0 && (s = null);
       let l = i == this.sign;
       this.$attrs.clear === void 0 || (s && c([s]), V()), l || this.__Task(
@@ -765,7 +767,7 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
     },
     /* 触发事件 */
     __trigger(t) {
-      if ($e(t)) {
+      if (be(t)) {
         if (this._event_mark || !this._target__)
           return;
         this._event_mark = !0;
@@ -844,8 +846,8 @@ const Dt = document.documentElement, Y = (t) => (c(["stopPropagation", "preventD
     Ut.target.handler.call(this, this.target), this._target__ = this._target__ || c("parentNode", this.$el);
   },
   beforeUnmount() {
-    c.apply(null, this._rank__), this._try("removeEventListener"), clearTimeout(this._timer__), se(this.__2listener), this.__toggle_append(this.$el, !0), this.__parent(function(t, e) {
-      c(t.removeEventListener, t, "scroll", rt), c(t.removeAttribute, t, bt, void 0), e || c(G.unobserve, G, t);
+    c.apply(null, this._rank__), this._try("removeEventListener"), clearTimeout(this._timer__), ee(this.__2listener), this.__toggle_append(this.$el, !0), this.__parent(function(t, e) {
+      c(t.removeEventListener, t, "scroll", Z), c(t.removeAttribute, t, bt, void 0), e || c(G.unobserve, G, t);
     });
   }
 };
@@ -870,11 +872,11 @@ function We(t, e, s, i, r, n) {
     }))
   ]), 1032, ["class", "s-tips-completed", "style", "static", "onClick"])) : kt("", !0);
 }
-const et = /* @__PURE__ */ z(He, [["render", We], ["__scopeId", "data-v-6e0a0e34"]]);
+const st = /* @__PURE__ */ z(He, [["render", We], ["__scopeId", "data-v-237dfd00"]]);
 const Oe = {
   name: "Boom",
   emits: ["click"],
-  components: { Card: W, Tips: et },
+  components: { Card: W, Tips: st },
   props: {
     loading: {
       type: [Boolean, String]
@@ -940,7 +942,7 @@ const Tt = /* @__PURE__ */ z(Oe, [["render", Pe], ["__scopeId", "data-v-24023677
     },
     column() {
       let { columns: t, T: e } = this, s = t || e;
-      return Z(s) ? [] : ot(s) ? s : [s];
+      return tt(s) ? [] : ot(s) ? s : [s];
     },
     tag() {
       return this.is || this.$attrs.type || "span";
@@ -990,8 +992,8 @@ const Tt = /* @__PURE__ */ z(Oe, [["render", Pe], ["__scopeId", "data-v-24023677
   }
 };
 function Fe(t, e, s, i, r, n) {
-  return y(), H(pe, null, [
-    (y(), H(me(n.tag), b({ ref: "component" }, t.$attrs), {
+  return y(), H(_e, null, [
+    (y(), H(pe(n.tag), b({ ref: "component" }, t.$attrs), {
       default: p(() => [
         (y(!0), q(Jt, null, X(n.column, (l) => a(t.$slots, n.__trigger(l), b({ ref_for: !0 }, l, { _: t.$attrs }))), 256))
       ]),
@@ -1004,7 +1006,7 @@ const De = {
   name: "Confirm",
   components: {
     Card: W,
-    Tips: et,
+    Tips: st,
     Boom: Tt
   },
   inheritAttrs: !1,
@@ -1193,7 +1195,7 @@ function Ue(t, e, s, i, r, n) {
     }, 16, ["columns", "visible", "arrow"])
   ]);
 }
-const re = /* @__PURE__ */ z(De, [["render", Ue], ["__scopeId", "data-v-de1fbaff"]]);
+const ie = /* @__PURE__ */ z(De, [["render", Ue], ["__scopeId", "data-v-de1fbaff"]]);
 const Ge = {
   name: "Div",
   components: {
@@ -1214,7 +1216,7 @@ function Ye(t, e, s, i, r, n) {
     }))
   ]), 1024);
 }
-const ne = /* @__PURE__ */ z(Ge, [["render", Ye], ["__scopeId", "data-v-90c20b5d"]]);
+const re = /* @__PURE__ */ z(Ge, [["render", Ye], ["__scopeId", "data-v-90c20b5d"]]);
 const Je = {
   name: "Flex",
   components: {
@@ -1236,7 +1238,7 @@ function Ke(t, e, s, i, r, n) {
     }))
   ]), 1024);
 }
-const le = /* @__PURE__ */ z(Je, [["render", Ke], ["__scopeId", "data-v-13b2463f"]]);
+const ne = /* @__PURE__ */ z(Je, [["render", Ke], ["__scopeId", "data-v-13b2463f"]]);
 let Gt = (t) => t == null || t == null, Xe = (...t) => {
   console.info("::::FLYWEIGHT", ...t);
 };
@@ -1590,7 +1592,7 @@ function ts(t, e, s, i, r, n) {
     ], !0)
   ], 38);
 }
-const oe = /* @__PURE__ */ z(Qe, [["render", ts], ["__scopeId", "data-v-1c021354"]]);
+const le = /* @__PURE__ */ z(Qe, [["render", ts], ["__scopeId", "data-v-1c021354"]]);
 let es;
 const Yt = {
   /* 自己动手 */
@@ -1679,7 +1681,7 @@ const Yt = {
           { immediate: !0 }
         ));
       },
-      _e("maxlength,type,disabled,readonly")
+      fe("maxlength,type,disabled,readonly")
     ), this.$nextTick(() => {
       this.completed = "";
     }), this.storage();
@@ -1871,10 +1873,10 @@ function os(t, e, s, i, r, n) {
     _: 3
   }, 16, ["s-completed", "class", "style"]);
 }
-const ae = /* @__PURE__ */ z(ss, [["render", os], ["__scopeId", "data-v-bf0c8b26"]]), as = {
+const oe = /* @__PURE__ */ z(ss, [["render", os], ["__scopeId", "data-v-bf0c8b26"]]), as = {
   name: "Loading",
   components: {
-    Tips: et
+    Tips: st
   },
   props: {
     visible: {
@@ -1896,11 +1898,11 @@ function hs(t, e, s, i, r, n) {
     _: 3
   }, 8, ["visible"]);
 }
-const he = /* @__PURE__ */ z(as, [["render", hs]]), us = {}, ue = [];
-ue.push(Tt, W, re, ne, le, oe, ae, he, Ct, et);
-const ps = { Boom: Tt, Card: W, Confirm: re, Div: ne, Flex: le, Flyweight: oe, Input: ae, Loading: he, Stream: Ct, Tips: et };
+const ae = /* @__PURE__ */ z(as, [["render", hs]]), us = {}, he = [];
+he.push(Tt, W, ie, re, ne, le, oe, ae, Ct, st);
+const ps = { Boom: Tt, Card: W, Confirm: ie, Div: re, Flex: ne, Flyweight: le, Input: oe, Loading: ae, Stream: Ct, Tips: st };
 us.install = function(t, e = {}) {
-  ue.forEach((s) => {
+  he.forEach((s) => {
     let { global: i, name: r } = s;
     i === !1 || t.component(r, s), t.component("S" + r, s);
   });
@@ -1908,14 +1910,14 @@ us.install = function(t, e = {}) {
 export {
   Tt as Boom,
   W as Card,
-  re as Confirm,
-  ne as Div,
-  le as Flex,
-  oe as Flyweight,
-  ae as Input,
-  he as Loading,
+  ie as Confirm,
+  re as Div,
+  ne as Flex,
+  le as Flyweight,
+  oe as Input,
+  ae as Loading,
   Ct as Stream,
-  et as Tips,
+  st as Tips,
   ps as components,
   us as default
 };

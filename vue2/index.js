@@ -1085,7 +1085,7 @@ var Te = function() {
     return [t._t("ref"), t._t("reference")];
   }), i("Tips", t._b({ tag: "Stream", staticClass: "s-confirm", attrs: { columns: { type: t.type }, visible: t.proxy, min: ["auto"], height: "auto", arrow: /^(false|null)$/.test(t.$attrs.arrow) ? void 0 : "" }, scopedSlots: t._u([{ key: "default", fn: function() {
     return [t._t("el", function() {
-      return [i("Card", { attrs: { flex: "", column: "" }, scopedSlots: t._u([{ key: "title", fn: function() {
+      return [i("Card", { attrs: { flex: "", column: "", inherit: "" }, scopedSlots: t._u([{ key: "title", fn: function() {
         return [i("Card", t._b({ staticClass: "s-confirm-title", attrs: { height: "auto" } }, "Card", t.titleAttrs, !1), [t._t("title", function() {
           return [t._v(t._s(t.title))];
         })], 2)];
@@ -1128,7 +1128,7 @@ var Te = function() {
   Ce,
   !1,
   null,
-  "13c825c6",
+  "0ff70f91",
   null,
   null
 );

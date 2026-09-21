@@ -1105,7 +1105,8 @@ function Ue(t, e, s, i, r, n) {
         a(t.$slots, "el", {}, () => [
           v(l, {
             flex: "",
-            column: ""
+            column: "",
+            inherit: ""
           }, {
             title: p(() => [
               v(l, b({
@@ -1195,7 +1196,7 @@ function Ue(t, e, s, i, r, n) {
     }, 16, ["columns", "visible", "arrow"])
   ]);
 }
-const ie = /* @__PURE__ */ z(De, [["render", Ue], ["__scopeId", "data-v-de1fbaff"]]);
+const ie = /* @__PURE__ */ z(De, [["render", Ue], ["__scopeId", "data-v-2b4ac1d1"]]);
 const Ge = {
   name: "Div",
   components: {

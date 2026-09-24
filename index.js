@@ -847,6 +847,7 @@ function He(t, e, s, i, r, n) {
   const l = x("Card");
   return r.proxy ? (g(), W(l, {
     key: 0,
+    inherit: "",
     class: nt(["tips", {
       "tips-fly": n.isModal
     }]),
@@ -864,7 +865,7 @@ function He(t, e, s, i, r, n) {
     }))
   ]), 1032, ["class", "s-tips-completed", "style", "static", "onClick"])) : vt("", !0);
 }
-const st = /* @__PURE__ */ B(Re, [["render", He], ["__scopeId", "data-v-4ed56d6f"]]);
+const st = /* @__PURE__ */ B(Re, [["render", He], ["__scopeId", "data-v-cafd93d4"]]);
 const We = {
   name: "Boom",
   emits: ["click"],

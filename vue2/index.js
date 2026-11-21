@@ -1120,7 +1120,7 @@ var Se = function() {
   Te,
   !1,
   null,
-  "840c0b69",
+  "2695b110",
   null,
   null
 );
@@ -1685,7 +1685,7 @@ var De = function() {
   return i("Card", t._b({ staticClass: "s-wrap", class: {
     [t.$attrs.class || ""]: !0,
     error: t.error
-  }, style: { "--text-left": t.left, "--text-right": t.right, "--text-close": t.rm }, attrs: { "s-completed": t.completed, use: "" } }, "Card", t.attrs, !1), [i(t.$attrs.type === "textarea" ? "textarea" : "input", t._b({ ref: "input", tag: "Stream", staticClass: "s-wrap-input", attrs: { id: t.id, placeholder: "", autocomplete: "off", type: t.$attrs.type }, on: { focus: function(s) {
+  }, style: { "--text-left": t.left, "--text-right": t.right, "--text-close": t.rm }, attrs: { "s-completed": t.completed, use: "" } }, "Card", t.attrs, !1), [i(t.$attrs.type === "textarea" ? "textarea" : "input", t._b({ ref: "input", tag: "Stream", staticClass: "s-wrap-input", attrs: { id: t.id, placeholder: " ", autocomplete: "off", type: t.$attrs.type }, on: { focus: function(s) {
     return t.$emit("focus", s);
   }, change: t.__change, input: t.__input, blur: t.__blur } }, "Stream", t.inputAttrs, !1)), i("label", { staticClass: "s-wrap-label", attrs: { for: t.id } }, [t._t("default", function() {
     return [i("span", { staticClass: "placeholder", attrs: { flex: "" } }, [t._t("placeholder", function() {
@@ -1708,7 +1708,7 @@ var De = function() {
   Ue,
   !1,
   null,
-  "26ce91ef",
+  "82effb98",
   null,
   null
 );
